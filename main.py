@@ -4,12 +4,17 @@ import requests
 import threading
 import time
 import random
+from panda3d.core import WindowProperties
 
-app = Ursina()
+app = Ursina(borderless=False)
+window.size = window.fullscreen_size * 0.75
+props = WindowProperties()
+props.set_fixed_size(True)
+base.win.request_properties(props)
 
 # --- CONFIG ---
 SERVER_URL = "https://bloodyvamp1re.pythonanywhere.com"
-username = ""
+username = f"Guest{random.randint(100,999)}"
 current_room = ""
 my_pid = "" 
 game_active = False
@@ -25,7 +30,7 @@ login_panel = WindowPanel(
         InputField(name='user', placeholder='Username'),
         Button(text='Play as Guest', color=color.azure, on_click=lambda: play_guest()),
     ),
-    popup=False, enabled=True
+    popup=False, enabled=False
 )
 
 lobby_panel = WindowPanel(
@@ -35,7 +40,7 @@ lobby_panel = WindowPanel(
         Button(text='Join Room', color=color.orange, on_click=lambda: join_room()),
         Text(text='Waiting...', enabled=False)
     ),
-    popup=False, enabled=False
+    popup=False, enabled=True
 )
 
 hud_role = Text(text='', position=(-0.85, 0.45), scale=2, enabled=False)
@@ -107,6 +112,7 @@ def start_game(seed, ready):
     opponent.visible = True
     hud_role.enabled = True
     hud_time.enabled = True
+    hud_time.text = '' # Reset timer
     debug_txt.enabled = True
     
     if not ready: hud_role.text = "Waiting..."
@@ -122,21 +128,58 @@ def generate_walls(seed):
             elif random.random() < 0.1 and abs(x)>5:
                 walls.append(Entity(model='cube', position=(x*2,2,z*2), scale=(2,6,2), texture='brick', collider='box'))
 
+def handle_kick():
+    reset_to_lobby()
+    lobby_panel.content[2].text = "You were kicked for inactivity."
+    lobby_panel.content[2].enabled = True
+
+def end_game_sequence(winner):
+    global game_active
+    game_active = False
+    if player: player.enabled = False # Disable player movement
+
+    # Visuals
+    if my_role_var == "tagger":
+        # I am the Tagger, my opponent (runner) explodes
+        create_explosion(opponent.position, opponent.color)
+        opponent.visible = False
+    else: 
+        # I am the Runner, I explode
+        create_explosion(player.position, color.azure)
+        player.visible = False
+        camera.shake(duration=1, magnitude=2)
+        bg.enabled = True
+        bg.color = color.clear
+        bg.animate_color(color.black, duration=2)
+
+    win_text.text = f"{winner} WINS!"
+    win_text.enabled = True
+
+    Sequence(Wait(4), Func(reset_to_lobby)).start()
+
 def reset_to_lobby():
-    global game_active, current_room
+    global game_active, current_room, player
     game_active = False
     current_room = ""
     mouse.locked = False
     bg.enabled = True
     lobby_panel.enabled = True
     
-    if player: destroy(player)
+    if player: 
+        destroy(player)
+        player = None
     ground.enabled = False
     opponent.enabled = False
     hud_role.enabled = False
+    hud_time.enabled = False
     win_text.enabled = False
     debug_txt.enabled = False
     for w in walls: destroy(w)
+    walls.clear()
+    
+    # Also reset the lobby UI text
+    lobby_panel.content[2].text = "Waiting..."
+    lobby_panel.content[2].enabled = False
 
 def update():
     global force_tag_signal
@@ -148,7 +191,7 @@ def update():
     
     # Auto-Tag Logic
     if my_role_var == "tagger":
-        if dist < 4.0:
+        if dist < 2.0: # Hitbox reduced
             debug_txt.color = color.red
             force_tag_signal = True 
         else:
@@ -156,16 +199,23 @@ def update():
     
     # NEW: Runner Logic - If I run into Tagger, I lose too
     elif my_role_var == "runner":
-         if dist < 2.5: # Slightly smaller hitbox for runner suicide
+         if dist < 1.5: # Hitbox reduced
              force_tag_signal = True # Tell server I died
+
+def input(key):
+    if key == 'escape':
+        mouse.locked = not mouse.locked
 
 def network_loop():
     global game_active, force_tag_signal, my_role_var
     
     while current_room:
         try:
-            pos = (0,0,0)
-            if player: pos = (player.x, player.y, player.z)
+            if not player: 
+                time.sleep(0.1)
+                continue
+
+            pos = (player.x, player.y, player.z)
             
             payload = {
                 "code": current_room, "pid": my_pid,
@@ -173,7 +223,7 @@ def network_loop():
                 "tagged": force_tag_signal
             }
             
-            r = session.post(f"{SERVER_URL}/update", json=payload, timeout=0.5)
+            r = session.post(f"{SERVER_URL}/update", json=payload, timeout=2)
             
             if r.status_code == 200:
                 data = r.json()
@@ -197,25 +247,16 @@ def network_loop():
                     opponent.color = color.red if opp_role == "tagger" else color.azure
 
                 elif data['status'] == "GAME_OVER":
-                    if game_active: 
-                        # --- VISUAL FIX HERE ---
-                        if my_role_var == "tagger":
-                            # I am Tagger. My Opponent (Runner) explodes.
-                            create_explosion(opponent.position, opponent.color)
-                            opponent.enabled = False 
-                        else:
-                            # I am Runner. I explode. Opponent (Tagger) stays visible.
-                            create_explosion(player.position, color.azure)
-                            # We do NOT hide opponent. Tagger stands victorious.
-                    
-                    game_active = False
-                    winner = data['winner']
-                    win_text.text = f"{winner} WINS!"
-                    win_text.enabled = True
-                    time.sleep(4)
-                    invoke(reset_to_lobby)
+                    if game_active:
+                        invoke(end_game_sequence, winner=data['winner'])
                     break 
-        except: pass
+
+                elif data['status'] == "KICKED":
+                    invoke(handle_kick)
+                    break
+        except Exception as e: 
+            print("NET LOOP ERROR:", e)
+            pass
         time.sleep(0.05)
 
 app.run()
