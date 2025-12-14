@@ -7,25 +7,83 @@ import pickle
 import os
 import time
 import math
+import logging # <--- NEW: Logging module
 
 # ==========================================
 # --- CONFIGURATION ---
 # ==========================================
-TEST_MODE = False         # <--- TRUE = Watch Mode, FALSE = Train Mode
-GEN_SIZE = 48            
+TEST_MODE = True           # <--- TRUE = Watch Mode, FALSE = Train Mode
+GEN_SIZE = 48           
 MATCH_DURATION = 20     
 VISION_RES = 12         
 MUTATION_RATE = 0.2     
 MUTATION_STRENGTH = 0.3 
 LOAD_SAVE = True       
-LOAD_FILE = "trained_model.pkl"   # <--- The old file you want to resume from
-SAVE_FILE = "trained_model.pkl"      # <--- The new name you want to save to  
+LOAD_FILE = "backup_gen_90.pkl"   # <--- The old file you want to resume from
+SAVE_FILE = "trained_model.pkl"       # <--- The new name you want to save to  
 
 # --- SAFETY SYSTEMS ---
 BACKUP_INTERVAL = 5     
 ANTI_SPIN_THRESHOLD = 0.1 
-MAX_BAD_GENS = 3         
+MAX_BAD_GENS = 3        
 # ==========================================
+# --- LOGGING CONFIGURATION ---
+LOG_FILE = "training_log.txt" # <--- NEW: Log file name
+# ==========================================
+
+# --- NEW: LOGGING SETUP ---
+class LogManager:
+    def __init__(self, log_file):
+        self.logger = logging.getLogger('TrainingLogger')
+        self.logger.setLevel(logging.INFO)
+        
+        # File handler
+        fh = logging.FileHandler(log_file)
+        fh.setFormatter(logging.Formatter('%(message)s'))
+        self.logger.addHandler(fh)
+        
+        self.log_file = log_file
+
+    def log_generation_start(self, gen_num):
+        self.logger.info(f"\n{{'='*50}}\nGEN {gen_num:04d} START ({time.strftime('%Y-%m-%d %H:%M:%S')})\n{{'='*50}}")
+        print(f"--- STARTING GEN {gen_num} ---")
+
+    def log_generation_end(self, gen_num, time_taken, scores, bad_gen_count, force_reset):
+        if not scores: return
+        
+        # Separate scores
+        tagger_scores = [s[0] for s in scores]
+        runner_scores = [s[1] for s in scores]
+        
+        best_t_score = max(tagger_scores)
+        avg_t_score = np.mean(tagger_scores)
+        best_r_score = max(runner_scores)
+        avg_r_score = np.mean(runner_scores)
+        
+        # Log to File
+        self.logger.info(f"Gen: {gen_num:04d} | Time: {time_taken:.2f}s")
+        self.logger.info(f"Tagger: Best={best_t_score:.2f}, Avg={avg_t_score:.2f}")
+        self.logger.info(f"Runner: Best={best_r_score:.2f}, Avg={avg_r_score:.2f}")
+        self.logger.info(f"Bad Gen Count: {bad_gen_count}/{MAX_BAD_GENS} | Reset Next: {force_reset}")
+        self.logger.info(f"All Tagger Scores: {tagger_scores}")
+        self.logger.info(f"All Runner Scores: {runner_scores}")
+        self.logger.info(f"---")
+
+        # Log to Console (Crucial Info)
+        print(f"--- GEN {gen_num} SUMMARY ({time_taken:.2f}s) ---")
+        print(f"🥇 Tagger Best Score: {best_t_score:.2f}")
+        print(f"🥇 Runner Best Score: {best_r_score:.2f}")
+        
+    def log_error(self, message):
+        self.logger.error(f"!!! ERROR: {message} !!!")
+        print(f"!!! ERROR: {message} !!!")
+        
+    def log_status(self, message):
+        self.logger.info(f"STATUS: {message}")
+        print(f"STATUS: {message}")
+
+log_manager = LogManager(LOG_FILE)
+# -----------------------------
 
 app = Ursina(borderless=False, vsync=True if TEST_MODE else False)
 
@@ -86,7 +144,7 @@ class SimpleBrain:
         clone.b2 = self.b2.copy()
         return clone
 
-# --- AGENT CLASS ---
+# --- AGENT CLASS (No functional changes needed here) ---
 class Agent(Entity):
     def __init__(self, role, pair_id, origin_x, manager, brain=None, **kwargs):
         super().__init__(**kwargs)
@@ -216,10 +274,36 @@ class Agent(Entity):
             move_dist = self.speed * dt
             
             if move_vec.length() > 0.01:
-                # --- WALL CLIPPING FIX (LAG SPIKE PROTECTION) ---
-                check_dist = move_dist + 0.5 
-                if not raycast(self.position+Vec3(0,0.5,0), move_vec, distance=check_dist, ignore=(self, target)).hit:
+                # --- WALL CLIPPING FIX (3-Ray Shoulder Check) ---
+                
+                check_dist = move_dist + 0.5
+                
+                # 1. Calculate vector perpendicular to movement direction (not facing direction)
+                perp_vec = move_vec.cross(Vec3(0, 1, 0)).normalized()
+                
+                # 2. Agent scale is 1.0 (radius 0.5). We check slightly inward (0.45)
+                shoulder_width = 0.45
+                
+                origins = [
+                    self.position + Vec3(0, 0.5, 0),                               # Center
+                    self.position + Vec3(0, 0.5, 0) + (perp_vec * shoulder_width), # Right Shoulder
+                    self.position + Vec3(0, 0.5, 0) - (perp_vec * shoulder_width)  # Left Shoulder
+                ]
+                
+                blocked = False
+                for org in origins:
+                    # Cast ray in direction of movement
+                    hit_info = raycast(org, move_vec, distance=check_dist, ignore=(self, target))
+                    if hit_info.hit:
+                        blocked = True
+                        break
+                
+                if not blocked:
                     self.position += move_vec * move_dist
+                else:
+                    # optional: punish fitness slightly for hitting a wall to discourage hugging
+                    # self.fitness_score -= 1 * dt 
+                    pass
                     
             if jump_trig > 0.6 and self.grounded and self.jump_cooldown <= 0:
                 self.velocity_y = self.jump_force
@@ -249,7 +333,7 @@ class Agent(Entity):
         if hasattr(self, 'buffer') and self.buffer: base.graphicsEngine.remove_window(self.buffer)
         if hasattr(self, 'cam_np'): self.cam_np.remove_node()
 
-# --- GRID CAMERA ---
+# --- GRID CAMERA (No functional changes needed here) ---
 class GridCameraSystem:
     def __init__(self, agents):
         self.cameras = []
@@ -378,7 +462,7 @@ class TrainingManager(Entity):
         
 
     def start_generation(self):
-        print(f"--- STARTING GEN {self.generation} ---")
+        log_manager.log_generation_start(self.generation) # <--- LOG: Generation Start
         self.cleanup()
         
         local_gen_size = 1 if TEST_MODE else GEN_SIZE
@@ -395,7 +479,7 @@ class TrainingManager(Entity):
         self.population = self.population[:local_gen_size]
 
         if not TEST_MODE and self.force_reset_next:
-            print(">>> EMERGENCY INTERVENTION: FORCING STRAIGHT RUNNING <<<")
+            log_manager.log_status("EMERGENCY INTERVENTION: FORCING STRAIGHT RUNNING")
             self.ui_status.text = "Status: FORCED RESET"
             self.ui_status.color = color.red
             for (t_brain, r_brain) in self.population:
@@ -426,6 +510,7 @@ class TrainingManager(Entity):
 
         self.time_elapsed = 0
         self.active = True
+        self.gen_start_time = time.time() # <--- NEW: Track generation start
 
     def spawn_walls(self, seed):
         self.walls = []
@@ -527,7 +612,7 @@ class TrainingManager(Entity):
                     self.faded_walls.append(hits.entity)
 
 
-            # --- CAMERA LOGIC ---
+            # --- CAMERA LOGIC (Unchanged) ---
             if self.free_look:
                 # MANUAL ORBIT MODE (LEFT/RIGHT ONLY)
                 self.cam_yaw += mouse.velocity[0] * 100
@@ -598,11 +683,13 @@ class TrainingManager(Entity):
 
             if dist < 6.0: runner.fitness_score -= 10 * dt 
             if dist < 1.3: self.finish_pair(i, winner="tagger")
-            
+        
+        # If time is up, end all matches
         if self.time_elapsed > MATCH_DURATION:
             for i, (tagger, runner) in enumerate(self.agents):
                 if tagger.enabled: self.finish_pair(i, winner="runner")
         
+        # If all matches are over, evolve
         if active_count == 0: 
             if TEST_MODE:
                 # Infinite Loop for testing
@@ -631,7 +718,12 @@ class TrainingManager(Entity):
         t.enabled = False; r.enabled = False; t.visible = False; r.visible = False
 
     def evolve(self):
-        print("--- EVOLVING ---")
+        log_manager.log_status("EVOLVING")
+        
+        # --- LOG GENERATION END ---
+        gen_time = time.time() - self.gen_start_time
+        log_manager.log_generation_end(self.generation, gen_time, self.scores, self.bad_gen_count, self.force_reset_next)
+        
         sorted_taggers = sorted(zip(self.population, self.scores), key=lambda x: x[1][0], reverse=True)
         sorted_runners = sorted(zip(self.population, self.scores), key=lambda x: x[1][1], reverse=True)
         
@@ -640,11 +732,16 @@ class TrainingManager(Entity):
         self.save_brains(best_t, best_r)
         
         # --- HEALTH MONITORING ---
-        turn_bias = abs(best_r.b2[3])
-        print(f"DEBUG: Best Runner Turn Bias: {turn_bias:.4f}")
-        if turn_bias > ANTI_SPIN_THRESHOLD:
+        # Only get the bias of the current best runner
+        turn_bias = best_r.b2[3] 
+        
+        # Log the turn bias separately for easy monitoring
+        log_manager.logger.info(f"DEBUG: Best Runner Turn Bias: {turn_bias:.4f}")
+        print(f"⚠️ Runner Turn Bias (Best): {turn_bias:.4f}")
+
+        if abs(turn_bias) > ANTI_SPIN_THRESHOLD:
             self.bad_gen_count += 1
-            print(f"WARNING: High Turn Bias detected ({self.bad_gen_count}/{MAX_BAD_GENS})")
+            log_manager.log_status(f"WARNING: High Turn Bias detected ({self.bad_gen_count}/{MAX_BAD_GENS})")
         else:
             self.bad_gen_count = 0
             
@@ -690,22 +787,23 @@ class TrainingManager(Entity):
 
     def save_brains(self, t, r):
         data = {"gen":self.generation, "t_brain":t, "r_brain":r}
-        with open(SAVE_FILE, 'wb') as f: pickle.dump(data, f)
-        if self.generation % BACKUP_INTERVAL == 0:
-            with open(f"backup_gen_{self.generation}.pkl", 'wb') as f: pickle.dump(data, f)
-        print("Saved Best.")
+        try:
+            with open(SAVE_FILE, 'wb') as f: pickle.dump(data, f)
+            if self.generation % BACKUP_INTERVAL == 0:
+                with open(f"backup_gen_{self.generation}.pkl", 'wb') as f: pickle.dump(data, f)
+            log_manager.log_status(f"Saved Best Brains (Gen {self.generation})")
+        except Exception as e:
+            log_manager.log_error(f"Failed to save brains: {e}")
 
     def load_brains(self):
-        # CHANGE: Check LOAD_FILE instead of SAVE_FILE
         if os.path.exists(LOAD_FILE): 
             try:
-                # CHANGE: Open LOAD_FILE
                 with open(LOAD_FILE, 'rb') as f:
                     data = pickle.load(f)
                     saved_size = data['t_brain'].w1.shape[0]
                     curr_size = (VISION_RES * VISION_RES) + 13
                     if saved_size != curr_size:
-                        print(f"Arch mismatch. Resetting."); return 
+                        log_manager.log_status(f"Arch mismatch. Resetting."); return 
                     self.generation = data['gen'] + 1
                     t, r = data['t_brain'], data['r_brain']
                     self.population = []
@@ -717,16 +815,17 @@ class TrainingManager(Entity):
                         
                     self.population[0] = (t, r)
                         
-                    print(f"Loaded Gen {self.generation} from {LOAD_FILE}")
+                    log_manager.log_status(f"Loaded Gen {self.generation-1} from {LOAD_FILE}")
             except Exception as e: 
-                print(f"Load failed: {e}"); self.generation = 1
+                log_manager.log_error(f"Load failed: {e}"); self.generation = 1
         else:
-            print(f"Could not find {LOAD_FILE}, starting fresh.")
+            log_manager.log_status(f"Could not find {LOAD_FILE}, starting fresh.")
 
 def req_stop():
     trainer.stop_requested = True
     b_stop.text = "Stopping..."
     b_stop.color = color.red
+    log_manager.log_status("Stop requested by user. Waiting for current generation to finish...")
 
 b_stop = Button(text="Save & Stop", color=color.orange, scale=(0.2, 0.05), position=(-0.7, -0.4), on_click=req_stop)
 

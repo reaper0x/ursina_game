@@ -2,4 +2,3 @@ venv/
 build/
 dist/
 TagGame3D.spec
-build_script.py
