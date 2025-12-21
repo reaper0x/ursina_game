@@ -7,72 +7,61 @@ import pickle
 import os
 import time
 import math
-import logging # <--- NEW: Logging module
+import logging
 
 # ==========================================
 # --- CONFIGURATION ---
 # ==========================================
-TEST_MODE = True           # <--- TRUE = Watch Mode, FALSE = Train Mode
-GEN_SIZE = 48           
+TEST_MODE = False           # <--- Set to TRUE to watch, FALSE to train fast
+GEN_SIZE = 100              # Population size (Higher is better, try 60-100 if PC can handle it)
 MATCH_DURATION = 20     
-VISION_RES = 12         
-MUTATION_RATE = 0.2     
-MUTATION_STRENGTH = 0.3 
+VISION_RES = 12            # Pixel vision resolution (12x12)
+MUTATION_RATE = 0.2        # Base mutation chance
+MUTATION_STRENGTH = 0.3    # Base mutation power
+HIDDEN_LAYER_SIZE = 64     # <--- INCREASED from 32 (Better brain capacity)
+
 LOAD_SAVE = True       
-LOAD_FILE = "backup_gen_90.pkl"   # <--- The old file you want to resume from
-SAVE_FILE = "trained_model.pkl"       # <--- The new name you want to save to  
+LOAD_FILE = "trained_model.pkl"   
+SAVE_FILE = "trained_model.pkl"       
 
 # --- SAFETY SYSTEMS ---
 BACKUP_INTERVAL = 5     
 ANTI_SPIN_THRESHOLD = 0.1 
 MAX_BAD_GENS = 3        
-# ==========================================
-# --- LOGGING CONFIGURATION ---
-LOG_FILE = "training_log.txt" # <--- NEW: Log file name
-# ==========================================
+LOG_FILE = "training_log.txt"
 
-# --- NEW: LOGGING SETUP ---
+# ==========================================
+# --- LOGGING SETUP ---
 class LogManager:
     def __init__(self, log_file):
         self.logger = logging.getLogger('TrainingLogger')
         self.logger.setLevel(logging.INFO)
-        
-        # File handler
         fh = logging.FileHandler(log_file)
         fh.setFormatter(logging.Formatter('%(message)s'))
         self.logger.addHandler(fh)
-        
         self.log_file = log_file
 
-    def log_generation_start(self, gen_num):
-        self.logger.info(f"\n{{'='*50}}\nGEN {gen_num:04d} START ({time.strftime('%Y-%m-%d %H:%M:%S')})\n{{'='*50}}")
-        print(f"--- STARTING GEN {gen_num} ---")
+    def log_generation_start(self, gen_num, mutation_mult=1.0):
+        mode_str = " (PANIC MUTATION)" if mutation_mult > 1.0 else ""
+        self.logger.info(f"\n{{'='*50}}\nGEN {gen_num:04d} START{mode_str} ({time.strftime('%Y-%m-%d %H:%M:%S')})\n{{'='*50}}")
+        print(f"--- STARTING GEN {gen_num}{mode_str} ---")
 
     def log_generation_end(self, gen_num, time_taken, scores, bad_gen_count, force_reset):
         if not scores: return
-        
-        # Separate scores
         tagger_scores = [s[0] for s in scores]
         runner_scores = [s[1] for s in scores]
         
-        best_t_score = max(tagger_scores)
-        avg_t_score = np.mean(tagger_scores)
-        best_r_score = max(runner_scores)
-        avg_r_score = np.mean(runner_scores)
+        best_t = max(tagger_scores)
+        best_r = max(runner_scores)
         
-        # Log to File
         self.logger.info(f"Gen: {gen_num:04d} | Time: {time_taken:.2f}s")
-        self.logger.info(f"Tagger: Best={best_t_score:.2f}, Avg={avg_t_score:.2f}")
-        self.logger.info(f"Runner: Best={best_r_score:.2f}, Avg={avg_r_score:.2f}")
-        self.logger.info(f"Bad Gen Count: {bad_gen_count}/{MAX_BAD_GENS} | Reset Next: {force_reset}")
-        self.logger.info(f"All Tagger Scores: {tagger_scores}")
-        self.logger.info(f"All Runner Scores: {runner_scores}")
-        self.logger.info(f"---")
+        self.logger.info(f"Tagger: Best={best_t:.2f}, Avg={np.mean(tagger_scores):.2f}")
+        self.logger.info(f"Runner: Best={best_r:.2f}, Avg={np.mean(runner_scores):.2f}")
+        self.logger.info(f"Bad Gen Count: {bad_gen_count}/{MAX_BAD_GENS}")
 
-        # Log to Console (Crucial Info)
-        print(f"--- GEN {gen_num} SUMMARY ({time_taken:.2f}s) ---")
-        print(f"🥇 Tagger Best Score: {best_t_score:.2f}")
-        print(f"🥇 Runner Best Score: {best_r_score:.2f}")
+        print(f"--- GEN {gen_num} SUMMARY ---")
+        print(f"🥇 Tagger Best: {best_t:.2f}")
+        print(f"🥇 Runner Best: {best_r:.2f}")
         
     def log_error(self, message):
         self.logger.error(f"!!! ERROR: {message} !!!")
@@ -83,14 +72,12 @@ class LogManager:
         print(f"STATUS: {message}")
 
 log_manager = LogManager(LOG_FILE)
-# -----------------------------
 
 app = Ursina(borderless=False, vsync=True if TEST_MODE else False)
-
 from ursina import application
 base = application.base
 
-window.title = "Tag AI: Spectator Mode" if TEST_MODE else "Tag AI: Evolution"
+window.title = "Tag AI: Spectator" if TEST_MODE else "Tag AI: Training (Optimized)"
 window.size = (1280, 720)
 window.color = color.black
 
@@ -115,6 +102,7 @@ class SimpleBrain:
         self.b2 = np.zeros(output_size)
 
         # BIAS: [Strafe, Forward, Jump, Turn]
+        # Slight forward bias to encourage movement early on
         self.b2[1] = 0.5 
 
     def forward(self, inputs):
@@ -122,17 +110,23 @@ class SimpleBrain:
         output = np.tanh(np.dot(self.z1, self.w2) + self.b2)
         return output 
 
-    def mutate(self):
-        if random.random() < MUTATION_RATE:
-            mask1 = np.random.choice([0, 1], size=self.w1.shape, p=[1-MUTATION_RATE, MUTATION_RATE])
-            self.w1 += np.random.randn(*self.w1.shape) * MUTATION_STRENGTH * mask1
+    def mutate(self, rate_mult=1.0, strength_mult=1.0):
+        # Dynamic mutation rates
+        eff_rate = MUTATION_RATE * rate_mult
+        eff_str = MUTATION_STRENGTH * strength_mult
+        
+        if random.random() < eff_rate:
+            mask1 = np.random.choice([0, 1], size=self.w1.shape, p=[1-eff_rate, eff_rate])
+            self.w1 += np.random.randn(*self.w1.shape) * eff_str * mask1
             
-            mask2 = np.random.choice([0, 1], size=self.w2.shape, p=[1-MUTATION_RATE, MUTATION_RATE])
-            self.w2 += np.random.randn(*self.w2.shape) * MUTATION_STRENGTH * mask2
+            mask2 = np.random.choice([0, 1], size=self.w2.shape, p=[1-eff_rate, eff_rate])
+            self.w2 += np.random.randn(*self.w2.shape) * eff_str * mask2
             
-            if random.random() < 0.2:
-                self.b2 += np.random.randn(self.output_size) * 0.1
+            # Bias mutation
+            if random.random() < 0.2 * rate_mult:
+                self.b2 += np.random.randn(self.output_size) * 0.1 * strength_mult
             
+            # Rare chance to reset turn bias (Anti-Spin mutation)
             if random.random() < 0.05:
                 self.b2[3] = 0.0
 
@@ -144,7 +138,7 @@ class SimpleBrain:
         clone.b2 = self.b2.copy()
         return clone
 
-# --- AGENT CLASS (No functional changes needed here) ---
+# --- AGENT CLASS ---
 class Agent(Entity):
     def __init__(self, role, pair_id, origin_x, manager, brain=None, **kwargs):
         super().__init__(**kwargs)
@@ -181,7 +175,9 @@ class Agent(Entity):
         # BRAIN SETUP
         self.vision_res = VISION_RES 
         input_nodes = (self.vision_res * self.vision_res) + 13
-        self.brain = brain if brain else SimpleBrain(input_nodes, 32, 4) 
+        
+        # <--- FIX: Increased hidden layer size for better processing
+        self.brain = brain if brain else SimpleBrain(input_nodes, HIDDEN_LAYER_SIZE, 4) 
 
         self.tex_buffer = Texture()
         self.setup_vision()
@@ -216,11 +212,19 @@ class Agent(Entity):
     def get_vision_data(self):
         if not self.tex_buffer or not self.tex_buffer.has_ram_image(): 
             return np.zeros(self.vision_res * self.vision_res)
+        
         img = self.tex_buffer.get_ram_image_as("RGB")
         if not img: return np.zeros(self.vision_res * self.vision_res)
+        
         arr = np.frombuffer(img, dtype=np.uint8).astype(np.float32) / 255.0
         arr = arr.reshape((self.vision_res, self.vision_res, 3))
-        return arr[:, :, 1].flatten() 
+        
+        # <--- FIX: RGB to Grayscale (Luminance)
+        # 0.299 R + 0.587 G + 0.114 B gives correct brightness for human/AI eye
+        # This ensures RED and BLUE are seen as different shades of grey, not black
+        grayscale = np.dot(arr[...,:3], [0.299, 0.587, 0.114]) 
+        
+        return grayscale.flatten() 
 
     def get_whiskers(self):
         sensors = []
@@ -274,36 +278,24 @@ class Agent(Entity):
             move_dist = self.speed * dt
             
             if move_vec.length() > 0.01:
-                # --- WALL CLIPPING FIX (3-Ray Shoulder Check) ---
-                
+                # WALL CHECK (Simple shoulder check)
                 check_dist = move_dist + 0.5
-                
-                # 1. Calculate vector perpendicular to movement direction (not facing direction)
                 perp_vec = move_vec.cross(Vec3(0, 1, 0)).normalized()
-                
-                # 2. Agent scale is 1.0 (radius 0.5). We check slightly inward (0.45)
                 shoulder_width = 0.45
                 
                 origins = [
-                    self.position + Vec3(0, 0.5, 0),                               # Center
-                    self.position + Vec3(0, 0.5, 0) + (perp_vec * shoulder_width), # Right Shoulder
-                    self.position + Vec3(0, 0.5, 0) - (perp_vec * shoulder_width)  # Left Shoulder
+                    self.position + Vec3(0, 0.5, 0),
+                    self.position + Vec3(0, 0.5, 0) + (perp_vec * shoulder_width),
+                    self.position + Vec3(0, 0.5, 0) - (perp_vec * shoulder_width)
                 ]
                 
                 blocked = False
                 for org in origins:
-                    # Cast ray in direction of movement
-                    hit_info = raycast(org, move_vec, distance=check_dist, ignore=(self, target))
-                    if hit_info.hit:
-                        blocked = True
-                        break
+                    if raycast(org, move_vec, distance=check_dist, ignore=(self, target)).hit:
+                        blocked = True; break
                 
                 if not blocked:
                     self.position += move_vec * move_dist
-                else:
-                    # optional: punish fitness slightly for hitting a wall to discourage hugging
-                    # self.fitness_score -= 1 * dt 
-                    pass
                     
             if jump_trig > 0.6 and self.grounded and self.jump_cooldown <= 0:
                 self.velocity_y = self.jump_force
@@ -313,7 +305,7 @@ class Agent(Entity):
             dist = distance(self.position, target.position)
             if dist < self.min_dist_to_target: self.min_dist_to_target = dist
             
-            # --- STRICT STUCK CHECK (Anti-Spin) ---
+            # Anti-Spin / Stuck Check
             if distance(self.position, self.last_position) < 2.0:
                 self.stuck_timer += dt * 2
             else:
@@ -333,7 +325,7 @@ class Agent(Entity):
         if hasattr(self, 'buffer') and self.buffer: base.graphicsEngine.remove_window(self.buffer)
         if hasattr(self, 'cam_np'): self.cam_np.remove_node()
 
-# --- GRID CAMERA (No functional changes needed here) ---
+# --- GRID CAMERA ---
 class GridCameraSystem:
     def __init__(self, agents):
         self.cameras = []
@@ -375,28 +367,24 @@ class TrainingManager(Entity):
         self.grid_sys = None
         self.time_scale = 1.0
         
+        # STAGNATION TRACKING (Dynamic Mutation)
+        self.stagnant_gens = 0
+        self.best_historical_score = 0
+        
         # SPECTATOR VARS
         self.spectate_tagger = True 
-        
-        # CAMERA CONTROL VARS
         self.free_look = False
         self.cam_yaw = 0
-        self.cam_pitch = 20 # Locked pitch
-        self.cam_dist = 22  # Starting distance
+        self.cam_pitch = 20 
+        self.cam_dist = 22  
         self.faded_walls = [] 
-        
-        # Smooth Follow Vars
         self.smooth_focus = Vec3(0,0,0)
-
-        # Hysteresis (Auto Cam)
         self.cam_reverse_timer = 0.0  
         self.cam_is_reversed = False  
 
-        # MONITORING VARS
         self.bad_gen_count = 0
         self.force_reset_next = False
 
-        # --- UI ---
         self.ui_gen = Text(text="Gen: 1", position=(-0.85, 0.45), scale=1.5, color=color.white)
         self.ui_status = Text(text="Status: OK", position=(-0.85, 0.40), scale=1.2, color=color.green)
         self.ui_timer = Text(text="0.0s", position=(0, 0.45), scale=1.5, origin=(0,0), color=color.white)
@@ -409,60 +397,32 @@ class TrainingManager(Entity):
         self.start_generation()
 
     def input(self, key):
-        # SPEED CONTROLS
-        speed_map = {
-            '0': 0.0, 'numpad0': 0.0,
-            '1': 0.25, 'numpad1': 0.25,
-            '2': 0.5, 'numpad2': 0.5,
-            '3': 1.0, 'numpad3': 1.0,
-            '4': 2.0, 'numpad4': 2.0,
-            '5': 5.0, 'numpad5': 5.0,
-            '9': 15.0, 'numpad9': 15.0,
-        }
-
+        speed_map = {'0':0, '1':0.25, '2':0.5, '3':1, '4':2, '5':5, '9':15}
         if key in speed_map:
             self.time_scale = speed_map[key]
             status_text = "PAUSED" if self.time_scale == 0 else f"{self.time_scale}x"
             self.ui_speed.text = f"Speed: {status_text}"
             self.ui_speed.color = color.red if self.time_scale == 0 else color.yellow
         
-        if key == 'space':
-            self.spectate_tagger = not self.spectate_tagger
-        
-        # TOGGLE FREE LOOK
+        if key == 'space': self.spectate_tagger = not self.spectate_tagger
         if key == 'f':
             self.free_look = not self.free_look
             if self.free_look:
-                self.ui_cam.text = "Cam: MANUAL"
-                self.ui_cam.color = color.orange
-                mouse.locked = True
-                
-                # --- PERFECT SYNC FIX ---
-                if self.agents:
-                    tagger, runner = self.agents[0]
-                    target = tagger if self.spectate_tagger else runner
-                    if not target.enabled: target = runner if self.spectate_tagger else tagger
-
-                    diff = camera.position - target.position
-                    self.cam_dist = diff.length()
-                    
-                    angle_rad = math.atan2(diff.x, diff.z)
-                    self.cam_yaw = math.degrees(angle_rad)
-                    self.smooth_focus = target.position
-
+                self.ui_cam.text = "Cam: MANUAL"; self.ui_cam.color = color.orange; mouse.locked = True
             else:
-                self.ui_cam.text = "Cam: AUTO"
-                self.ui_cam.color = color.green
-                mouse.locked = False
+                self.ui_cam.text = "Cam: AUTO"; self.ui_cam.color = color.green; mouse.locked = False
         
-        # ZOOM WITH SCROLL
         if self.free_look:
             if key == 'scroll up': self.cam_dist = max(5, self.cam_dist - 2)
             if key == 'scroll down': self.cam_dist = min(50, self.cam_dist + 2)
-        
 
     def start_generation(self):
-        log_manager.log_generation_start(self.generation) # <--- LOG: Generation Start
+        # Calculate mutation multiplier based on stagnation
+        mut_mult = 1.0
+        if self.stagnant_gens > 10: mut_mult = 3.0 # PANIC MODE: Triple mutation
+        elif self.stagnant_gens > 5: mut_mult = 1.5
+        
+        log_manager.log_generation_start(self.generation, mut_mult) 
         self.cleanup()
         
         local_gen_size = 1 if TEST_MODE else GEN_SIZE
@@ -471,10 +431,10 @@ class TrainingManager(Entity):
         
         if not self.population:
             for _ in range(local_gen_size):
-                self.population.append((SimpleBrain(input_size, 32, 4), SimpleBrain(input_size, 32, 4)))
+                self.population.append((SimpleBrain(input_size, HIDDEN_LAYER_SIZE, 4), SimpleBrain(input_size, HIDDEN_LAYER_SIZE, 4)))
         
         while len(self.population) < local_gen_size:
-             self.population.append((SimpleBrain(input_size, 32, 4), SimpleBrain(input_size, 32, 4)))
+             self.population.append((SimpleBrain(input_size, HIDDEN_LAYER_SIZE, 4), SimpleBrain(input_size, HIDDEN_LAYER_SIZE, 4)))
         
         self.population = self.population[:local_gen_size]
 
@@ -510,7 +470,7 @@ class TrainingManager(Entity):
 
         self.time_elapsed = 0
         self.active = True
-        self.gen_start_time = time.time() # <--- NEW: Track generation start
+        self.gen_start_time = time.time() 
 
     def spawn_walls(self, seed):
         self.walls = []
@@ -562,7 +522,6 @@ class TrainingManager(Entity):
     def update(self):
         if not self.active: return
 
-        # --- UPDATE TIME ---
         if TEST_MODE:
             if self.time_scale > 0:
                 dt = min(time.dt * self.time_scale, 0.1)
@@ -575,9 +534,7 @@ class TrainingManager(Entity):
 
         self.ui_timer.text = f"{self.time_elapsed:.1f}s / {MATCH_DURATION}s"
 
-        # ==========================================
-        # --- CAMERA & VISUALS ---
-        # ==========================================
+        # --- CAMERA UPDATES ---
         if TEST_MODE and self.agents:
             tagger, runner = self.agents[0]
             target = tagger if self.spectate_tagger else runner
@@ -589,12 +546,9 @@ class TrainingManager(Entity):
 
             target.visible = True 
             other.visible = True
-
             target_pos = target.position
 
-            # --- WALL TRANSPARENCY (X-RAY) ---
-            for w in self.faded_walls:
-                w.alpha = 1.0
+            for w in self.faded_walls: w.alpha = 1.0
             self.faded_walls.clear()
 
             cam_to_target = target_pos - camera.position
@@ -602,69 +556,44 @@ class TrainingManager(Entity):
             
             for w in self.walls:
                 if distance(camera.position, w.position) < 4:
-                     w.alpha = 0.2
-                     self.faded_walls.append(w)
+                     w.alpha = 0.2; self.faded_walls.append(w)
 
             if dist > 1:
                 hits = raycast(camera.position, cam_to_target.normalized(), distance=dist-1, ignore=(tagger, runner))
                 if hits.hit:
-                    hits.entity.alpha = 0.3
-                    self.faded_walls.append(hits.entity)
+                    hits.entity.alpha = 0.3; self.faded_walls.append(hits.entity)
 
-
-            # --- CAMERA LOGIC (Unchanged) ---
             if self.free_look:
-                # MANUAL ORBIT MODE (LEFT/RIGHT ONLY)
                 self.cam_yaw += mouse.velocity[0] * 100
-                self.cam_pitch = 20 # Locked pitch
-                
-                # Math for instant rotation (NO LERP)
                 yaw_rad = math.radians(self.cam_yaw)
-                pitch_rad = math.radians(self.cam_pitch)
+                pitch_rad = math.radians(20)
                 
                 h_dist = self.cam_dist * math.cos(pitch_rad)
                 v_dist = self.cam_dist * math.sin(pitch_rad)
-                
                 x_off = math.sin(yaw_rad) * h_dist
                 z_off = math.cos(yaw_rad) * h_dist
                 
-                # Smoothly lerp the *focus point* (Player position)
                 self.smooth_focus = lerp(self.smooth_focus, target_pos, time.dt * 10)
-                
                 camera.position = self.smooth_focus + Vec3(x_off, v_dist, z_off)
                 camera.look_at(self.smooth_focus + Vec3(0, 1, 0))
-                
-                # --- FIX: FORCE HORIZON LEVEL ---
                 camera.rotation_z = 0
-                
             else:
-                # AUTOMATIC SMART MODE WITH DELAY (HYSTERESIS)
                 current_reversing = False
-                if hasattr(target, 'decision'):
-                    if target.decision[1] < -0.1: current_reversing = True
+                if hasattr(target, 'decision') and target.decision[1] < -0.1: current_reversing = True
                 
                 if current_reversing != self.cam_is_reversed:
                     self.cam_reverse_timer += time.dt
                     if self.cam_reverse_timer > 0.5:
-                        self.cam_is_reversed = current_reversing
-                        self.cam_reverse_timer = 0
+                        self.cam_is_reversed = current_reversing; self.cam_reverse_timer = 0
                 else:
                     self.cam_reverse_timer = 0
                 
-                if self.cam_is_reversed:
-                    offset_dir = target.forward * 22 
-                else:
-                    offset_dir = target.forward * -22
-
+                offset_dir = target.forward * 22 if self.cam_is_reversed else target.forward * -22
                 desired_pos = target_pos + offset_dir + Vec3(0, 10, 0)
                 
-                # For auto mode, we lerp position directly
                 camera.position = lerp(camera.position, desired_pos, time.dt * 6)
-                look_target = target_pos + Vec3(0, 2, 0)
-                camera.look_at(look_target)
+                camera.look_at(target_pos + Vec3(0, 2, 0))
                 camera.rotation_z = 0
-                
-                # Sync smooth focus variable so it's ready when we switch
                 self.smooth_focus = target_pos
 
     def step_simulation(self, dt):
@@ -677,25 +606,19 @@ class TrainingManager(Entity):
             runner.act(tagger, dt)
             dist = distance(tagger.position, runner.position)
 
-            # PENALTY: Radius 2.0 = -100 Score
             if tagger.stuck_timer > 2.0: tagger.fitness_score -= 100 * dt
             if runner.stuck_timer > 2.0: runner.fitness_score -= 100 * dt
 
             if dist < 6.0: runner.fitness_score -= 10 * dt 
             if dist < 1.3: self.finish_pair(i, winner="tagger")
         
-        # If time is up, end all matches
         if self.time_elapsed > MATCH_DURATION:
             for i, (tagger, runner) in enumerate(self.agents):
                 if tagger.enabled: self.finish_pair(i, winner="runner")
         
-        # If all matches are over, evolve
         if active_count == 0: 
-            if TEST_MODE:
-                # Infinite Loop for testing
-                self.start_generation()
-            else:
-                self.evolve()
+            if TEST_MODE: self.start_generation()
+            else: self.evolve()
 
     def finish_pair(self, index, winner):
         t, r = self.agents[index]
@@ -719,44 +642,54 @@ class TrainingManager(Entity):
 
     def evolve(self):
         log_manager.log_status("EVOLVING")
-        
-        # --- LOG GENERATION END ---
         gen_time = time.time() - self.gen_start_time
         log_manager.log_generation_end(self.generation, gen_time, self.scores, self.bad_gen_count, self.force_reset_next)
         
+        # --- DYNAMIC MUTATION CALCULATION ---
+        current_max_score = max([s[0] for s in self.scores] + [s[1] for s in self.scores])
+        if current_max_score <= self.best_historical_score + 10:
+            self.stagnant_gens += 1
+        else:
+            self.best_historical_score = current_max_score
+            self.stagnant_gens = 0
+            
+        # Panic modifiers
+        mut_mult = 1.0
+        str_mult = 1.0
+        if self.stagnant_gens > 10:
+            mut_mult = 3.0 # Triple mutation rate
+            str_mult = 2.0 # Double strength
+            log_manager.log_status("!!! STAGNATION DETECTED: PANIC MUTATION ACTIVATED !!!")
+        elif self.stagnant_gens > 5:
+            mut_mult = 1.5
+            
+        # ------------------------------------
+
         sorted_taggers = sorted(zip(self.population, self.scores), key=lambda x: x[1][0], reverse=True)
         sorted_runners = sorted(zip(self.population, self.scores), key=lambda x: x[1][1], reverse=True)
         
-        # Save & Check Health
         best_t, best_r = sorted_taggers[0][0][0], sorted_runners[0][0][1]
         self.save_brains(best_t, best_r)
         
-        # --- HEALTH MONITORING ---
-        # Only get the bias of the current best runner
         turn_bias = best_r.b2[3] 
-        
-        # Log the turn bias separately for easy monitoring
         log_manager.logger.info(f"DEBUG: Best Runner Turn Bias: {turn_bias:.4f}")
-        print(f"⚠️ Runner Turn Bias (Best): {turn_bias:.4f}")
 
         if abs(turn_bias) > ANTI_SPIN_THRESHOLD:
             self.bad_gen_count += 1
-            log_manager.log_status(f"WARNING: High Turn Bias detected ({self.bad_gen_count}/{MAX_BAD_GENS})")
+            log_manager.log_status(f"WARNING: High Turn Bias ({self.bad_gen_count}/{MAX_BAD_GENS})")
         else:
             self.bad_gen_count = 0
             
-        if self.bad_gen_count >= MAX_BAD_GENS:
-            self.force_reset_next = True
-        # -------------------------
+        if self.bad_gen_count >= MAX_BAD_GENS: self.force_reset_next = True
 
         if self.stop_requested: application.quit(); return
 
         new_pop = []
-        # ELITISM
+        # ELITISM (Keep Top 3 Unchanged)
         for i in range(3):
             new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
 
-        # TOURNAMENT
+        # TOURNAMENT & MUTATION
         def tournament(sorted_list, is_tagger):
             idx1 = random.randint(0, GEN_SIZE // 2)
             idx2 = random.randint(0, GEN_SIZE // 2)
@@ -769,8 +702,8 @@ class TrainingManager(Entity):
         while len(new_pop) < GEN_SIZE:
             p_t = tournament(sorted_taggers, True)
             p_r = tournament(sorted_runners, False)
-            p_t.mutate()
-            p_r.mutate()
+            p_t.mutate(mut_mult, str_mult) # Apply dynamic mutation
+            p_r.mutate(mut_mult, str_mult)
             new_pop.append((p_t, p_r))
 
         self.population = new_pop
@@ -800,10 +733,15 @@ class TrainingManager(Entity):
             try:
                 with open(LOAD_FILE, 'rb') as f:
                     data = pickle.load(f)
-                    saved_size = data['t_brain'].w1.shape[0]
-                    curr_size = (VISION_RES * VISION_RES) + 13
-                    if saved_size != curr_size:
-                        log_manager.log_status(f"Arch mismatch. Resetting."); return 
+                    
+                    # --- ARCHITECTURE CHECK ---
+                    saved_hidden = data['t_brain'].hidden_size
+                    if saved_hidden != HIDDEN_LAYER_SIZE:
+                        log_manager.log_status(f"!!! ARCHITECTURE MISMATCH !!! Saved: {saved_hidden}, Current: {HIDDEN_LAYER_SIZE}")
+                        log_manager.log_status("Starting fresh to prevent crash.")
+                        return # Exit without loading
+                    # --------------------------
+
                     self.generation = data['gen'] + 1
                     t, r = data['t_brain'], data['r_brain']
                     self.population = []
@@ -812,9 +750,7 @@ class TrainingManager(Entity):
                         tc, rc = t.clone(), r.clone()
                         tc.mutate(); rc.mutate()
                         self.population.append((tc, rc))
-                        
                     self.population[0] = (t, r)
-                        
                     log_manager.log_status(f"Loaded Gen {self.generation-1} from {LOAD_FILE}")
             except Exception as e: 
                 log_manager.log_error(f"Load failed: {e}"); self.generation = 1
