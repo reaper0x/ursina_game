@@ -9,29 +9,23 @@ import time
 import math
 import logging
 
-# ==========================================
-# --- CONFIGURATION ---
-# ==========================================
-TEST_MODE = False           # <--- Set to TRUE to watch, FALSE to train fast
-GEN_SIZE = 100              # Population size (Higher is better, try 60-100 if PC can handle it)
+TEST_MODE = False           
+GEN_SIZE = 100              
 MATCH_DURATION = 20     
-VISION_RES = 12            # Pixel vision resolution (12x12)
-MUTATION_RATE = 0.2        # Base mutation chance
-MUTATION_STRENGTH = 0.3    # Base mutation power
-HIDDEN_LAYER_SIZE = 64     # <--- INCREASED from 32 (Better brain capacity)
+VISION_RES = 12            
+MUTATION_RATE = 0.2        
+MUTATION_STRENGTH = 0.3    
+HIDDEN_LAYER_SIZE = 64     
 
 LOAD_SAVE = True       
 LOAD_FILE = "trained_model.pkl"   
 SAVE_FILE = "trained_model.pkl"       
 
-# --- SAFETY SYSTEMS ---
 BACKUP_INTERVAL = 5     
 ANTI_SPIN_THRESHOLD = 0.1 
 MAX_BAD_GENS = 3        
 LOG_FILE = "training_log.txt"
 
-# ==========================================
-# --- LOGGING SETUP ---
 class LogManager:
     def __init__(self, log_file):
         self.logger = logging.getLogger('TrainingLogger')
@@ -81,18 +75,15 @@ window.title = "Tag AI: Spectator" if TEST_MODE else "Tag AI: Training (Optimize
 window.size = (1280, 720)
 window.color = color.black
 
-# Enable main camera for spectator mode
 camera.ui.enabled = True 
 camera.enabled = True if TEST_MODE else False   
 
-# --- NEURAL NETWORK ---
 class SimpleBrain:
     def __init__(self, input_size, hidden_size, output_size):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
         
-        # Xavier Initialization
         scale1 = 1.0 / np.sqrt(input_size)
         self.w1 = np.random.uniform(-scale1, scale1, (input_size, hidden_size))
         self.b1 = np.zeros(hidden_size)
@@ -101,8 +92,6 @@ class SimpleBrain:
         self.w2 = np.random.uniform(-scale2, scale2, (hidden_size, output_size))
         self.b2 = np.zeros(output_size)
 
-        # BIAS: [Strafe, Forward, Jump, Turn]
-        # Slight forward bias to encourage movement early on
         self.b2[1] = 0.5 
 
     def forward(self, inputs):
@@ -111,7 +100,6 @@ class SimpleBrain:
         return output 
 
     def mutate(self, rate_mult=1.0, strength_mult=1.0):
-        # Dynamic mutation rates
         eff_rate = MUTATION_RATE * rate_mult
         eff_str = MUTATION_STRENGTH * strength_mult
         
@@ -122,11 +110,9 @@ class SimpleBrain:
             mask2 = np.random.choice([0, 1], size=self.w2.shape, p=[1-eff_rate, eff_rate])
             self.w2 += np.random.randn(*self.w2.shape) * eff_str * mask2
             
-            # Bias mutation
             if random.random() < 0.2 * rate_mult:
                 self.b2 += np.random.randn(self.output_size) * 0.1 * strength_mult
             
-            # Rare chance to reset turn bias (Anti-Spin mutation)
             if random.random() < 0.05:
                 self.b2[3] = 0.0
 
@@ -138,7 +124,6 @@ class SimpleBrain:
         clone.b2 = self.b2.copy()
         return clone
 
-# --- AGENT CLASS ---
 class Agent(Entity):
     def __init__(self, role, pair_id, origin_x, manager, brain=None, **kwargs):
         super().__init__(**kwargs)
@@ -147,12 +132,10 @@ class Agent(Entity):
         self.origin_x = origin_x 
         self.manager = manager
         
-        # PHYSICS & STATS
         self.speed = 15
         self.turn_speed = 200
         self.jump_force = 15
         
-        # VISUALS
         self.model = 'cube'
         self.color = color.red if role == "tagger" else color.azure
         self.scale = (1, 1, 1) 
@@ -162,21 +145,17 @@ class Agent(Entity):
         self.grounded = False
         self.jump_cooldown = 0 
         
-        # MEMORY
         self.last_actions = np.zeros(4) 
         self.stuck_timer = 0
         self.last_position = self.position
         
-        # FITNESS
         self.fitness_score = 0
         self.min_dist_to_target = 100.0 
         self.time_in_sight = 0.0
         
-        # BRAIN SETUP
         self.vision_res = VISION_RES 
         input_nodes = (self.vision_res * self.vision_res) + 13
         
-        # <--- FIX: Increased hidden layer size for better processing
         self.brain = brain if brain else SimpleBrain(input_nodes, HIDDEN_LAYER_SIZE, 4) 
 
         self.tex_buffer = Texture()
@@ -219,9 +198,6 @@ class Agent(Entity):
         arr = np.frombuffer(img, dtype=np.uint8).astype(np.float32) / 255.0
         arr = arr.reshape((self.vision_res, self.vision_res, 3))
         
-        # <--- FIX: RGB to Grayscale (Luminance)
-        # 0.299 R + 0.587 G + 0.114 B gives correct brightness for human/AI eye
-        # This ensures RED and BLUE are seen as different shades of grey, not black
         grayscale = np.dot(arr[...,:3], [0.299, 0.587, 0.114]) 
         
         return grayscale.flatten() 
@@ -246,7 +222,6 @@ class Agent(Entity):
         return np.array([angle_to_target / np.pi, 1.0 - min(dist, 40.0) / 40.0])
 
     def act(self, target, dt):
-        # PHYSICS
         self.velocity_y -= 40 * dt
         ray = raycast(self.position + Vec3(0,0.1,0), Vec3(0, -1, 0), distance=0.7+abs(self.velocity_y*dt), ignore=(self,))
         if ray.hit:
@@ -258,7 +233,6 @@ class Agent(Entity):
             self.y += self.velocity_y * dt
         if self.jump_cooldown > 0: self.jump_cooldown -= dt
 
-        # BRAIN
         self.frame_skip += 1
         if self.frame_skip % 2 == 0: 
             vision = self.get_vision_data()
@@ -270,7 +244,6 @@ class Agent(Entity):
             self.decision = self.brain.forward(inputs)
             self.last_actions = self.decision
 
-        # MOVE
         if hasattr(self, 'decision'):
             strafe, fwd, jump_trig, turn = self.decision
             self.rotation_y += turn * self.turn_speed * dt
@@ -278,7 +251,6 @@ class Agent(Entity):
             move_dist = self.speed * dt
             
             if move_vec.length() > 0.01:
-                # WALL CHECK (Simple shoulder check)
                 check_dist = move_dist + 0.5
                 perp_vec = move_vec.cross(Vec3(0, 1, 0)).normalized()
                 shoulder_width = 0.45
@@ -301,11 +273,9 @@ class Agent(Entity):
                 self.velocity_y = self.jump_force
                 self.grounded = False; self.jump_cooldown = 0.4
 
-            # --- STATS ---
             dist = distance(self.position, target.position)
             if dist < self.min_dist_to_target: self.min_dist_to_target = dist
             
-            # Anti-Spin / Stuck Check
             if distance(self.position, self.last_position) < 2.0:
                 self.stuck_timer += dt * 2
             else:
@@ -325,7 +295,6 @@ class Agent(Entity):
         if hasattr(self, 'buffer') and self.buffer: base.graphicsEngine.remove_window(self.buffer)
         if hasattr(self, 'cam_np'): self.cam_np.remove_node()
 
-# --- GRID CAMERA ---
 class GridCameraSystem:
     def __init__(self, agents):
         self.cameras = []
@@ -352,7 +321,6 @@ class GridCameraSystem:
         for dr in self.regions: base.win.remove_display_region(dr)
         for cam in self.cameras: cam.remove_node()
 
-# --- MANAGER ---
 class TrainingManager(Entity):
     def __init__(self):
         super().__init__()
@@ -367,11 +335,9 @@ class TrainingManager(Entity):
         self.grid_sys = None
         self.time_scale = 1.0
         
-        # STAGNATION TRACKING (Dynamic Mutation)
         self.stagnant_gens = 0
         self.best_historical_score = 0
         
-        # SPECTATOR VARS
         self.spectate_tagger = True 
         self.free_look = False
         self.cam_yaw = 0
@@ -417,9 +383,8 @@ class TrainingManager(Entity):
             if key == 'scroll down': self.cam_dist = min(50, self.cam_dist + 2)
 
     def start_generation(self):
-        # Calculate mutation multiplier based on stagnation
         mut_mult = 1.0
-        if self.stagnant_gens > 10: mut_mult = 3.0 # PANIC MODE: Triple mutation
+        if self.stagnant_gens > 10: mut_mult = 3.0 
         elif self.stagnant_gens > 5: mut_mult = 1.5
         
         log_manager.log_generation_start(self.generation, mut_mult) 
@@ -534,7 +499,6 @@ class TrainingManager(Entity):
 
         self.ui_timer.text = f"{self.time_elapsed:.1f}s / {MATCH_DURATION}s"
 
-        # --- CAMERA UPDATES ---
         if TEST_MODE and self.agents:
             tagger, runner = self.agents[0]
             target = tagger if self.spectate_tagger else runner
@@ -645,7 +609,6 @@ class TrainingManager(Entity):
         gen_time = time.time() - self.gen_start_time
         log_manager.log_generation_end(self.generation, gen_time, self.scores, self.bad_gen_count, self.force_reset_next)
         
-        # --- DYNAMIC MUTATION CALCULATION ---
         current_max_score = max([s[0] for s in self.scores] + [s[1] for s in self.scores])
         if current_max_score <= self.best_historical_score + 10:
             self.stagnant_gens += 1
@@ -653,18 +616,15 @@ class TrainingManager(Entity):
             self.best_historical_score = current_max_score
             self.stagnant_gens = 0
             
-        # Panic modifiers
         mut_mult = 1.0
         str_mult = 1.0
         if self.stagnant_gens > 10:
-            mut_mult = 3.0 # Triple mutation rate
-            str_mult = 2.0 # Double strength
+            mut_mult = 3.0 
+            str_mult = 2.0 
             log_manager.log_status("!!! STAGNATION DETECTED: PANIC MUTATION ACTIVATED !!!")
         elif self.stagnant_gens > 5:
             mut_mult = 1.5
             
-        # ------------------------------------
-
         sorted_taggers = sorted(zip(self.population, self.scores), key=lambda x: x[1][0], reverse=True)
         sorted_runners = sorted(zip(self.population, self.scores), key=lambda x: x[1][1], reverse=True)
         
@@ -685,11 +645,9 @@ class TrainingManager(Entity):
         if self.stop_requested: application.quit(); return
 
         new_pop = []
-        # ELITISM (Keep Top 3 Unchanged)
         for i in range(3):
             new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
 
-        # TOURNAMENT & MUTATION
         def tournament(sorted_list, is_tagger):
             idx1 = random.randint(0, GEN_SIZE // 2)
             idx2 = random.randint(0, GEN_SIZE // 2)
@@ -702,7 +660,7 @@ class TrainingManager(Entity):
         while len(new_pop) < GEN_SIZE:
             p_t = tournament(sorted_taggers, True)
             p_r = tournament(sorted_runners, False)
-            p_t.mutate(mut_mult, str_mult) # Apply dynamic mutation
+            p_t.mutate(mut_mult, str_mult) 
             p_r.mutate(mut_mult, str_mult)
             new_pop.append((p_t, p_r))
 
@@ -734,13 +692,11 @@ class TrainingManager(Entity):
                 with open(LOAD_FILE, 'rb') as f:
                     data = pickle.load(f)
                     
-                    # --- ARCHITECTURE CHECK ---
                     saved_hidden = data['t_brain'].hidden_size
                     if saved_hidden != HIDDEN_LAYER_SIZE:
                         log_manager.log_status(f"!!! ARCHITECTURE MISMATCH !!! Saved: {saved_hidden}, Current: {HIDDEN_LAYER_SIZE}")
                         log_manager.log_status("Starting fresh to prevent crash.")
-                        return # Exit without loading
-                    # --------------------------
+                        return 
 
                     self.generation = data['gen'] + 1
                     t, r = data['t_brain'], data['r_brain']

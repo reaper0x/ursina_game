@@ -8,24 +8,19 @@ import os
 import time
 import math
 
-# ==========================================
-# --- CONFIGURATION ---
-# ==========================================
-TEST_MODE = True         # <--- TRUE = Watch Mode, FALSE = Train Mode
+TEST_MODE = True         
 GEN_SIZE = 48            
 MATCH_DURATION = 20     
 VISION_RES = 12         
 MUTATION_RATE = 0.2     
 MUTATION_STRENGTH = 0.3 
 LOAD_SAVE = True       
-LOAD_FILE = "backup_gen_130.pkl"   # <--- The old file you want to resume from
-SAVE_FILE = "trained_model.pkl"      # <--- The new name you want to save to  
+LOAD_FILE = "backup_gen_130.pkl"   
+SAVE_FILE = "trained_model.pkl"      
 
-# --- SAFETY SYSTEMS ---
 BACKUP_INTERVAL = 5     
 ANTI_SPIN_THRESHOLD = 0.1 
 MAX_BAD_GENS = 3         
-# ==========================================
 
 app = Ursina(borderless=False, vsync=True if TEST_MODE else False)
 
@@ -36,18 +31,15 @@ window.title = "Tag AI: Spectator Mode" if TEST_MODE else "Tag AI: Evolution"
 window.size = (1280, 720)
 window.color = color.black
 
-# Enable main camera for spectator mode
 camera.ui.enabled = True 
 camera.enabled = True if TEST_MODE else False   
 
-# --- NEURAL NETWORK ---
 class SimpleBrain:
     def __init__(self, input_size, hidden_size, output_size):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
         
-        # Xavier Initialization
         scale1 = 1.0 / np.sqrt(input_size)
         self.w1 = np.random.uniform(-scale1, scale1, (input_size, hidden_size))
         self.b1 = np.zeros(hidden_size)
@@ -56,7 +48,6 @@ class SimpleBrain:
         self.w2 = np.random.uniform(-scale2, scale2, (hidden_size, output_size))
         self.b2 = np.zeros(output_size)
 
-        # BIAS: [Strafe, Forward, Jump, Turn]
         self.b2[1] = 0.5 
 
     def forward(self, inputs):
@@ -86,7 +77,6 @@ class SimpleBrain:
         clone.b2 = self.b2.copy()
         return clone
 
-# --- AGENT CLASS ---
 class Agent(Entity):
     def __init__(self, role, pair_id, origin_x, manager, brain=None, **kwargs):
         super().__init__(**kwargs)
@@ -95,12 +85,10 @@ class Agent(Entity):
         self.origin_x = origin_x 
         self.manager = manager
         
-        # PHYSICS & STATS
         self.speed = 15
         self.turn_speed = 200
         self.jump_force = 15
         
-        # VISUALS
         self.model = 'cube'
         self.color = color.red if role == "tagger" else color.azure
         self.scale = (1, 1, 1) 
@@ -110,17 +98,14 @@ class Agent(Entity):
         self.grounded = False
         self.jump_cooldown = 0 
         
-        # MEMORY
         self.last_actions = np.zeros(4) 
         self.stuck_timer = 0
         self.last_position = self.position
         
-        # FITNESS
         self.fitness_score = 0
         self.min_dist_to_target = 100.0 
         self.time_in_sight = 0.0
         
-        # BRAIN SETUP
         self.vision_res = VISION_RES 
         input_nodes = (self.vision_res * self.vision_res) + 13
         self.brain = brain if brain else SimpleBrain(input_nodes, 32, 4) 
@@ -184,7 +169,6 @@ class Agent(Entity):
         return np.array([angle_to_target / np.pi, 1.0 - min(dist, 40.0) / 40.0])
 
     def act(self, target, dt):
-        # PHYSICS
         self.velocity_y -= 40 * dt
         ray = raycast(self.position + Vec3(0,0.1,0), Vec3(0, -1, 0), distance=0.7+abs(self.velocity_y*dt), ignore=(self,))
         if ray.hit:
@@ -196,7 +180,6 @@ class Agent(Entity):
             self.y += self.velocity_y * dt
         if self.jump_cooldown > 0: self.jump_cooldown -= dt
 
-        # BRAIN
         self.frame_skip += 1
         if self.frame_skip % 2 == 0: 
             vision = self.get_vision_data()
@@ -208,7 +191,6 @@ class Agent(Entity):
             self.decision = self.brain.forward(inputs)
             self.last_actions = self.decision
 
-        # MOVE
         if hasattr(self, 'decision'):
             strafe, fwd, jump_trig, turn = self.decision
             self.rotation_y += turn * self.turn_speed * dt
@@ -216,7 +198,6 @@ class Agent(Entity):
             move_dist = self.speed * dt
             
             if move_vec.length() > 0.01:
-                # --- WALL CLIPPING FIX (LAG SPIKE PROTECTION) ---
                 check_dist = move_dist + 0.5 
                 if not raycast(self.position+Vec3(0,0.5,0), move_vec, distance=check_dist, ignore=(self, target)).hit:
                     self.position += move_vec * move_dist
@@ -225,11 +206,9 @@ class Agent(Entity):
                 self.velocity_y = self.jump_force
                 self.grounded = False; self.jump_cooldown = 0.4
 
-            # --- STATS ---
             dist = distance(self.position, target.position)
             if dist < self.min_dist_to_target: self.min_dist_to_target = dist
             
-            # --- STRICT STUCK CHECK (Anti-Spin) ---
             if distance(self.position, self.last_position) < 2.0:
                 self.stuck_timer += dt * 2
             else:
@@ -249,7 +228,6 @@ class Agent(Entity):
         if hasattr(self, 'buffer') and self.buffer: base.graphicsEngine.remove_window(self.buffer)
         if hasattr(self, 'cam_np'): self.cam_np.remove_node()
 
-# --- GRID CAMERA ---
 class GridCameraSystem:
     def __init__(self, agents):
         self.cameras = []
@@ -276,7 +254,6 @@ class GridCameraSystem:
         for dr in self.regions: base.win.remove_display_region(dr)
         for cam in self.cameras: cam.remove_node()
 
-# --- MANAGER ---
 class TrainingManager(Entity):
     def __init__(self):
         super().__init__()
@@ -291,28 +268,22 @@ class TrainingManager(Entity):
         self.grid_sys = None
         self.time_scale = 1.0
         
-        # SPECTATOR VARS
         self.spectate_tagger = True 
         
-        # CAMERA CONTROL VARS
         self.free_look = False
         self.cam_yaw = 0
-        self.cam_pitch = 20 # Locked pitch
-        self.cam_dist = 22  # Starting distance
+        self.cam_pitch = 20 
+        self.cam_dist = 22  
         self.faded_walls = [] 
         
-        # Smooth Follow Vars
         self.smooth_focus = Vec3(0,0,0)
 
-        # Hysteresis (Auto Cam)
         self.cam_reverse_timer = 0.0  
         self.cam_is_reversed = False  
 
-        # MONITORING VARS
         self.bad_gen_count = 0
         self.force_reset_next = False
 
-        # --- UI ---
         self.ui_gen = Text(text="Gen: 1", position=(-0.85, 0.45), scale=1.5, color=color.white)
         self.ui_status = Text(text="Status: OK", position=(-0.85, 0.40), scale=1.2, color=color.green)
         self.ui_timer = Text(text="0.0s", position=(0, 0.45), scale=1.5, origin=(0,0), color=color.white)
@@ -325,7 +296,6 @@ class TrainingManager(Entity):
         self.start_generation()
 
     def input(self, key):
-        # SPEED CONTROLS
         speed_map = {
             '0': 0.0, 'numpad0': 0.0,
             '1': 0.25, 'numpad1': 0.25,
@@ -345,7 +315,6 @@ class TrainingManager(Entity):
         if key == 'space':
             self.spectate_tagger = not self.spectate_tagger
         
-        # TOGGLE FREE LOOK
         if key == 'f':
             self.free_look = not self.free_look
             if self.free_look:
@@ -353,7 +322,6 @@ class TrainingManager(Entity):
                 self.ui_cam.color = color.orange
                 mouse.locked = True
                 
-                # --- PERFECT SYNC FIX ---
                 if self.agents:
                     tagger, runner = self.agents[0]
                     target = tagger if self.spectate_tagger else runner
@@ -371,7 +339,6 @@ class TrainingManager(Entity):
                 self.ui_cam.color = color.green
                 mouse.locked = False
         
-        # ZOOM WITH SCROLL
         if self.free_look:
             if key == 'scroll up': self.cam_dist = max(5, self.cam_dist - 2)
             if key == 'scroll down': self.cam_dist = min(50, self.cam_dist + 2)
@@ -477,7 +444,6 @@ class TrainingManager(Entity):
     def update(self):
         if not self.active: return
 
-        # --- UPDATE TIME ---
         if TEST_MODE:
             if self.time_scale > 0:
                 dt = min(time.dt * self.time_scale, 0.1)
@@ -490,9 +456,6 @@ class TrainingManager(Entity):
 
         self.ui_timer.text = f"{self.time_elapsed:.1f}s / {MATCH_DURATION}s"
 
-        # ==========================================
-        # --- CAMERA & VISUALS ---
-        # ==========================================
         if TEST_MODE and self.agents:
             tagger, runner = self.agents[0]
             target = tagger if self.spectate_tagger else runner
@@ -507,7 +470,6 @@ class TrainingManager(Entity):
 
             target_pos = target.position
 
-            # --- WALL TRANSPARENCY (X-RAY) ---
             for w in self.faded_walls:
                 w.alpha = 1.0
             self.faded_walls.clear()
@@ -527,13 +489,10 @@ class TrainingManager(Entity):
                     self.faded_walls.append(hits.entity)
 
 
-            # --- CAMERA LOGIC ---
             if self.free_look:
-                # MANUAL ORBIT MODE (LEFT/RIGHT ONLY)
                 self.cam_yaw += mouse.velocity[0] * 100
-                self.cam_pitch = 20 # Locked pitch
+                self.cam_pitch = 20 
                 
-                # Math for instant rotation (NO LERP)
                 yaw_rad = math.radians(self.cam_yaw)
                 pitch_rad = math.radians(self.cam_pitch)
                 
@@ -543,17 +502,14 @@ class TrainingManager(Entity):
                 x_off = math.sin(yaw_rad) * h_dist
                 z_off = math.cos(yaw_rad) * h_dist
                 
-                # Smoothly lerp the *focus point* (Player position)
                 self.smooth_focus = lerp(self.smooth_focus, target_pos, time.dt * 10)
                 
                 camera.position = self.smooth_focus + Vec3(x_off, v_dist, z_off)
                 camera.look_at(self.smooth_focus + Vec3(0, 1, 0))
                 
-                # --- FIX: FORCE HORIZON LEVEL ---
                 camera.rotation_z = 0
                 
             else:
-                # AUTOMATIC SMART MODE WITH DELAY (HYSTERESIS)
                 current_reversing = False
                 if hasattr(target, 'decision'):
                     if target.decision[1] < -0.1: current_reversing = True
@@ -573,13 +529,11 @@ class TrainingManager(Entity):
 
                 desired_pos = target_pos + offset_dir + Vec3(0, 10, 0)
                 
-                # For auto mode, we lerp position directly
                 camera.position = lerp(camera.position, desired_pos, time.dt * 6)
                 look_target = target_pos + Vec3(0, 2, 0)
                 camera.look_at(look_target)
                 camera.rotation_z = 0
                 
-                # Sync smooth focus variable so it's ready when we switch
                 self.smooth_focus = target_pos
 
     def step_simulation(self, dt):
@@ -592,7 +546,6 @@ class TrainingManager(Entity):
             runner.act(tagger, dt)
             dist = distance(tagger.position, runner.position)
 
-            # PENALTY: Radius 2.0 = -100 Score
             if tagger.stuck_timer > 2.0: tagger.fitness_score -= 100 * dt
             if runner.stuck_timer > 2.0: runner.fitness_score -= 100 * dt
 
@@ -605,7 +558,6 @@ class TrainingManager(Entity):
         
         if active_count == 0: 
             if TEST_MODE:
-                # Infinite Loop for testing
                 self.start_generation()
             else:
                 self.evolve()
@@ -635,11 +587,9 @@ class TrainingManager(Entity):
         sorted_taggers = sorted(zip(self.population, self.scores), key=lambda x: x[1][0], reverse=True)
         sorted_runners = sorted(zip(self.population, self.scores), key=lambda x: x[1][1], reverse=True)
         
-        # Save & Check Health
         best_t, best_r = sorted_taggers[0][0][0], sorted_runners[0][0][1]
         self.save_brains(best_t, best_r)
         
-        # --- HEALTH MONITORING ---
         turn_bias = abs(best_r.b2[3])
         print(f"DEBUG: Best Runner Turn Bias: {turn_bias:.4f}")
         if turn_bias > ANTI_SPIN_THRESHOLD:
@@ -650,16 +600,13 @@ class TrainingManager(Entity):
             
         if self.bad_gen_count >= MAX_BAD_GENS:
             self.force_reset_next = True
-        # -------------------------
 
         if self.stop_requested: application.quit(); return
 
         new_pop = []
-        # ELITISM
         for i in range(3):
             new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
 
-        # TOURNAMENT
         def tournament(sorted_list, is_tagger):
             idx1 = random.randint(0, GEN_SIZE // 2)
             idx2 = random.randint(0, GEN_SIZE // 2)
@@ -696,10 +643,8 @@ class TrainingManager(Entity):
         print("Saved Best.")
 
     def load_brains(self):
-        # CHANGE: Check LOAD_FILE instead of SAVE_FILE
         if os.path.exists(LOAD_FILE): 
             try:
-                # CHANGE: Open LOAD_FILE
                 with open(LOAD_FILE, 'rb') as f:
                     data = pickle.load(f)
                     saved_size = data['t_brain'].w1.shape[0]

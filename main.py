@@ -12,7 +12,6 @@ props = WindowProperties()
 props.set_fixed_size(True)
 base.win.request_properties(props)
 
-# --- CONFIG ---
 SERVER_URL = "https://bloodyvamp1re.pythonanywhere.com"
 username = f"Guest{random.randint(100,999)}"
 current_room = ""
@@ -21,7 +20,6 @@ game_active = False
 force_tag_signal = False 
 my_role_var = "" 
 
-# --- UI ELEMENTS ---
 bg = Entity(parent=camera.ui, model='quad', scale=(2,2), color=color.black, z=1)
 
 login_panel = WindowPanel(
@@ -48,7 +46,6 @@ hud_time = Text(text='', position=(0, 0.45), origin=(0,0), scale=2, enabled=Fals
 win_text = Text(text='', origin=(0,0), scale=3, color=color.yellow, enabled=False)
 debug_txt = Text(text='Dist: -', position=(0.7, -0.4), scale=1.5, color=color.green, enabled=False)
 
-# --- GAME OBJECTS ---
 ground = Entity(model='plane', scale=(100,1,100), texture='grass', collider='box', enabled=False)
 walls = []
 player = None
@@ -56,7 +53,6 @@ opponent = Entity(model='cube', color=color.white, scale=(1,2,1), y=1, enabled=F
 
 session = requests.Session()
 
-# --- FX ---
 def create_explosion(position, particle_color):
     Audio('assets/hit.wav', autoplay=False) 
     for i in range(20):
@@ -66,7 +62,6 @@ def create_explosion(position, particle_color):
         e.fade_out(duration=1)
         destroy(e, delay=1.1)
 
-# --- FUNCTIONS ---
 def play_guest():
     global username
     username = f"Guest{random.randint(100,999)}"
@@ -112,7 +107,7 @@ def start_game(seed, ready):
     opponent.visible = True
     hud_role.enabled = True
     hud_time.enabled = True
-    hud_time.text = '' # Reset timer
+    hud_time.text = '' 
     debug_txt.enabled = True
     
     if not ready: hud_role.text = "Waiting..."
@@ -136,15 +131,12 @@ def handle_kick():
 def end_game_sequence(winner):
     global game_active
     game_active = False
-    if player: player.enabled = False # Disable player movement
+    if player: player.enabled = False 
 
-    # Visuals
     if my_role_var == "tagger":
-        # I am the Tagger, my opponent (runner) explodes
         create_explosion(opponent.position, opponent.color)
         opponent.visible = False
     else: 
-        # I am the Runner, I explode
         create_explosion(player.position, color.azure)
         player.visible = False
         camera.shake(duration=1, magnitude=2)
@@ -177,7 +169,6 @@ def reset_to_lobby():
     for w in walls: destroy(w)
     walls.clear()
     
-    # Also reset the lobby UI text
     lobby_panel.content[2].text = "Waiting..."
     lobby_panel.content[2].enabled = False
 
@@ -185,22 +176,19 @@ def update():
     global force_tag_signal
     if not game_active or not player: return
 
-    # Distance Check
     dist = distance(player.position, opponent.position)
     debug_txt.text = f"Dist: {dist:.2f}"
     
-    # Auto-Tag Logic
     if my_role_var == "tagger":
-        if dist < 2.0: # Hitbox reduced
+        if dist < 2.0: 
             debug_txt.color = color.red
             force_tag_signal = True 
         else:
             debug_txt.color = color.green
     
-    # NEW: Runner Logic - If I run into Tagger, I lose too
     elif my_role_var == "runner":
-         if dist < 1.5: # Hitbox reduced
-             force_tag_signal = True # Tell server I died
+         if dist < 1.5: 
+             force_tag_signal = True 
 
 def input(key):
     if key == 'escape':
