@@ -1,6 +1,1 @@
 venv/
-build/
-dist/
-TagGame3D.spec
-training_log.txt
-neat_train.py
