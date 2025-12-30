@@ -1,0 +1,25 @@
+STATUS: Could not find D:\coding\AI\ursina_game\gen_train\models\worker_3_model.pkl, starting fresh.
+
+==================================================
+GEN 0001 START (2025-12-30 20:21:04)
+==================================================
+STATUS: EVOLVING
+Gen: 0001 | Time: 480.79s
+Tagger: Best=-1478.77, Avg=-1795.41
+Runner: Best=-557.62, Avg=-1114.97
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=0.0000 | W=-0.0003
+  Strafe: B=0.0000 | W=-0.0005
+  Move:   B=0.5000 | W=-0.0002
+STATUS: Saved Best Brains (Gen 1)
+
+==================================================
+GEN 0002 START (2025-12-30 20:29:05)
+==================================================
+!!! ERROR: Load failed: SimpleBrain.mutate() missing 1 required positional argument: 'rate' !!!
+
+==================================================
+GEN 0001 START (2025-12-30 20:43:08)
+==================================================
