@@ -102,6 +102,7 @@ class TrainingManager(Entity):
         local_gen_size = 1 if config.TEST_MODE else config.GEN_SIZE
         self.scores = [(0,0)] * local_gen_size
         self.detailed_scores_cache = [None] * local_gen_size
+        
         input_size = (config.VISION_RES * config.VISION_RES) + 14 
         
         if not self.population:
@@ -278,8 +279,8 @@ class TrainingManager(Entity):
             tagger.act(runner, dt); runner.act(tagger, dt)
             dist = distance(tagger.position, runner.position)
             
-            if tagger.stuck_timer > 2.0: tagger.change_score(-100 * dt, "stuck_penalty")
-            if runner.stuck_timer > 2.0: runner.change_score(-100 * dt, "stuck_penalty")
+            if tagger.stuck_timer > 2.0: tagger.change_score(-20 * dt, "stuck_penalty")
+            if runner.stuck_timer > 2.0: runner.change_score(-20 * dt, "stuck_penalty")
             
             if dist < 6.0: runner.change_score(-10 * dt, "proximity_penalty")
             if dist < 1.3: self.finish_pair(i, winner="tagger")
@@ -392,7 +393,7 @@ class TrainingManager(Entity):
         for i in range(keep_count):
             new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
 
-        input_size = (config.VISION_RES * config.VISION_RES) + 13
+        input_size = (config.VISION_RES * config.VISION_RES) + 14
         
         def tournament(sorted_list, is_tagger):
             idx1 = random.randint(0, config.GEN_SIZE // 2); idx2 = random.randint(0, config.GEN_SIZE // 2)
@@ -441,7 +442,9 @@ class TrainingManager(Entity):
                     t, r = data['t_brain'], data['r_brain']
                     self.population = []
                     for _ in range(config.GEN_SIZE):
-                        tc, rc = t.clone(), r.clone(); tc.mutate(); rc.mutate()
+                        tc, rc = t.clone(), r.clone()
+                        tc.mutate(self.current_mutation_rate) 
+                        rc.mutate(self.current_mutation_rate)
                         self.population.append((tc, rc))
                     self.population[0] = (t, r)
                     self.log_manager.log_status(f"Loaded Gen {self.generation-1} from {config.LOAD_FILE}")

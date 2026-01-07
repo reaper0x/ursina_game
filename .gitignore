@@ -1,1 +1,8 @@
 venv/
+__pycache__/
+models/
+logs/
+detailed_logs/
+*.pyc
+*.pkl
+*.txt
