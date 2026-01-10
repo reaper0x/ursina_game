@@ -1,6 +1,4 @@
 from ursina import *
-from panda3d.core import Camera as PandaCamera
-from panda3d.core import PerspectiveLens, NodePath, FrameBufferProperties, WindowProperties, GraphicsPipe, Texture, Vec3
 import numpy as np
 import random
 import config
@@ -13,6 +11,8 @@ class Agent(Entity):
         self.pair_id = pair_id 
         self.origin_x = origin_x 
         self.manager = manager
+        
+        self.active = True
         
         self.speed = config.BASE_SPEED
         self.turn_speed = 200
@@ -39,13 +39,9 @@ class Agent(Entity):
         self.min_dist_to_target = 100.0 
         self.time_in_sight = 0.0
         
-        self.vision_res = config.VISION_RES 
-        input_nodes = (self.vision_res * self.vision_res) + 13
+        input_nodes = 14
         
         self.brain = brain if brain else SimpleBrain(input_nodes, config.HIDDEN_LAYER_SIZE, 4) 
-
-        self.tex_buffer = Texture()
-        self.setup_vision()
         self.frame_skip = random.randint(0, 3) 
 
     def change_score(self, amount, reason):
@@ -53,45 +49,6 @@ class Agent(Entity):
         if reason not in self.score_breakdown:
             self.score_breakdown[reason] = 0.0
         self.score_breakdown[reason] += amount
-
-    def setup_vision(self):
-        base = application.base
-        win_props = WindowProperties()
-        win_props.set_size(self.vision_res, self.vision_res)
-        fb_props = FrameBufferProperties()
-        fb_props.set_rgb_color(True)
-        fb_props.set_depth_bits(1)
-        
-        self.buffer = base.graphicsEngine.make_output(
-            base.pipe, f"buff_{self.role}_{self.pair_id}", -2,
-            fb_props, win_props,
-            GraphicsPipe.BF_refuse_window,
-            base.win.get_gsg(), base.win
-        )
-        
-        if self.buffer:
-            self.buffer.add_render_texture(self.tex_buffer, base.win.RTM_copy_ram)
-            self.cam_node = PandaCamera(f'{self.role}_cam_{self.pair_id}')
-            self.cam_node.set_lens(PerspectiveLens())
-            self.cam_node.get_lens().set_fov(100) 
-            self.cam_node.set_scene(scene) 
-            self.cam_np = NodePath(self.cam_node)
-            self.cam_np.reparent_to(self)
-            self.cam_np.set_pos(0, 0.5, 0.5) 
-            self.display_region = self.buffer.make_display_region()
-            self.display_region.set_camera(self.cam_np)
-
-    def get_vision_data(self):
-        if not self.tex_buffer or not self.tex_buffer.has_ram_image(): 
-            return np.zeros(self.vision_res * self.vision_res)
-        
-        img = self.tex_buffer.get_ram_image_as("RGB")
-        if not img: return np.zeros(self.vision_res * self.vision_res)
-        
-        arr = np.frombuffer(img, dtype=np.uint8).astype(np.float32) / 255.0
-        arr = arr.reshape((self.vision_res, self.vision_res, 3))
-        grayscale = np.dot(arr[...,:3], [0.299, 0.587, 0.114]) 
-        return grayscale.flatten() 
 
     def get_whiskers(self):
         sensors = []
@@ -118,14 +75,15 @@ class Agent(Entity):
         return np.array([angle_to_target / np.pi, 1.0 - min(dist, 40.0) / 40.0])
 
     def act(self, target, dt):
+        if not self.active: return
+
         self.frame_skip += 1
         if self.frame_skip % 2 == 0: 
-            vision = self.get_vision_data()
             whiskers = self.get_whiskers() 
             compass = self.get_compass(target)
             mem = self.last_actions
             aux = np.array([1.0 if self.grounded else 0.0, self.bhop_chain / 5.0]) 
-            inputs = np.concatenate((vision, whiskers, compass, mem, aux))
+            inputs = np.concatenate((whiskers, compass, mem, aux))
             self.decision = self.brain.forward(inputs)
             self.last_actions = self.decision
 
@@ -219,8 +177,3 @@ class Agent(Entity):
             self.y = 15; self.x = self.origin_x; self.z = 0
             self.velocity_y = 0; 
             self.change_score(-500, "fall_penalty")
-
-    def on_destroy(self):
-        base = application.base
-        if hasattr(self, 'buffer') and self.buffer: base.graphicsEngine.remove_window(self.buffer)
-        if hasattr(self, 'cam_np'): self.cam_np.remove_node()

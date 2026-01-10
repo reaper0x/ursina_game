@@ -39,8 +39,12 @@ else:
 
 app = Ursina(borderless=False, vsync=True if config.TEST_MODE else False)
 
-window.position = (win_x, win_y)
-window.size = (win_w, win_h)
+if hasattr(config, 'FULLSCREEN') and config.FULLSCREEN:
+    window.fullscreen = True
+else:
+    window.position = (win_x, win_y)
+    window.size = (win_w, win_h)
+
 window.color = color.black
 
 if config.TEST_MODE or (win_w > 400 and not config.HEADLESS):

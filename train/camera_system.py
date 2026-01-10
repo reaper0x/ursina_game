@@ -4,10 +4,12 @@ from panda3d.core import PerspectiveLens, NodePath
 import numpy as np
 import config
 
-class GridCameraSystem:
+class GridCameraSystem(Entity):
     def __init__(self, agents):
+        super().__init__()
         self.cameras = []
         self.regions = []
+        self.targets = []
         base = application.base
 
         limit = min(config.AGENTS_PER_WINDOW, len(agents))
@@ -20,6 +22,8 @@ class GridCameraSystem:
         
         for i in range(len(viewable)):
             t, r = viewable[i]
+            self.targets.append(t)
+            
             col = i % cols
             row = i // cols
             
@@ -38,13 +42,19 @@ class GridCameraSystem:
             cam.set_scene(scene)
             
             cnp = NodePath(cam)
-            cnp.reparent_to(t)
-            cnp.set_pos(0, 6, -9)
-            cnp.look_at(t)
+            cnp.reparent_to(scene)
             
             dr.set_camera(cnp)
             self.cameras.append(cnp)
             self.regions.append(dr)
+
+    def update(self):
+        for i, cam in enumerate(self.cameras):
+            if i < len(self.targets) and self.targets[i]:
+                target = self.targets[i]
+                desired_pos = target.position + Vec3(0, 10, -10)
+                cam.set_pos(desired_pos)
+                cam.look_at(target.position)
 
     def cleanup(self):
         base = application.base
@@ -54,3 +64,5 @@ class GridCameraSystem:
             cam.remove_node()
         self.cameras.clear()
         self.regions.clear()
+        self.targets.clear()
+        destroy(self)

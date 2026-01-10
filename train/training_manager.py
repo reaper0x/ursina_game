@@ -99,11 +99,15 @@ class TrainingManager(Entity):
         self.log_manager.log_generation_start(self.generation, mut_mult) 
         self.cleanup()
         
-        local_gen_size = 1 if config.TEST_MODE else config.GEN_SIZE
+        if config.TEST_MODE:
+            local_gen_size = 1
+        else:
+            local_gen_size = max(1, config.GEN_SIZE // config.NUM_PROCESSES)
+            
         self.scores = [(0,0)] * local_gen_size
         self.detailed_scores_cache = [None] * local_gen_size
         
-        input_size = (config.VISION_RES * config.VISION_RES) + 14 
+        input_size = 14
         
         if not self.population:
             for _ in range(local_gen_size):
@@ -111,6 +115,7 @@ class TrainingManager(Entity):
         
         while len(self.population) < local_gen_size:
              self.population.append((SimpleBrain(input_size, config.HIDDEN_LAYER_SIZE, 4), SimpleBrain(input_size, config.HIDDEN_LAYER_SIZE, 4)))
+             
         self.population = self.population[:local_gen_size]
 
         if not config.TEST_MODE and self.force_reset_next:
@@ -164,7 +169,7 @@ class TrainingManager(Entity):
                 w = Entity(model='cube', position=pos, scale=scale, color=mat, collider='box')
             self.walls.append(w)
 
-        loop_count = 1 if config.TEST_MODE else config.GEN_SIZE
+        loop_count = 1 if config.TEST_MODE else max(1, config.GEN_SIZE // config.NUM_PROCESSES)
         
         for i in range(loop_count):
             off = i * 150
@@ -219,14 +224,23 @@ class TrainingManager(Entity):
                         placed_count += 1
 
     def get_safe_spawn(self, offset_x):
-        for _ in range(100):
-            x = offset_x + random.uniform(-40, 40); z = random.uniform(-40, 40)
+        for _ in range(2000):
+            x = offset_x + random.uniform(-40, 40)
+            z = random.uniform(-40, 40)
             
-            p_size = 1.0; min_x, max_x = x - p_size, x + p_size; min_z, max_z = z - p_size, z + p_size
+            p_size = 2.5
+            min_x, max_x = x - p_size, x + p_size
+            min_z, max_z = z - p_size, z + p_size
+            
             valid = True
             for (wx1, wx2, wz1, wz2) in self.wall_data:
-                if (min_x < wx2 and max_x > wx1 and min_z < wz2 and max_z > wz1): valid = False; break
-            if valid: return x, z
+                if (min_x < wx2 and max_x > wx1 and min_z < wz2 and max_z > wz1):
+                    valid = False
+                    break
+            
+            if valid:
+                return x, z
+                
         return offset_x, 0
 
     def update(self):
@@ -242,7 +256,9 @@ class TrainingManager(Entity):
             tagger, runner = self.agents[0]
             target = tagger if self.spectate_tagger else runner
             other = runner if self.spectate_tagger else tagger
-            if not target.enabled: target = runner if self.spectate_tagger else tagger; other = tagger if self.spectate_tagger else runner
+            if not target.active: 
+                pass
+            
             target.visible = True; other.visible = True; target_pos = target.position
             for w in self.faded_walls: w.alpha = 1.0
             self.faded_walls.clear()
@@ -274,7 +290,7 @@ class TrainingManager(Entity):
         self.time_elapsed += dt
         active_count = 0
         for i, (tagger, runner) in enumerate(self.agents):
-            if not tagger.enabled: continue
+            if not tagger.active: continue 
             active_count += 1
             tagger.act(runner, dt); runner.act(tagger, dt)
             dist = distance(tagger.position, runner.position)
@@ -287,7 +303,7 @@ class TrainingManager(Entity):
             
         if self.time_elapsed > config.MATCH_DURATION:
             for i, (tagger, runner) in enumerate(self.agents):
-                if tagger.enabled: self.finish_pair(i, winner="runner")
+                if tagger.active: self.finish_pair(i, winner="runner")
         if active_count == 0: 
             if config.TEST_MODE: self.start_generation()
             else: self.evolve()
@@ -325,7 +341,8 @@ class TrainingManager(Entity):
             "r_breakdown": r.score_breakdown.copy()
         }
         
-        t.enabled = False; r.enabled = False; t.visible = False; r.visible = False
+        t.active = False; r.active = False
+        t.collider = None; r.collider = None
     
     def evolve(self):
         self.log_manager.log_status("EVOLVING")
@@ -389,19 +406,24 @@ class TrainingManager(Entity):
 
         new_pop = []
         
-        keep_count = 1 if is_extinction_event else 3
+        local_gen_size = max(1, config.GEN_SIZE // config.NUM_PROCESSES)
+        
+        keep_count = 1 if is_extinction_event else max(1, int(local_gen_size * 0.1))
+        
         for i in range(keep_count):
-            new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
+            if i < len(sorted_taggers):
+                new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
 
-        input_size = (config.VISION_RES * config.VISION_RES) + 14
+        input_size = 14
         
         def tournament(sorted_list, is_tagger):
-            idx1 = random.randint(0, config.GEN_SIZE // 2); idx2 = random.randint(0, config.GEN_SIZE // 2)
+            max_idx = len(sorted_list) - 1
+            idx1 = random.randint(0, max_idx); idx2 = random.randint(0, max_idx)
             brain_idx = 0 if is_tagger else 1
             if sorted_list[idx1][1][brain_idx] > sorted_list[idx2][1][brain_idx]: return sorted_list[idx1][0][brain_idx].clone()
             else: return sorted_list[idx2][0][brain_idx].clone()
 
-        while len(new_pop) < config.GEN_SIZE:
+        while len(new_pop) < local_gen_size:
             if is_extinction_event:
                 new_pop.append((SimpleBrain(input_size, config.HIDDEN_LAYER_SIZE, 4), SimpleBrain(input_size, config.HIDDEN_LAYER_SIZE, 4)))
             else:
@@ -440,8 +462,11 @@ class TrainingManager(Entity):
                     self.generation = data['gen'] + 1
                     self.best_historical_score = data.get('best_score', 0) 
                     t, r = data['t_brain'], data['r_brain']
+                    
+                    local_gen_size = max(1, config.GEN_SIZE // config.NUM_PROCESSES)
+                    
                     self.population = []
-                    for _ in range(config.GEN_SIZE):
+                    for _ in range(local_gen_size):
                         tc, rc = t.clone(), r.clone()
                         tc.mutate(self.current_mutation_rate) 
                         rc.mutate(self.current_mutation_rate)
