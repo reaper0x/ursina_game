@@ -1,8 +1,10 @@
+.venv/
 venv/
 __pycache__/
 models/
 logs/
 detailed_logs/
+rl_train/
 *.pyc
 *.pkl
 *.txt

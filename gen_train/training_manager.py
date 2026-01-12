@@ -107,7 +107,7 @@ class TrainingManager(Entity):
         self.scores = [(0,0)] * local_gen_size
         self.detailed_scores_cache = [None] * local_gen_size
         
-        input_size = 14
+        input_size = 26
         
         if not self.population:
             for _ in range(local_gen_size):
@@ -414,7 +414,7 @@ class TrainingManager(Entity):
             if i < len(sorted_taggers):
                 new_pop.append((sorted_taggers[i][0][0].clone(), sorted_runners[i][0][1].clone()))
 
-        input_size = 14
+        input_size = 26
         
         def tournament(sorted_list, is_tagger):
             max_idx = len(sorted_list) - 1

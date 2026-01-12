@@ -15,7 +15,7 @@ class Agent(Entity):
         self.active = True
         
         self.speed = config.BASE_SPEED
-        self.turn_speed = 200
+        self.turn_speed = 150
         
         self.model = 'cube'
         self.color = color.red if role == "tagger" else color.azure
@@ -39,7 +39,7 @@ class Agent(Entity):
         self.min_dist_to_target = 100.0 
         self.time_in_sight = 0.0
         
-        input_nodes = 14
+        input_nodes = 26
         
         self.brain = brain if brain else SimpleBrain(input_nodes, config.HIDDEN_LAYER_SIZE, 4) 
         self.frame_skip = random.randint(0, 3) 
@@ -52,17 +52,17 @@ class Agent(Entity):
 
     def get_whiskers(self):
         sensors = []
-        angles = [-30, 0, 30]
+        angles = [-90, -60, -45, -30, 0, 30, 45, 60, 90]
         for angle in angles:
             r_rad = np.radians(self.rotation_y + angle)
             dx = np.sin(r_rad)
             dz = np.cos(r_rad)
             dir_vec = Vec3(dx, 0, dz).normalized()
-            
-            ray_low = raycast(self.position + Vec3(0,0.5,0), dir_vec, distance=8, ignore=(self,))
+
+            ray_low = raycast(self.position + Vec3(0,0.5,-0.2), dir_vec, distance=8, ignore=(self,))
             sensors.append(ray_low.distance / 8.0 if ray_low.hit else 1.0)
             
-            ray_high = raycast(self.position + Vec3(0,1.5,0), dir_vec, distance=8, ignore=(self,))
+            ray_high = raycast(self.position + Vec3(0,1.5,-0.2), dir_vec, distance=8, ignore=(self,))
             sensors.append(ray_high.distance / 8.0 if ray_high.hit else 1.0)
             
         return np.array(sensors)
@@ -79,12 +79,19 @@ class Agent(Entity):
 
         self.frame_skip += 1
         if self.frame_skip % 2 == 0: 
-            whiskers = self.get_whiskers() 
+            whiskers = self.get_whiskers()
             compass = self.get_compass(target)
             mem = self.last_actions
-            aux = np.array([1.0 if self.grounded else 0.0, self.bhop_chain / 5.0]) 
+            aux = np.array([1.0 if self.grounded else 0.0, self.bhop_chain / 5.0])
             inputs = np.concatenate((whiskers, compass, mem, aux))
-            self.decision = self.brain.forward(inputs)
+            
+            try:
+                self.decision = self.brain.forward(inputs)
+            except ValueError as e:
+                print(f"Brain mismatch! Expected {self.brain.w1.shape[0]}, got {len(inputs)}")
+                self.brain = SimpleBrain(26, config.HIDDEN_LAYER_SIZE, 4)
+                self.decision = self.brain.forward(inputs)
+
             self.last_actions = self.decision
 
         if not hasattr(self, 'decision'): return
@@ -122,7 +129,7 @@ class Agent(Entity):
         
         if move_vec.length() > 0.01:
             check_dist = move_dist + 0.5
-            perp_vec = move_vec.cross(Vec3(0, 1, 0)).normalized()
+            perp_vec = move_vec.cross(Vec3(0, 1, -0.2)).normalized()
             shoulder_width = 0.45
             heights = [0.1, 0.5, 1.5] 
             blocked = False
@@ -130,9 +137,9 @@ class Agent(Entity):
             for h in heights:
                 if blocked: break
                 origins = [
-                    self.position + Vec3(0, h, 0),
-                    self.position + Vec3(0, h, 0) + (perp_vec * shoulder_width),
-                    self.position + Vec3(0, h, 0) - (perp_vec * shoulder_width)
+                    self.position + Vec3(0, h, -0.2),
+                    self.position + Vec3(0, h, -0.2) + (perp_vec * shoulder_width),
+                    self.position + Vec3(0, h, -0.2) - (perp_vec * shoulder_width)
                 ]
                 for org in origins:
                     if raycast(org, move_vec, distance=check_dist, ignore=(self, target)).hit:
