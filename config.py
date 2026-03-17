@@ -5,12 +5,12 @@ LOG_DIR = os.path.join(BASE_DIR, "logs")
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 
 TEST_MODE = False
-GEN_SIZE = 32
+GEN_SIZE = 240
 MATCH_DURATION = 20
 
-NUM_PROCESSES = 6
+NUM_PROCESSES = 10
 MAX_VISIBLE_WINDOWS = 6
-HEADLESS = False
+HEADLESS = True
 
 FULLSCREEN = False
 WINDOW_WIDTH = 300
@@ -36,7 +36,7 @@ EXTINCTION_LIMIT = 50
 LOAD_SAVE = True
 LOAD_FILE = "testing_model.pkl"
 SAVE_FILE = "testing_model.pkl"
-BACKUP_INTERVAL = 5
+BACKUP_INTERVAL = 20
 ANTI_SPIN_THRESHOLD = 0.1
 MAX_BAD_GENS = 3
 LOG_FILE = "testing_log.txt"

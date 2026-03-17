@@ -1,0 +1,2959 @@
+STATUS: Loaded Gen 40 from C:\Users\david\Desktop\gen_train\models\worker_5_model.pkl
+
+==================================================
+GEN 0041 START (2026-03-04 14:14:32)
+==================================================
+STATUS: EVOLVING
+Gen: 0041 | Time: 233.63s
+Tagger: Best=2986.66, Avg=2097.01
+Runner: Best=1046.41, Avg=512.27
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1238 | W=0.0365
+  Strafe: B=-0.3081 | W=0.0656
+  Move:   B=0.5504 | W=-0.1456
+STATUS: Saved Best Brains (Gen 41)
+
+==================================================
+GEN 0042 START (2026-03-04 14:18:26)
+==================================================
+STATUS: EVOLVING
+Gen: 0042 | Time: 257.53s
+Tagger: Best=2857.36, Avg=1881.15
+Runner: Best=1009.55, Avg=621.12
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1186 | W=0.0357
+  Strafe: B=-0.2988 | W=0.0671
+  Move:   B=0.5568 | W=-0.1467
+STATUS: Saved Best Brains (Gen 42)
+
+==================================================
+GEN 0043 START (2026-03-04 14:22:44)
+==================================================
+STATUS: EVOLVING
+Gen: 0043 | Time: 243.19s
+Tagger: Best=2894.19, Avg=2118.05
+Runner: Best=987.58, Avg=461.34
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1130 | W=0.0379
+  Strafe: B=-0.2923 | W=0.0667
+  Move:   B=0.5702 | W=-0.1507
+STATUS: Saved Best Brains (Gen 43)
+
+==================================================
+GEN 0044 START (2026-03-04 14:26:48)
+==================================================
+STATUS: EVOLVING
+Gen: 0044 | Time: 267.39s
+Tagger: Best=2894.66, Avg=1779.02
+Runner: Best=983.95, Avg=622.95
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1183 | W=0.0372
+  Strafe: B=-0.2929 | W=0.0613
+  Move:   B=0.5682 | W=-0.1487
+STATUS: Saved Best Brains (Gen 44)
+
+==================================================
+GEN 0045 START (2026-03-04 14:31:16)
+==================================================
+STATUS: EVOLVING
+Gen: 0045 | Time: 265.28s
+Tagger: Best=2875.27, Avg=1604.57
+Runner: Best=1058.25, Avg=676.79
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1077 | W=0.0420
+  Strafe: B=-0.2751 | W=0.0661
+  Move:   B=0.5842 | W=-0.1446
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_45_detailed.txt
+STATUS: Saved Best Brains (Gen 45)
+
+==================================================
+GEN 0046 START (2026-03-04 14:35:43)
+==================================================
+STATUS: EVOLVING
+Gen: 0046 | Time: 269.19s
+Tagger: Best=2883.97, Avg=1714.14
+Runner: Best=969.41, Avg=666.96
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1141 | W=0.0364
+  Strafe: B=-0.2997 | W=0.0709
+  Move:   B=0.5719 | W=-0.1430
+STATUS: Saved Best Brains (Gen 46)
+
+==================================================
+GEN 0047 START (2026-03-04 14:40:13)
+==================================================
+STATUS: EVOLVING
+Gen: 0047 | Time: 275.51s
+Tagger: Best=2825.42, Avg=1825.46
+Runner: Best=1005.78, Avg=652.27
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1037 | W=0.0369
+  Strafe: B=-0.2868 | W=0.0807
+  Move:   B=0.5728 | W=-0.1432
+STATUS: Saved Best Brains (Gen 47)
+
+==================================================
+GEN 0048 START (2026-03-04 14:44:49)
+==================================================
+STATUS: EVOLVING
+Gen: 0048 | Time: 271.54s
+Tagger: Best=2888.07, Avg=1789.47
+Runner: Best=1057.53, Avg=648.75
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1048 | W=0.0413
+  Strafe: B=-0.2892 | W=0.0876
+  Move:   B=0.5722 | W=-0.1480
+STATUS: Saved Best Brains (Gen 48)
+
+==================================================
+GEN 0049 START (2026-03-04 14:49:21)
+==================================================
+STATUS: Loaded Gen 48 from C:\Users\david\Desktop\gen_train\models\worker_5_model.pkl
+
+==================================================
+GEN 0049 START (2026-03-04 18:04:48)
+==================================================
+STATUS: EVOLVING
+Gen: 0049 | Time: 62.74s
+Tagger: Best=2787.70, Avg=1960.03
+Runner: Best=1001.13, Avg=663.01
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0780 | W=0.0363
+  Strafe: B=-0.2266 | W=0.0798
+  Move:   B=0.6340 | W=-0.1496
+STATUS: Saved Best Brains (Gen 49)
+
+==================================================
+GEN 0050 START (2026-03-04 18:05:51)
+==================================================
+STATUS: EVOLVING
+Gen: 0050 | Time: 59.63s
+Tagger: Best=2892.54, Avg=1943.55
+Runner: Best=1050.53, Avg=633.39
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0814 | W=0.0322
+  Strafe: B=-0.2306 | W=0.0767
+  Move:   B=0.6335 | W=-0.1589
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_50_detailed.txt
+STATUS: Saved Best Brains (Gen 50)
+
+==================================================
+GEN 0051 START (2026-03-04 18:06:51)
+==================================================
+STATUS: EVOLVING
+Gen: 0051 | Time: 57.30s
+Tagger: Best=2989.95, Avg=2087.50
+Runner: Best=885.58, Avg=573.32
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0768 | W=0.0346
+  Strafe: B=-0.2296 | W=0.0771
+  Move:   B=0.6405 | W=-0.1643
+STATUS: Saved Best Brains (Gen 51)
+
+==================================================
+GEN 0052 START (2026-03-04 18:07:49)
+==================================================
+STATUS: EVOLVING
+Gen: 0052 | Time: 62.42s
+Tagger: Best=2911.88, Avg=2051.66
+Runner: Best=978.05, Avg=576.87
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0681 | W=0.0340
+  Strafe: B=-0.2240 | W=0.0700
+  Move:   B=0.6413 | W=-0.1673
+STATUS: Saved Best Brains (Gen 52)
+
+==================================================
+GEN 0053 START (2026-03-04 18:08:51)
+==================================================
+STATUS: EVOLVING
+Gen: 0053 | Time: 61.33s
+Tagger: Best=2817.75, Avg=2105.68
+Runner: Best=934.31, Avg=546.10
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0677 | W=0.0306
+  Strafe: B=-0.2240 | W=0.0823
+  Move:   B=0.6537 | W=-0.1720
+STATUS: Saved Best Brains (Gen 53)
+
+==================================================
+GEN 0054 START (2026-03-04 18:09:53)
+==================================================
+STATUS: EVOLVING
+Gen: 0054 | Time: 55.83s
+Tagger: Best=2906.60, Avg=1944.66
+Runner: Best=1028.36, Avg=608.04
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0649 | W=0.0308
+  Strafe: B=-0.2230 | W=0.0895
+  Move:   B=0.6613 | W=-0.1899
+STATUS: Saved Best Brains (Gen 54)
+
+==================================================
+GEN 0055 START (2026-03-04 18:10:49)
+==================================================
+STATUS: EVOLVING
+Gen: 0055 | Time: 62.36s
+Tagger: Best=2987.80, Avg=1833.57
+Runner: Best=855.51, Avg=648.02
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0519 | W=0.0305
+  Strafe: B=-0.2258 | W=0.0818
+  Move:   B=0.6660 | W=-0.1965
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_55_detailed.txt
+STATUS: Saved Best Brains (Gen 55)
+
+==================================================
+GEN 0056 START (2026-03-04 18:11:51)
+==================================================
+STATUS: EVOLVING
+Gen: 0056 | Time: 63.81s
+Tagger: Best=2724.54, Avg=1760.37
+Runner: Best=1032.15, Avg=713.74
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0564 | W=0.0212
+  Strafe: B=-0.2268 | W=0.0778
+  Move:   B=0.6591 | W=-0.1937
+STATUS: Saved Best Brains (Gen 56)
+
+==================================================
+GEN 0057 START (2026-03-04 18:12:55)
+==================================================
+STATUS: EVOLVING
+Gen: 0057 | Time: 65.01s
+Tagger: Best=2108.41, Avg=1560.59
+Runner: Best=980.76, Avg=754.21
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0520 | W=0.0402
+  Strafe: B=-0.2215 | W=0.0769
+  Move:   B=0.6783 | W=-0.2020
+STATUS: Saved Best Brains (Gen 57)
+
+==================================================
+GEN 0058 START (2026-03-04 18:14:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0058 | Time: 65.72s
+Tagger: Best=2216.74, Avg=1726.93
+Runner: Best=987.65, Avg=723.10
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0442 | W=0.0543
+  Strafe: B=-0.2232 | W=0.0747
+  Move:   B=0.6906 | W=-0.2108
+STATUS: Saved Best Brains (Gen 58)
+
+==================================================
+GEN 0059 START (2026-03-04 18:15:07)
+==================================================
+STATUS: EVOLVING
+Gen: 0059 | Time: 59.97s
+Tagger: Best=2902.23, Avg=1637.59
+Runner: Best=957.72, Avg=705.97
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0399 | W=0.0444
+  Strafe: B=-0.2296 | W=0.0738
+  Move:   B=0.6881 | W=-0.1955
+STATUS: Saved Best Brains (Gen 59)
+
+==================================================
+GEN 0060 START (2026-03-04 18:16:07)
+==================================================
+STATUS: EVOLVING
+Gen: 0060 | Time: 57.08s
+Tagger: Best=2939.99, Avg=1998.43
+Runner: Best=993.31, Avg=634.45
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0457 | W=0.0411
+  Strafe: B=-0.2196 | W=0.0605
+  Move:   B=0.6884 | W=-0.1840
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_60_detailed.txt
+STATUS: Saved Best Brains (Gen 60)
+
+==================================================
+GEN 0061 START (2026-03-04 18:17:04)
+==================================================
+STATUS: EVOLVING
+Gen: 0061 | Time: 63.94s
+Tagger: Best=2704.94, Avg=1793.81
+Runner: Best=1018.47, Avg=699.32
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0535 | W=0.0434
+  Strafe: B=-0.2266 | W=0.0469
+  Move:   B=0.6689 | W=-0.1838
+STATUS: Saved Best Brains (Gen 61)
+
+==================================================
+GEN 0062 START (2026-03-04 18:18:08)
+==================================================
+STATUS: EVOLVING
+Gen: 0062 | Time: 65.30s
+Tagger: Best=2399.46, Avg=1802.40
+Runner: Best=972.55, Avg=748.88
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0514 | W=0.0463
+  Strafe: B=-0.2223 | W=0.0529
+  Move:   B=0.6705 | W=-0.1737
+STATUS: Saved Best Brains (Gen 62)
+
+==================================================
+GEN 0063 START (2026-03-04 18:19:14)
+==================================================
+STATUS: EVOLVING
+Gen: 0063 | Time: 65.09s
+Tagger: Best=2050.10, Avg=1474.20
+Runner: Best=964.38, Avg=795.64
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0499 | W=0.0422
+  Strafe: B=-0.2285 | W=0.0566
+  Move:   B=0.6660 | W=-0.1631
+STATUS: Saved Best Brains (Gen 63)
+
+==================================================
+GEN 0064 START (2026-03-04 18:20:19)
+==================================================
+STATUS: EVOLVING
+Gen: 0064 | Time: 63.33s
+Tagger: Best=2955.42, Avg=1907.30
+Runner: Best=861.64, Avg=693.14
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0538 | W=0.0478
+  Strafe: B=-0.2175 | W=0.0384
+  Move:   B=0.6777 | W=-0.1858
+STATUS: Saved Best Brains (Gen 64)
+
+==================================================
+GEN 0065 START (2026-03-04 18:21:23)
+==================================================
+STATUS: EVOLVING
+Gen: 0065 | Time: 58.69s
+Tagger: Best=2883.60, Avg=1772.57
+Runner: Best=1048.31, Avg=702.38
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0539 | W=0.0528
+  Strafe: B=-0.2178 | W=0.0376
+  Move:   B=0.6656 | W=-0.1660
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_65_detailed.txt
+STATUS: Saved Best Brains (Gen 65)
+
+==================================================
+GEN 0066 START (2026-03-04 18:22:21)
+==================================================
+STATUS: EVOLVING
+Gen: 0066 | Time: 63.90s
+Tagger: Best=2235.62, Avg=1629.86
+Runner: Best=1079.22, Avg=795.46
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0548 | W=0.0544
+  Strafe: B=-0.2195 | W=0.0365
+  Move:   B=0.6642 | W=-0.1467
+STATUS: Saved Best Brains (Gen 66)
+
+==================================================
+GEN 0067 START (2026-03-04 18:23:26)
+==================================================
+STATUS: EVOLVING
+Gen: 0067 | Time: 65.18s
+Tagger: Best=2272.25, Avg=1618.88
+Runner: Best=997.79, Avg=775.64
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0417 | W=0.0598
+  Strafe: B=-0.2253 | W=0.0382
+  Move:   B=0.6366 | W=-0.1504
+STATUS: Saved Best Brains (Gen 67)
+
+==================================================
+GEN 0068 START (2026-03-04 18:24:31)
+==================================================
+STATUS: EVOLVING
+Gen: 0068 | Time: 61.88s
+Tagger: Best=2881.94, Avg=1940.48
+Runner: Best=883.74, Avg=673.41
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0533 | W=0.0741
+  Strafe: B=-0.2162 | W=0.0498
+  Move:   B=0.6624 | W=-0.1219
+STATUS: Saved Best Brains (Gen 68)
+
+==================================================
+GEN 0069 START (2026-03-04 18:25:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0069 | Time: 61.39s
+Tagger: Best=2987.99, Avg=1559.07
+Runner: Best=1064.65, Avg=743.60
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0580 | W=0.0610
+  Strafe: B=-0.2172 | W=0.0287
+  Move:   B=0.6746 | W=-0.1321
+STATUS: Saved Best Brains (Gen 69)
+
+==================================================
+GEN 0070 START (2026-03-04 18:26:35)
+==================================================
+STATUS: EVOLVING
+Gen: 0070 | Time: 62.82s
+Tagger: Best=2971.49, Avg=1818.79
+Runner: Best=987.84, Avg=693.52
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0651 | W=0.0702
+  Strafe: B=-0.2001 | W=0.0510
+  Move:   B=0.6765 | W=-0.0990
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_70_detailed.txt
+STATUS: Saved Best Brains (Gen 70)
+
+==================================================
+GEN 0071 START (2026-03-04 18:27:38)
+==================================================
+STATUS: EVOLVING
+Gen: 0071 | Time: 59.45s
+Tagger: Best=2923.13, Avg=2088.10
+Runner: Best=945.04, Avg=581.07
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0800 | W=0.0799
+  Strafe: B=-0.1973 | W=0.0596
+  Move:   B=0.6891 | W=-0.0838
+STATUS: Saved Best Brains (Gen 71)
+
+==================================================
+GEN 0072 START (2026-03-04 18:28:37)
+==================================================
+STATUS: EVOLVING
+Gen: 0072 | Time: 62.86s
+Tagger: Best=2922.84, Avg=1765.71
+Runner: Best=973.62, Avg=733.81
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0880 | W=0.0830
+  Strafe: B=-0.1931 | W=0.0587
+  Move:   B=0.6846 | W=-0.0737
+STATUS: Saved Best Brains (Gen 72)
+
+==================================================
+GEN 0073 START (2026-03-04 18:29:40)
+==================================================
+STATUS: EVOLVING
+Gen: 0073 | Time: 61.48s
+Tagger: Best=2865.02, Avg=1789.92
+Runner: Best=1037.09, Avg=608.38
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0725 | W=0.0809
+  Strafe: B=-0.2000 | W=0.0475
+  Move:   B=0.6896 | W=-0.0841
+STATUS: Saved Best Brains (Gen 73)
+
+==================================================
+GEN 0074 START (2026-03-04 18:30:42)
+==================================================
+STATUS: EVOLVING
+Gen: 0074 | Time: 63.82s
+Tagger: Best=2890.38, Avg=2027.13
+Runner: Best=1000.83, Avg=647.05
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0736 | W=0.0841
+  Strafe: B=-0.1958 | W=0.0490
+  Move:   B=0.6925 | W=-0.0812
+STATUS: Saved Best Brains (Gen 74)
+
+==================================================
+GEN 0075 START (2026-03-04 18:31:46)
+==================================================
+STATUS: EVOLVING
+Gen: 0075 | Time: 55.05s
+Tagger: Best=2871.35, Avg=1901.86
+Runner: Best=1019.65, Avg=583.29
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0736 | W=0.0846
+  Strafe: B=-0.1958 | W=0.0362
+  Move:   B=0.6925 | W=-0.0811
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_75_detailed.txt
+STATUS: Saved Best Brains (Gen 75)
+
+==================================================
+GEN 0076 START (2026-03-04 18:32:41)
+==================================================
+STATUS: EVOLVING
+Gen: 0076 | Time: 68.79s
+Tagger: Best=2869.67, Avg=1794.06
+Runner: Best=1010.82, Avg=767.30
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0725 | W=0.0881
+  Strafe: B=-0.1871 | W=0.0308
+  Move:   B=0.6970 | W=-0.0851
+STATUS: Saved Best Brains (Gen 76)
+
+==================================================
+GEN 0077 START (2026-03-04 18:33:50)
+==================================================
+STATUS: EVOLVING
+Gen: 0077 | Time: 62.68s
+Tagger: Best=2867.35, Avg=2149.37
+Runner: Best=907.74, Avg=595.07
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0629 | W=0.0755
+  Strafe: B=-0.2041 | W=0.0271
+  Move:   B=0.6924 | W=-0.0753
+STATUS: Saved Best Brains (Gen 77)
+
+==================================================
+GEN 0078 START (2026-03-04 18:34:53)
+==================================================
+STATUS: EVOLVING
+Gen: 0078 | Time: 60.91s
+Tagger: Best=2894.43, Avg=2073.28
+Runner: Best=983.80, Avg=631.47
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0854 | W=0.0792
+  Strafe: B=-0.1858 | W=0.0317
+  Move:   B=0.6970 | W=-0.0777
+STATUS: Saved Best Brains (Gen 78)
+
+==================================================
+GEN 0079 START (2026-03-04 18:35:54)
+==================================================
+STATUS: EVOLVING
+Gen: 0079 | Time: 61.39s
+Tagger: Best=2890.94, Avg=1701.59
+Runner: Best=1013.64, Avg=761.11
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0796 | W=0.0843
+  Strafe: B=-0.1903 | W=0.0270
+  Move:   B=0.6884 | W=-0.0775
+STATUS: Saved Best Brains (Gen 79)
+
+==================================================
+GEN 0080 START (2026-03-04 18:36:56)
+==================================================
+STATUS: EVOLVING
+Gen: 0080 | Time: 65.65s
+Tagger: Best=2197.01, Avg=1681.82
+Runner: Best=1084.03, Avg=816.22
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0791 | W=0.0815
+  Strafe: B=-0.1939 | W=0.0064
+  Move:   B=0.6886 | W=-0.0734
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_80_detailed.txt
+STATUS: Saved Best Brains (Gen 80)
+
+==================================================
+GEN 0081 START (2026-03-04 18:38:02)
+==================================================
+STATUS: EVOLVING
+Gen: 0081 | Time: 64.03s
+Tagger: Best=2814.03, Avg=1825.16
+Runner: Best=1096.56, Avg=717.48
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0837 | W=0.0837
+  Strafe: B=-0.2009 | W=0.0105
+  Move:   B=0.6855 | W=-0.0769
+STATUS: Saved Best Brains (Gen 81)
+
+==================================================
+GEN 0082 START (2026-03-04 18:39:06)
+==================================================
+STATUS: EVOLVING
+Gen: 0082 | Time: 64.43s
+Tagger: Best=2911.16, Avg=1746.01
+Runner: Best=1035.53, Avg=699.48
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0702 | W=0.0869
+  Strafe: B=-0.1946 | W=0.0021
+  Move:   B=0.6863 | W=-0.0728
+STATUS: Saved Best Brains (Gen 82)
+
+==================================================
+GEN 0083 START (2026-03-04 18:40:11)
+==================================================
+STATUS: EVOLVING
+Gen: 0083 | Time: 66.51s
+Tagger: Best=2216.97, Avg=1651.59
+Runner: Best=1109.04, Avg=758.09
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0644 | W=0.0833
+  Strafe: B=-0.1979 | W=-0.0009
+  Move:   B=0.6790 | W=-0.0758
+STATUS: Saved Best Brains (Gen 83)
+
+==================================================
+GEN 0084 START (2026-03-04 18:41:17)
+==================================================
+STATUS: EVOLVING
+Gen: 0084 | Time: 51.69s
+Tagger: Best=2952.47, Avg=2121.07
+Runner: Best=908.05, Avg=467.72
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0821 | W=0.0783
+  Strafe: B=-0.1959 | W=-0.0077
+  Move:   B=0.6867 | W=-0.0768
+STATUS: Saved Best Brains (Gen 84)
+
+==================================================
+GEN 0085 START (2026-03-04 18:42:09)
+==================================================
+STATUS: EVOLVING
+Gen: 0085 | Time: 59.26s
+Tagger: Best=2913.38, Avg=1731.16
+Runner: Best=1011.32, Avg=688.75
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0810 | W=0.1137
+  Strafe: B=-0.1933 | W=-0.0369
+  Move:   B=0.6900 | W=-0.0763
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_85_detailed.txt
+STATUS: Saved Best Brains (Gen 85)
+
+==================================================
+GEN 0086 START (2026-03-04 18:43:09)
+==================================================
+STATUS: EVOLVING
+Gen: 0086 | Time: 64.32s
+Tagger: Best=2900.88, Avg=1927.02
+Runner: Best=1033.50, Avg=666.81
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0827 | W=0.1269
+  Strafe: B=-0.1746 | W=-0.0354
+  Move:   B=0.6942 | W=-0.0774
+STATUS: Saved Best Brains (Gen 86)
+
+==================================================
+GEN 0087 START (2026-03-04 18:44:13)
+==================================================
+STATUS: EVOLVING
+Gen: 0087 | Time: 63.88s
+Tagger: Best=2781.03, Avg=2044.14
+Runner: Best=990.04, Avg=642.86
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0782 | W=0.1306
+  Strafe: B=-0.1915 | W=-0.0394
+  Move:   B=0.6887 | W=-0.0754
+STATUS: Saved Best Brains (Gen 87)
+
+==================================================
+GEN 0088 START (2026-03-04 18:45:17)
+==================================================
+STATUS: EVOLVING
+Gen: 0088 | Time: 66.59s
+Tagger: Best=2890.47, Avg=1733.30
+Runner: Best=1014.57, Avg=755.10
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0847 | W=0.1308
+  Strafe: B=-0.1989 | W=-0.0391
+  Move:   B=0.6996 | W=-0.0685
+STATUS: Saved Best Brains (Gen 88)
+
+==================================================
+GEN 0089 START (2026-03-04 18:46:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0089 | Time: 55.73s
+Tagger: Best=2875.06, Avg=1974.21
+Runner: Best=1011.32, Avg=607.41
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0800 | W=0.1312
+  Strafe: B=-0.1886 | W=-0.0408
+  Move:   B=0.7017 | W=-0.0845
+STATUS: Saved Best Brains (Gen 89)
+
+==================================================
+GEN 0090 START (2026-03-04 18:47:20)
+==================================================
+STATUS: EVOLVING
+Gen: 0090 | Time: 66.54s
+Tagger: Best=2941.21, Avg=1645.65
+Runner: Best=1070.91, Avg=838.55
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0858 | W=0.1282
+  Strafe: B=-0.1788 | W=-0.0489
+  Move:   B=0.6968 | W=-0.0899
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_90_detailed.txt
+STATUS: Saved Best Brains (Gen 90)
+
+==================================================
+GEN 0091 START (2026-03-04 18:48:27)
+==================================================
+STATUS: EVOLVING
+Gen: 0091 | Time: 63.92s
+Tagger: Best=2280.69, Avg=1725.34
+Runner: Best=1001.55, Avg=763.74
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0858 | W=0.1325
+  Strafe: B=-0.1788 | W=-0.0291
+  Move:   B=0.6968 | W=-0.0782
+STATUS: Saved Best Brains (Gen 91)
+
+==================================================
+GEN 0092 START (2026-03-04 18:49:31)
+==================================================
+STATUS: EVOLVING
+Gen: 0092 | Time: 61.87s
+Tagger: Best=2891.28, Avg=1981.36
+Runner: Best=1014.26, Avg=585.80
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0837 | W=0.1390
+  Strafe: B=-0.1895 | W=-0.0304
+  Move:   B=0.6956 | W=-0.0740
+STATUS: Saved Best Brains (Gen 92)
+
+==================================================
+GEN 0093 START (2026-03-04 18:50:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0093 | Time: 59.05s
+Tagger: Best=2929.06, Avg=1827.54
+Runner: Best=970.09, Avg=676.18
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0793 | W=0.1450
+  Strafe: B=-0.2029 | W=-0.0233
+  Move:   B=0.6910 | W=-0.0581
+STATUS: Saved Best Brains (Gen 93)
+
+==================================================
+GEN 0094 START (2026-03-04 18:51:32)
+==================================================
+STATUS: EVOLVING
+Gen: 0094 | Time: 64.45s
+Tagger: Best=2883.75, Avg=1902.65
+Runner: Best=965.72, Avg=717.90
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0773 | W=0.1444
+  Strafe: B=-0.2043 | W=-0.0155
+  Move:   B=0.6982 | W=-0.0523
+STATUS: Saved Best Brains (Gen 94)
+
+==================================================
+GEN 0095 START (2026-03-04 18:52:37)
+==================================================
+STATUS: EVOLVING
+Gen: 0095 | Time: 62.52s
+Tagger: Best=2783.46, Avg=1849.64
+Runner: Best=838.48, Avg=686.32
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0784 | W=0.1477
+  Strafe: B=-0.1935 | W=-0.0139
+  Move:   B=0.7006 | W=-0.0442
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_95_detailed.txt
+STATUS: Saved Best Brains (Gen 95)
+
+==================================================
+GEN 0096 START (2026-03-04 18:53:40)
+==================================================
+STATUS: EVOLVING
+Gen: 0096 | Time: 62.91s
+Tagger: Best=2796.21, Avg=1916.72
+Runner: Best=1117.78, Avg=716.08
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0799 | W=0.1472
+  Strafe: B=-0.1959 | W=-0.0107
+  Move:   B=0.7000 | W=-0.0436
+STATUS: Saved Best Brains (Gen 96)
+
+==================================================
+GEN 0097 START (2026-03-04 18:54:43)
+==================================================
+STATUS: EVOLVING
+Gen: 0097 | Time: 63.36s
+Tagger: Best=2922.43, Avg=2011.69
+Runner: Best=1026.62, Avg=654.74
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0838 | W=0.1467
+  Strafe: B=-0.2057 | W=-0.0016
+  Move:   B=0.6946 | W=-0.0352
+STATUS: Saved Best Brains (Gen 97)
+
+==================================================
+GEN 0098 START (2026-03-04 18:55:46)
+==================================================
+STATUS: EVOLVING
+Gen: 0098 | Time: 63.94s
+Tagger: Best=2898.65, Avg=2004.84
+Runner: Best=848.26, Avg=622.46
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0767 | W=0.1581
+  Strafe: B=-0.2119 | W=-0.0025
+  Move:   B=0.6814 | W=-0.0378
+STATUS: Saved Best Brains (Gen 98)
+
+==================================================
+GEN 0099 START (2026-03-04 18:56:50)
+==================================================
+STATUS: EVOLVING
+Gen: 0099 | Time: 64.13s
+Tagger: Best=2755.84, Avg=1712.37
+Runner: Best=955.17, Avg=744.53
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0830 | W=0.1562
+  Strafe: B=-0.2095 | W=-0.0078
+  Move:   B=0.6813 | W=-0.0291
+STATUS: Saved Best Brains (Gen 99)
+
+==================================================
+GEN 0100 START (2026-03-04 18:57:55)
+==================================================
+STATUS: EVOLVING
+Gen: 0100 | Time: 62.39s
+Tagger: Best=2845.91, Avg=1877.83
+Runner: Best=1030.85, Avg=698.47
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0780 | W=0.1525
+  Strafe: B=-0.2125 | W=-0.0083
+  Move:   B=0.6811 | W=-0.0278
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_100_detailed.txt
+STATUS: Saved Best Brains (Gen 100)
+
+==================================================
+GEN 0101 START (2026-03-04 18:58:57)
+==================================================
+STATUS: EVOLVING
+Gen: 0101 | Time: 63.07s
+Tagger: Best=2761.04, Avg=1438.15
+Runner: Best=1029.71, Avg=790.63
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0649 | W=0.1514
+  Strafe: B=-0.2089 | W=-0.0162
+  Move:   B=0.6831 | W=-0.0290
+STATUS: Saved Best Brains (Gen 101)
+
+==================================================
+GEN 0102 START (2026-03-04 19:00:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0102 | Time: 60.20s
+Tagger: Best=2852.61, Avg=1757.81
+Runner: Best=1103.89, Avg=699.80
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0615 | W=0.1443
+  Strafe: B=-0.1952 | W=-0.0108
+  Move:   B=0.6804 | W=-0.0382
+STATUS: Saved Best Brains (Gen 102)
+
+==================================================
+GEN 0103 START (2026-03-04 19:01:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0103 | Time: 58.34s
+Tagger: Best=2921.60, Avg=1921.43
+Runner: Best=917.38, Avg=609.74
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0502 | W=0.1344
+  Strafe: B=-0.1834 | W=-0.0013
+  Move:   B=0.6973 | W=-0.0092
+STATUS: Saved Best Brains (Gen 103)
+
+==================================================
+GEN 0104 START (2026-03-04 19:02:00)
+==================================================
+STATUS: EVOLVING
+Gen: 0104 | Time: 60.98s
+Tagger: Best=2873.81, Avg=2024.09
+Runner: Best=877.14, Avg=581.61
+Bad Gen Count: 1/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0352 | W=0.1329
+  Strafe: B=-0.1767 | W=-0.0040
+  Move:   B=0.6966 | W=0.0036
+STATUS: Saved Best Brains (Gen 104)
+
+==================================================
+GEN 0105 START (2026-03-04 19:03:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0105 | Time: 61.59s
+Tagger: Best=2974.92, Avg=1779.32
+Runner: Best=1020.00, Avg=723.69
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0587 | W=0.1339
+  Strafe: B=-0.1832 | W=0.0050
+  Move:   B=0.6890 | W=-0.0049
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_105_detailed.txt
+STATUS: Saved Best Brains (Gen 105)
+
+==================================================
+GEN 0106 START (2026-03-04 19:04:03)
+==================================================
+STATUS: EVOLVING
+Gen: 0106 | Time: 60.53s
+Tagger: Best=2681.94, Avg=1747.04
+Runner: Best=976.92, Avg=636.21
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0617 | W=0.1286
+  Strafe: B=-0.1853 | W=-0.0005
+  Move:   B=0.6894 | W=0.0017
+STATUS: Saved Best Brains (Gen 106)
+
+==================================================
+GEN 0107 START (2026-03-04 19:05:03)
+==================================================
+STATUS: EVOLVING
+Gen: 0107 | Time: 64.12s
+Tagger: Best=2367.30, Avg=1606.46
+Runner: Best=1070.73, Avg=803.33
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1038 | W=0.1427
+  Strafe: B=-0.2114 | W=-0.0089
+  Move:   B=0.6860 | W=-0.0021
+STATUS: Saved Best Brains (Gen 107)
+
+==================================================
+GEN 0108 START (2026-03-04 19:06:08)
+==================================================
+STATUS: EVOLVING
+Gen: 0108 | Time: 56.51s
+Tagger: Best=2916.32, Avg=1965.90
+Runner: Best=946.89, Avg=527.92
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1072 | W=0.1547
+  Strafe: B=-0.2088 | W=-0.0203
+  Move:   B=0.6871 | W=0.0098
+STATUS: Saved Best Brains (Gen 108)
+
+==================================================
+GEN 0109 START (2026-03-04 19:07:04)
+==================================================
+STATUS: EVOLVING
+Gen: 0109 | Time: 65.51s
+Tagger: Best=2703.04, Avg=1801.98
+Runner: Best=1149.73, Avg=718.62
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1040 | W=0.1594
+  Strafe: B=-0.2023 | W=-0.0094
+  Move:   B=0.6932 | W=-0.0066
+STATUS: Saved Best Brains (Gen 109)
+
+==================================================
+GEN 0110 START (2026-03-04 19:08:10)
+==================================================
+STATUS: EVOLVING
+Gen: 0110 | Time: 57.56s
+Tagger: Best=2943.91, Avg=1911.18
+Runner: Best=990.16, Avg=573.27
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1121 | W=0.1617
+  Strafe: B=-0.2075 | W=-0.0072
+  Move:   B=0.6800 | W=-0.0314
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_110_detailed.txt
+STATUS: Saved Best Brains (Gen 110)
+
+==================================================
+GEN 0111 START (2026-03-04 19:09:08)
+==================================================
+STATUS: EVOLVING
+Gen: 0111 | Time: 65.48s
+Tagger: Best=2227.83, Avg=1797.05
+Runner: Best=989.14, Avg=725.27
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0967 | W=0.1619
+  Strafe: B=-0.2090 | W=0.0049
+  Move:   B=0.6842 | W=-0.0478
+STATUS: Saved Best Brains (Gen 111)
+
+==================================================
+GEN 0112 START (2026-03-04 19:10:14)
+==================================================
+STATUS: EVOLVING
+Gen: 0112 | Time: 64.61s
+Tagger: Best=2608.02, Avg=1781.37
+Runner: Best=981.62, Avg=750.68
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0821 | W=0.1549
+  Strafe: B=-0.2061 | W=0.0227
+  Move:   B=0.6867 | W=-0.0623
+STATUS: Saved Best Brains (Gen 112)
+
+==================================================
+GEN 0113 START (2026-03-04 19:11:18)
+==================================================
+STATUS: EVOLVING
+Gen: 0113 | Time: 63.49s
+Tagger: Best=2807.44, Avg=1600.73
+Runner: Best=1044.23, Avg=794.58
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0868 | W=0.1612
+  Strafe: B=-0.2127 | W=0.0011
+  Move:   B=0.6817 | W=-0.0817
+STATUS: Saved Best Brains (Gen 113)
+
+==================================================
+GEN 0114 START (2026-03-04 19:12:22)
+==================================================
+STATUS: EVOLVING
+Gen: 0114 | Time: 65.57s
+Tagger: Best=2757.23, Avg=1769.93
+Runner: Best=1028.92, Avg=753.53
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0858 | W=0.1480
+  Strafe: B=-0.2034 | W=0.0046
+  Move:   B=0.6862 | W=-0.0778
+STATUS: Saved Best Brains (Gen 114)
+
+==================================================
+GEN 0115 START (2026-03-04 19:13:28)
+==================================================
+STATUS: EVOLVING
+Gen: 0115 | Time: 66.73s
+Tagger: Best=2155.97, Avg=1510.53
+Runner: Best=982.26, Avg=823.80
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0848 | W=0.1482
+  Strafe: B=-0.1981 | W=0.0001
+  Move:   B=0.6825 | W=-0.0614
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_115_detailed.txt
+STATUS: Saved Best Brains (Gen 115)
+
+==================================================
+GEN 0116 START (2026-03-04 19:14:35)
+==================================================
+STATUS: EVOLVING
+Gen: 0116 | Time: 62.38s
+Tagger: Best=2879.99, Avg=1628.91
+Runner: Best=1003.12, Avg=738.66
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0856 | W=0.1426
+  Strafe: B=-0.2004 | W=0.0027
+  Move:   B=0.6861 | W=-0.0666
+STATUS: Saved Best Brains (Gen 116)
+
+==================================================
+GEN 0117 START (2026-03-04 19:15:37)
+==================================================
+STATUS: EVOLVING
+Gen: 0117 | Time: 63.00s
+Tagger: Best=2816.17, Avg=1806.46
+Runner: Best=975.89, Avg=666.73
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0741 | W=0.1311
+  Strafe: B=-0.2098 | W=0.0092
+  Move:   B=0.6800 | W=-0.0653
+STATUS: Saved Best Brains (Gen 117)
+
+==================================================
+GEN 0118 START (2026-03-04 19:16:41)
+==================================================
+STATUS: EVOLVING
+Gen: 0118 | Time: 65.68s
+Tagger: Best=2682.65, Avg=1865.35
+Runner: Best=1032.67, Avg=685.61
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0847 | W=0.1361
+  Strafe: B=-0.2031 | W=0.0031
+  Move:   B=0.6783 | W=-0.0669
+STATUS: Saved Best Brains (Gen 118)
+
+==================================================
+GEN 0119 START (2026-03-04 19:17:46)
+==================================================
+STATUS: EVOLVING
+Gen: 0119 | Time: 66.44s
+Tagger: Best=2774.99, Avg=1798.48
+Runner: Best=977.94, Avg=691.72
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0969 | W=0.1158
+  Strafe: B=-0.1947 | W=-0.0020
+  Move:   B=0.6679 | W=-0.0691
+STATUS: Saved Best Brains (Gen 119)
+
+==================================================
+GEN 0120 START (2026-03-04 19:18:53)
+==================================================
+STATUS: EVOLVING
+Gen: 0120 | Time: 68.11s
+Tagger: Best=2784.34, Avg=1925.35
+Runner: Best=851.74, Avg=653.04
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0999 | W=0.1015
+  Strafe: B=-0.1897 | W=-0.0125
+  Move:   B=0.6592 | W=-0.0756
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_120_detailed.txt
+STATUS: Saved Best Brains (Gen 120)
+
+==================================================
+GEN 0121 START (2026-03-04 19:20:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0121 | Time: 68.76s
+Tagger: Best=2933.65, Avg=1963.57
+Runner: Best=1032.72, Avg=619.72
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0933 | W=0.0892
+  Strafe: B=-0.1948 | W=-0.0184
+  Move:   B=0.6635 | W=-0.0764
+STATUS: Saved Best Brains (Gen 121)
+
+==================================================
+GEN 0122 START (2026-03-04 19:21:10)
+==================================================
+STATUS: EVOLVING
+Gen: 0122 | Time: 64.41s
+Tagger: Best=2891.87, Avg=1723.05
+Runner: Best=1003.12, Avg=687.55
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0909 | W=0.1015
+  Strafe: B=-0.1954 | W=-0.0308
+  Move:   B=0.6648 | W=-0.0758
+STATUS: Saved Best Brains (Gen 122)
+
+==================================================
+GEN 0123 START (2026-03-04 19:22:15)
+==================================================
+STATUS: EVOLVING
+Gen: 0123 | Time: 68.28s
+Tagger: Best=2863.88, Avg=1980.27
+Runner: Best=896.49, Avg=632.35
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0954 | W=0.0982
+  Strafe: B=-0.1920 | W=-0.0118
+  Move:   B=0.6577 | W=-0.0746
+STATUS: Saved Best Brains (Gen 123)
+
+==================================================
+GEN 0124 START (2026-03-04 19:23:23)
+==================================================
+STATUS: EVOLVING
+Gen: 0124 | Time: 68.24s
+Tagger: Best=2746.40, Avg=1765.43
+Runner: Best=886.22, Avg=672.54
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0954 | W=0.0857
+  Strafe: B=-0.1919 | W=-0.0036
+  Move:   B=0.6584 | W=-0.0670
+STATUS: Saved Best Brains (Gen 124)
+
+==================================================
+GEN 0125 START (2026-03-04 19:24:32)
+==================================================
+STATUS: EVOLVING
+Gen: 0125 | Time: 66.33s
+Tagger: Best=2803.03, Avg=1890.33
+Runner: Best=1024.85, Avg=654.18
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0950 | W=0.0812
+  Strafe: B=-0.1899 | W=0.0011
+  Move:   B=0.6600 | W=-0.0585
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_125_detailed.txt
+STATUS: Saved Best Brains (Gen 125)
+
+==================================================
+GEN 0126 START (2026-03-04 19:25:38)
+==================================================
+STATUS: EVOLVING
+Gen: 0126 | Time: 67.46s
+Tagger: Best=2367.31, Avg=1678.65
+Runner: Best=1054.82, Avg=711.61
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0950 | W=0.0963
+  Strafe: B=-0.1899 | W=-0.0024
+  Move:   B=0.6600 | W=-0.0536
+STATUS: Saved Best Brains (Gen 126)
+
+==================================================
+GEN 0127 START (2026-03-04 19:26:46)
+==================================================
+STATUS: EVOLVING
+Gen: 0127 | Time: 63.52s
+Tagger: Best=2789.68, Avg=1657.06
+Runner: Best=991.47, Avg=704.85
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0969 | W=0.0926
+  Strafe: B=-0.1976 | W=0.0007
+  Move:   B=0.6608 | W=-0.0526
+STATUS: Saved Best Brains (Gen 127)
+
+==================================================
+GEN 0128 START (2026-03-04 19:27:50)
+==================================================
+STATUS: EVOLVING
+Gen: 0128 | Time: 65.38s
+Tagger: Best=2894.36, Avg=1965.80
+Runner: Best=1073.41, Avg=630.93
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0969 | W=0.0881
+  Strafe: B=-0.1976 | W=-0.0045
+  Move:   B=0.6608 | W=-0.0384
+STATUS: Saved Best Brains (Gen 128)
+
+==================================================
+GEN 0129 START (2026-03-04 19:28:55)
+==================================================
+STATUS: EVOLVING
+Gen: 0129 | Time: 62.41s
+Tagger: Best=2890.90, Avg=2059.46
+Runner: Best=1020.74, Avg=650.14
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0976 | W=0.0867
+  Strafe: B=-0.1946 | W=-0.0100
+  Move:   B=0.6579 | W=-0.0371
+STATUS: Saved Best Brains (Gen 129)
+
+==================================================
+GEN 0130 START (2026-03-04 19:29:58)
+==================================================
+STATUS: EVOLVING
+Gen: 0130 | Time: 59.60s
+Tagger: Best=2855.95, Avg=1801.18
+Runner: Best=1047.86, Avg=624.17
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0968 | W=0.0914
+  Strafe: B=-0.1955 | W=0.0008
+  Move:   B=0.6568 | W=-0.0348
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_130_detailed.txt
+STATUS: Saved Best Brains (Gen 130)
+
+==================================================
+GEN 0131 START (2026-03-04 19:30:58)
+==================================================
+STATUS: EVOLVING
+Gen: 0131 | Time: 66.49s
+Tagger: Best=2745.15, Avg=1955.79
+Runner: Best=860.92, Avg=602.78
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0965 | W=0.0860
+  Strafe: B=-0.1910 | W=0.0044
+  Move:   B=0.6568 | W=-0.0377
+STATUS: Saved Best Brains (Gen 131)
+
+==================================================
+GEN 0132 START (2026-03-04 19:32:05)
+==================================================
+STATUS: EVOLVING
+Gen: 0132 | Time: 64.47s
+Tagger: Best=2957.04, Avg=2171.75
+Runner: Best=836.01, Avg=584.86
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0965 | W=0.0918
+  Strafe: B=-0.1910 | W=-0.0142
+  Move:   B=0.6568 | W=-0.0359
+STATUS: Saved Best Brains (Gen 132)
+
+==================================================
+GEN 0133 START (2026-03-04 19:33:09)
+==================================================
+STATUS: EVOLVING
+Gen: 0133 | Time: 64.06s
+Tagger: Best=2836.38, Avg=1997.50
+Runner: Best=1033.38, Avg=627.64
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0965 | W=0.0843
+  Strafe: B=-0.1910 | W=-0.0040
+  Move:   B=0.6568 | W=-0.0325
+STATUS: Saved Best Brains (Gen 133)
+
+==================================================
+GEN 0134 START (2026-03-04 19:34:14)
+==================================================
+STATUS: EVOLVING
+Gen: 0134 | Time: 65.84s
+Tagger: Best=2971.56, Avg=2107.05
+Runner: Best=843.80, Avg=607.35
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1004 | W=0.0907
+  Strafe: B=-0.1849 | W=-0.0171
+  Move:   B=0.6642 | W=-0.0480
+STATUS: Saved Best Brains (Gen 134)
+
+==================================================
+GEN 0135 START (2026-03-04 19:35:20)
+==================================================
+STATUS: EVOLVING
+Gen: 0135 | Time: 63.87s
+Tagger: Best=2915.67, Avg=2003.80
+Runner: Best=851.36, Avg=550.92
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0951 | W=0.0928
+  Strafe: B=-0.1949 | W=-0.0155
+  Move:   B=0.6567 | W=-0.0506
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_135_detailed.txt
+STATUS: Saved Best Brains (Gen 135)
+
+==================================================
+GEN 0136 START (2026-03-04 19:36:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0136 | Time: 65.13s
+Tagger: Best=2769.48, Avg=1969.02
+Runner: Best=800.18, Avg=563.22
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0874 | W=0.0973
+  Strafe: B=-0.2011 | W=-0.0103
+  Move:   B=0.6608 | W=-0.0477
+STATUS: Saved Best Brains (Gen 136)
+
+==================================================
+GEN 0137 START (2026-03-04 19:37:29)
+==================================================
+STATUS: EVOLVING
+Gen: 0137 | Time: 66.24s
+Tagger: Best=2753.94, Avg=1890.97
+Runner: Best=886.60, Avg=608.00
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0930 | W=0.1101
+  Strafe: B=-0.1969 | W=-0.0111
+  Move:   B=0.6616 | W=-0.0554
+STATUS: Saved Best Brains (Gen 137)
+
+==================================================
+GEN 0138 START (2026-03-04 19:38:35)
+==================================================
+STATUS: EVOLVING
+Gen: 0138 | Time: 65.47s
+Tagger: Best=2876.26, Avg=1839.78
+Runner: Best=1008.02, Avg=642.64
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0896 | W=0.0996
+  Strafe: B=-0.2066 | W=-0.0215
+  Move:   B=0.6717 | W=-0.0736
+STATUS: Saved Best Brains (Gen 138)
+
+==================================================
+GEN 0139 START (2026-03-04 19:39:41)
+==================================================
+STATUS: EVOLVING
+Gen: 0139 | Time: 58.77s
+Tagger: Best=2900.21, Avg=2307.57
+Runner: Best=777.54, Avg=462.52
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0839 | W=0.0795
+  Strafe: B=-0.2045 | W=-0.0271
+  Move:   B=0.6665 | W=-0.0755
+STATUS: Saved Best Brains (Gen 139)
+
+==================================================
+GEN 0140 START (2026-03-04 19:40:40)
+==================================================
+STATUS: Loaded Gen 139 from C:\Users\david\Desktop\gen_train\models\worker_5_model.pkl
+
+==================================================
+GEN 0140 START (2026-03-05 18:49:01)
+==================================================
+STATUS: Loaded Gen 139 from C:\Users\david\Desktop\gen_train\models\worker_5_model.pkl
+
+==================================================
+GEN 0140 START (2026-03-06 18:46:06)
+==================================================
+STATUS: EVOLVING
+Gen: 0140 | Time: 139.28s
+Tagger: Best=2906.77, Avg=2117.86
+Runner: Best=822.85, Avg=498.45
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0422 | W=0.1316
+  Strafe: B=-0.2632 | W=-0.0512
+  Move:   B=0.7460 | W=-0.1155
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_140_detailed.txt
+STATUS: Saved Best Brains (Gen 140)
+
+==================================================
+GEN 0141 START (2026-03-06 18:48:25)
+==================================================
+STATUS: EVOLVING
+Gen: 0141 | Time: 149.11s
+Tagger: Best=2737.47, Avg=1781.81
+Runner: Best=983.36, Avg=679.80
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0451 | W=0.1280
+  Strafe: B=-0.2579 | W=-0.0481
+  Move:   B=0.7462 | W=-0.1156
+STATUS: Saved Best Brains (Gen 141)
+
+==================================================
+GEN 0142 START (2026-03-06 18:50:55)
+==================================================
+STATUS: EVOLVING
+Gen: 0142 | Time: 146.87s
+Tagger: Best=2963.08, Avg=1830.67
+Runner: Best=923.34, Avg=666.07
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0369 | W=0.1261
+  Strafe: B=-0.2659 | W=-0.0452
+  Move:   B=0.7449 | W=-0.1108
+STATUS: Saved Best Brains (Gen 142)
+
+==================================================
+GEN 0143 START (2026-03-06 18:53:22)
+==================================================
+STATUS: EVOLVING
+Gen: 0143 | Time: 151.64s
+Tagger: Best=2883.83, Avg=1968.74
+Runner: Best=989.98, Avg=636.36
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0399 | W=0.1237
+  Strafe: B=-0.2606 | W=-0.0459
+  Move:   B=0.7390 | W=-0.1063
+STATUS: Saved Best Brains (Gen 143)
+
+==================================================
+GEN 0144 START (2026-03-06 18:55:54)
+==================================================
+STATUS: EVOLVING
+Gen: 0144 | Time: 142.32s
+Tagger: Best=2880.41, Avg=2076.87
+Runner: Best=918.98, Avg=603.07
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0385 | W=0.1340
+  Strafe: B=-0.2727 | W=-0.0413
+  Move:   B=0.7447 | W=-0.1168
+STATUS: Saved Best Brains (Gen 144)
+
+==================================================
+GEN 0145 START (2026-03-06 18:58:17)
+==================================================
+STATUS: EVOLVING
+Gen: 0145 | Time: 148.75s
+Tagger: Best=2837.66, Avg=1950.07
+Runner: Best=919.63, Avg=599.64
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0378 | W=0.1377
+  Strafe: B=-0.2732 | W=-0.0333
+  Move:   B=0.7384 | W=-0.1208
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_145_detailed.txt
+STATUS: Saved Best Brains (Gen 145)
+
+==================================================
+GEN 0146 START (2026-03-06 19:00:46)
+==================================================
+STATUS: EVOLVING
+Gen: 0146 | Time: 146.84s
+Tagger: Best=2928.62, Avg=1886.58
+Runner: Best=992.66, Avg=650.53
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0367 | W=0.1416
+  Strafe: B=-0.2722 | W=-0.0268
+  Move:   B=0.7322 | W=-0.1207
+STATUS: Saved Best Brains (Gen 146)
+
+==================================================
+GEN 0147 START (2026-03-06 19:03:13)
+==================================================
+STATUS: EVOLVING
+Gen: 0147 | Time: 147.77s
+Tagger: Best=2865.64, Avg=1864.61
+Runner: Best=973.17, Avg=632.19
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0420 | W=0.1457
+  Strafe: B=-0.2757 | W=-0.0311
+  Move:   B=0.7300 | W=-0.1208
+STATUS: Saved Best Brains (Gen 147)
+
+==================================================
+GEN 0148 START (2026-03-06 19:05:42)
+==================================================
+STATUS: EVOLVING
+Gen: 0148 | Time: 153.11s
+Tagger: Best=2845.88, Avg=1917.91
+Runner: Best=974.98, Avg=659.91
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0373 | W=0.1327
+  Strafe: B=-0.2755 | W=-0.0205
+  Move:   B=0.7312 | W=-0.1268
+STATUS: Saved Best Brains (Gen 148)
+
+==================================================
+GEN 0149 START (2026-03-06 19:08:15)
+==================================================
+STATUS: EVOLVING
+Gen: 0149 | Time: 138.59s
+Tagger: Best=2868.35, Avg=1915.27
+Runner: Best=867.33, Avg=596.16
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0319 | W=0.1295
+  Strafe: B=-0.2669 | W=-0.0219
+  Move:   B=0.7411 | W=-0.1278
+STATUS: Saved Best Brains (Gen 149)
+
+==================================================
+GEN 0150 START (2026-03-06 19:10:34)
+==================================================
+STATUS: EVOLVING
+Gen: 0150 | Time: 154.80s
+Tagger: Best=2884.61, Avg=1880.11
+Runner: Best=1002.00, Avg=680.11
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0305 | W=0.1408
+  Strafe: B=-0.2699 | W=-0.0233
+  Move:   B=0.7374 | W=-0.1439
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_150_detailed.txt
+STATUS: Saved Best Brains (Gen 150)
+
+==================================================
+GEN 0151 START (2026-03-06 19:13:09)
+==================================================
+STATUS: EVOLVING
+Gen: 0151 | Time: 147.81s
+Tagger: Best=2766.96, Avg=1821.29
+Runner: Best=893.18, Avg=638.60
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0265 | W=0.1460
+  Strafe: B=-0.2740 | W=-0.0276
+  Move:   B=0.7351 | W=-0.1507
+STATUS: Saved Best Brains (Gen 151)
+
+==================================================
+GEN 0152 START (2026-03-06 19:15:38)
+==================================================
+STATUS: EVOLVING
+Gen: 0152 | Time: 153.90s
+Tagger: Best=2754.68, Avg=1846.22
+Runner: Best=998.11, Avg=629.75
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0369 | W=0.1469
+  Strafe: B=-0.2729 | W=-0.0225
+  Move:   B=0.7476 | W=-0.1371
+STATUS: Saved Best Brains (Gen 152)
+
+==================================================
+GEN 0153 START (2026-03-06 19:18:12)
+==================================================
+STATUS: EVOLVING
+Gen: 0153 | Time: 151.14s
+Tagger: Best=2887.35, Avg=2087.09
+Runner: Best=798.34, Avg=570.35
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0307 | W=0.1465
+  Strafe: B=-0.2703 | W=-0.0213
+  Move:   B=0.7445 | W=-0.1225
+STATUS: Saved Best Brains (Gen 153)
+
+==================================================
+GEN 0154 START (2026-03-06 19:20:44)
+==================================================
+STATUS: EVOLVING
+Gen: 0154 | Time: 143.51s
+Tagger: Best=2878.10, Avg=1963.23
+Runner: Best=978.09, Avg=586.04
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0197 | W=0.1477
+  Strafe: B=-0.2645 | W=-0.0229
+  Move:   B=0.7311 | W=-0.1131
+STATUS: Saved Best Brains (Gen 154)
+
+==================================================
+GEN 0155 START (2026-03-06 19:23:07)
+==================================================
+STATUS: EVOLVING
+Gen: 0155 | Time: 145.22s
+Tagger: Best=2877.07, Avg=2119.21
+Runner: Best=953.97, Avg=583.66
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0128 | W=0.1496
+  Strafe: B=-0.2604 | W=-0.0269
+  Move:   B=0.7344 | W=-0.1044
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_155_detailed.txt
+STATUS: Saved Best Brains (Gen 155)
+
+==================================================
+GEN 0156 START (2026-03-06 19:25:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0156 | Time: 153.76s
+Tagger: Best=2891.70, Avg=2055.67
+Runner: Best=979.30, Avg=568.15
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0179 | W=0.1467
+  Strafe: B=-0.2597 | W=-0.0236
+  Move:   B=0.7344 | W=-0.1045
+STATUS: Saved Best Brains (Gen 156)
+
+==================================================
+GEN 0157 START (2026-03-06 19:28:07)
+==================================================
+STATUS: EVOLVING
+Gen: 0157 | Time: 147.74s
+Tagger: Best=2852.66, Avg=2122.04
+Runner: Best=943.56, Avg=599.23
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0205 | W=0.1450
+  Strafe: B=-0.2544 | W=-0.0106
+  Move:   B=0.7383 | W=-0.0864
+STATUS: Saved Best Brains (Gen 157)
+
+==================================================
+GEN 0158 START (2026-03-06 19:30:36)
+==================================================
+STATUS: EVOLVING
+Gen: 0158 | Time: 159.29s
+Tagger: Best=3130.63, Avg=1799.01
+Runner: Best=1040.06, Avg=694.09
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0031 | W=0.1390
+  Strafe: B=-0.2560 | W=-0.0144
+  Move:   B=0.7353 | W=-0.0870
+STATUS: Saved Best Brains (Gen 158)
+
+==================================================
+GEN 0159 START (2026-03-06 19:33:15)
+==================================================
+STATUS: EVOLVING
+Gen: 0159 | Time: 156.63s
+Tagger: Best=2485.70, Avg=1894.41
+Runner: Best=951.37, Avg=722.38
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0136 | W=0.1363
+  Strafe: B=-0.2561 | W=-0.0207
+  Move:   B=0.7408 | W=-0.0886
+STATUS: Saved Best Brains (Gen 159)
+
+==================================================
+GEN 0160 START (2026-03-06 19:35:52)
+==================================================
+STATUS: EVOLVING
+Gen: 0160 | Time: 151.23s
+Tagger: Best=2835.92, Avg=2076.24
+Runner: Best=826.65, Avg=611.21
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0306 | W=0.1475
+  Strafe: B=-0.2547 | W=-0.0120
+  Move:   B=0.7348 | W=-0.0825
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_160_detailed.txt
+STATUS: Saved Best Brains (Gen 160)
+
+==================================================
+GEN 0161 START (2026-03-06 19:38:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0161 | Time: 151.58s
+Tagger: Best=3051.41, Avg=1896.46
+Runner: Best=1003.76, Avg=662.41
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0118 | W=0.1583
+  Strafe: B=-0.2505 | W=-0.0085
+  Move:   B=0.7276 | W=-0.0826
+STATUS: Saved Best Brains (Gen 161)
+
+==================================================
+GEN 0162 START (2026-03-06 19:40:56)
+==================================================
+STATUS: EVOLVING
+Gen: 0162 | Time: 157.25s
+Tagger: Best=2745.83, Avg=2014.59
+Runner: Best=904.50, Avg=634.42
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0194 | W=0.1619
+  Strafe: B=-0.2702 | W=-0.0163
+  Move:   B=0.7435 | W=-0.0723
+STATUS: Saved Best Brains (Gen 162)
+
+==================================================
+GEN 0163 START (2026-03-06 19:43:34)
+==================================================
+STATUS: EVOLVING
+Gen: 0163 | Time: 155.34s
+Tagger: Best=2947.82, Avg=2036.99
+Runner: Best=1049.45, Avg=671.00
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0523 | W=0.1682
+  Strafe: B=-0.2600 | W=-0.0042
+  Move:   B=0.7411 | W=-0.0722
+STATUS: Saved Best Brains (Gen 163)
+
+==================================================
+GEN 0164 START (2026-03-06 19:46:09)
+==================================================
+STATUS: EVOLVING
+Gen: 0164 | Time: 148.27s
+Tagger: Best=2844.74, Avg=1881.56
+Runner: Best=1024.22, Avg=629.88
+Bad Gen Count: 1/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0493 | W=0.1718
+  Strafe: B=-0.2559 | W=0.0017
+  Move:   B=0.7401 | W=-0.0786
+STATUS: Saved Best Brains (Gen 164)
+
+==================================================
+GEN 0165 START (2026-03-06 19:48:38)
+==================================================
+STATUS: EVOLVING
+Gen: 0165 | Time: 149.19s
+Tagger: Best=2808.93, Avg=1786.05
+Runner: Best=919.67, Avg=662.50
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0528 | W=0.1867
+  Strafe: B=-0.2554 | W=0.0153
+  Move:   B=0.7464 | W=-0.0682
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_165_detailed.txt
+STATUS: Saved Best Brains (Gen 165)
+
+==================================================
+GEN 0166 START (2026-03-06 19:51:08)
+==================================================
+STATUS: EVOLVING
+Gen: 0166 | Time: 151.25s
+Tagger: Best=2917.41, Avg=2167.21
+Runner: Best=875.38, Avg=549.40
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0691 | W=0.1828
+  Strafe: B=-0.2399 | W=0.0197
+  Move:   B=0.7293 | W=-0.0639
+STATUS: Saved Best Brains (Gen 166)
+
+==================================================
+GEN 0167 START (2026-03-06 19:53:39)
+==================================================
+STATUS: EVOLVING
+Gen: 0167 | Time: 146.96s
+Tagger: Best=2997.74, Avg=2071.97
+Runner: Best=948.84, Avg=592.68
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0709 | W=0.1867
+  Strafe: B=-0.2471 | W=0.0178
+  Move:   B=0.7254 | W=-0.0693
+STATUS: Saved Best Brains (Gen 167)
+
+==================================================
+GEN 0168 START (2026-03-06 19:56:07)
+==================================================
+STATUS: EVOLVING
+Gen: 0168 | Time: 145.95s
+Tagger: Best=2914.30, Avg=2197.41
+Runner: Best=871.15, Avg=537.88
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0564 | W=0.1866
+  Strafe: B=-0.2614 | W=0.0192
+  Move:   B=0.7226 | W=-0.0691
+STATUS: Saved Best Brains (Gen 168)
+
+==================================================
+GEN 0169 START (2026-03-06 19:58:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0169 | Time: 152.54s
+Tagger: Best=2860.59, Avg=2109.95
+Runner: Best=1087.51, Avg=602.08
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0659 | W=0.1919
+  Strafe: B=-0.2712 | W=0.0218
+  Move:   B=0.7289 | W=-0.0608
+STATUS: Saved Best Brains (Gen 169)
+
+==================================================
+GEN 0170 START (2026-03-06 20:01:06)
+==================================================
+STATUS: EVOLVING
+Gen: 0170 | Time: 152.19s
+Tagger: Best=3000.71, Avg=1868.95
+Runner: Best=1020.39, Avg=634.85
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0672 | W=0.1843
+  Strafe: B=-0.2713 | W=0.0153
+  Move:   B=0.7358 | W=-0.0679
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_170_detailed.txt
+STATUS: Saved Best Brains (Gen 170)
+
+==================================================
+GEN 0171 START (2026-03-06 20:03:39)
+==================================================
+STATUS: EVOLVING
+Gen: 0171 | Time: 155.69s
+Tagger: Best=2897.36, Avg=1818.56
+Runner: Best=1032.30, Avg=670.62
+Bad Gen Count: 1/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0648 | W=0.1863
+  Strafe: B=-0.2629 | W=0.0189
+  Move:   B=0.7374 | W=-0.0670
+STATUS: Saved Best Brains (Gen 171)
+
+==================================================
+GEN 0172 START (2026-03-06 20:06:15)
+==================================================
+STATUS: EVOLVING
+Gen: 0172 | Time: 150.82s
+Tagger: Best=2880.63, Avg=1922.97
+Runner: Best=1067.60, Avg=661.73
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0712 | W=0.1845
+  Strafe: B=-0.2631 | W=0.0206
+  Move:   B=0.7365 | W=-0.0842
+STATUS: Saved Best Brains (Gen 172)
+
+==================================================
+GEN 0173 START (2026-03-06 20:08:46)
+==================================================
+STATUS: EVOLVING
+Gen: 0173 | Time: 157.19s
+Tagger: Best=2828.80, Avg=1929.24
+Runner: Best=986.85, Avg=667.15
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0716 | W=0.1839
+  Strafe: B=-0.2637 | W=0.0302
+  Move:   B=0.7455 | W=-0.0840
+STATUS: Saved Best Brains (Gen 173)
+
+==================================================
+GEN 0174 START (2026-03-06 20:11:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0174 | Time: 155.11s
+Tagger: Best=2834.63, Avg=2054.68
+Runner: Best=966.59, Avg=583.67
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0704 | W=0.1839
+  Strafe: B=-0.2557 | W=0.0397
+  Move:   B=0.7532 | W=-0.0738
+STATUS: Saved Best Brains (Gen 174)
+
+==================================================
+GEN 0175 START (2026-03-06 20:13:59)
+==================================================
+STATUS: EVOLVING
+Gen: 0175 | Time: 144.13s
+Tagger: Best=2874.39, Avg=2036.57
+Runner: Best=866.07, Avg=610.35
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0722 | W=0.1770
+  Strafe: B=-0.2499 | W=0.0340
+  Move:   B=0.7639 | W=-0.0768
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_175_detailed.txt
+STATUS: Saved Best Brains (Gen 175)
+
+==================================================
+GEN 0176 START (2026-03-06 20:16:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0176 | Time: 152.18s
+Tagger: Best=3019.70, Avg=2081.11
+Runner: Best=990.09, Avg=590.75
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0733 | W=0.1663
+  Strafe: B=-0.2583 | W=0.0348
+  Move:   B=0.7690 | W=-0.0757
+STATUS: Saved Best Brains (Gen 176)
+
+==================================================
+GEN 0177 START (2026-03-06 20:18:56)
+==================================================
+STATUS: Loaded Gen 176 from C:\Users\david\Desktop\gen_train\models\worker_5_model.pkl
+
+==================================================
+GEN 0177 START (2026-03-08 15:47:59)
+==================================================
+STATUS: EVOLVING
+Gen: 0177 | Time: 154.08s
+Tagger: Best=2326.62, Avg=2016.33
+Runner: Best=829.49, Avg=687.30
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1060 | W=0.1450
+  Strafe: B=-0.2662 | W=0.0242
+  Move:   B=0.7838 | W=-0.0839
+STATUS: Saved Best Brains (Gen 177)
+
+==================================================
+GEN 0178 START (2026-03-08 15:50:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0178 | Time: 147.83s
+Tagger: Best=2838.31, Avg=2075.71
+Runner: Best=943.56, Avg=627.76
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0956 | W=0.1495
+  Strafe: B=-0.2633 | W=0.0200
+  Move:   B=0.7927 | W=-0.0871
+STATUS: Saved Best Brains (Gen 178)
+
+==================================================
+GEN 0179 START (2026-03-08 15:53:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0179 | Time: 148.83s
+Tagger: Best=2948.48, Avg=2142.98
+Runner: Best=1026.37, Avg=606.84
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0901 | W=0.1413
+  Strafe: B=-0.2768 | W=0.0185
+  Move:   B=0.7918 | W=-0.0831
+STATUS: Saved Best Brains (Gen 179)
+
+==================================================
+GEN 0180 START (2026-03-08 15:55:31)
+==================================================
+STATUS: EVOLVING
+Gen: 0180 | Time: 139.10s
+Tagger: Best=2955.92, Avg=2116.38
+Runner: Best=914.48, Avg=582.05
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0885 | W=0.1418
+  Strafe: B=-0.2784 | W=0.0227
+  Move:   B=0.7901 | W=-0.0802
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_180_detailed.txt
+STATUS: Saved Best Brains (Gen 180)
+
+==================================================
+GEN 0181 START (2026-03-08 15:57:50)
+==================================================
+STATUS: EVOLVING
+Gen: 0181 | Time: 145.02s
+Tagger: Best=2911.86, Avg=2203.14
+Runner: Best=852.27, Avg=559.24
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0879 | W=0.1416
+  Strafe: B=-0.2734 | W=0.0265
+  Move:   B=0.7908 | W=-0.0865
+STATUS: Saved Best Brains (Gen 181)
+
+==================================================
+GEN 0182 START (2026-03-08 16:00:16)
+==================================================
+STATUS: EVOLVING
+Gen: 0182 | Time: 139.03s
+Tagger: Best=2969.89, Avg=2077.92
+Runner: Best=851.92, Avg=561.15
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0970 | W=0.1392
+  Strafe: B=-0.2725 | W=0.0235
+  Move:   B=0.7841 | W=-0.0890
+STATUS: Saved Best Brains (Gen 182)
+
+==================================================
+GEN 0183 START (2026-03-08 16:02:35)
+==================================================
+STATUS: EVOLVING
+Gen: 0183 | Time: 147.19s
+Tagger: Best=3072.46, Avg=2114.77
+Runner: Best=871.19, Avg=589.64
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0985 | W=0.1399
+  Strafe: B=-0.2729 | W=0.0201
+  Move:   B=0.7783 | W=-0.0859
+STATUS: Saved Best Brains (Gen 183)
+
+==================================================
+GEN 0184 START (2026-03-08 16:05:03)
+==================================================
+STATUS: EVOLVING
+Gen: 0184 | Time: 132.28s
+Tagger: Best=3099.78, Avg=2326.97
+Runner: Best=866.67, Avg=468.89
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1015 | W=0.1477
+  Strafe: B=-0.2736 | W=0.0317
+  Move:   B=0.7771 | W=-0.0791
+STATUS: Saved Best Brains (Gen 184)
+
+==================================================
+GEN 0185 START (2026-03-08 16:07:15)
+==================================================
+STATUS: EVOLVING
+Gen: 0185 | Time: 145.67s
+Tagger: Best=2877.51, Avg=2163.26
+Runner: Best=863.63, Avg=556.49
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1040 | W=0.1418
+  Strafe: B=-0.2676 | W=0.0361
+  Move:   B=0.7841 | W=-0.0817
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_185_detailed.txt
+STATUS: Saved Best Brains (Gen 185)
+
+==================================================
+GEN 0186 START (2026-03-08 16:09:42)
+==================================================
+STATUS: EVOLVING
+Gen: 0186 | Time: 131.53s
+Tagger: Best=3021.87, Avg=2277.07
+Runner: Best=844.89, Avg=483.11
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1074 | W=0.1410
+  Strafe: B=-0.2674 | W=0.0250
+  Move:   B=0.7851 | W=-0.0807
+STATUS: Saved Best Brains (Gen 186)
+
+==================================================
+GEN 0187 START (2026-03-08 16:11:53)
+==================================================
+STATUS: EVOLVING
+Gen: 0187 | Time: 138.32s
+Tagger: Best=2902.67, Avg=2059.62
+Runner: Best=984.08, Avg=591.00
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1074 | W=0.1364
+  Strafe: B=-0.2657 | W=0.0303
+  Move:   B=0.7884 | W=-0.0785
+STATUS: Saved Best Brains (Gen 187)
+
+==================================================
+GEN 0188 START (2026-03-08 16:14:12)
+==================================================
+STATUS: EVOLVING
+Gen: 0188 | Time: 126.19s
+Tagger: Best=2908.05, Avg=2307.87
+Runner: Best=975.13, Avg=476.24
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1070 | W=0.1375
+  Strafe: B=-0.2640 | W=0.0212
+  Move:   B=0.7848 | W=-0.0866
+STATUS: Saved Best Brains (Gen 188)
+
+==================================================
+GEN 0189 START (2026-03-08 16:16:19)
+==================================================
+STATUS: EVOLVING
+Gen: 0189 | Time: 143.16s
+Tagger: Best=2947.14, Avg=2032.15
+Runner: Best=979.12, Avg=588.16
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1035 | W=0.1358
+  Strafe: B=-0.2685 | W=0.0370
+  Move:   B=0.7837 | W=-0.0816
+STATUS: Saved Best Brains (Gen 189)
+
+==================================================
+GEN 0190 START (2026-03-08 16:18:42)
+==================================================
+STATUS: EVOLVING
+Gen: 0190 | Time: 131.89s
+Tagger: Best=2958.20, Avg=2227.28
+Runner: Best=944.16, Avg=483.99
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1040 | W=0.1375
+  Strafe: B=-0.2649 | W=0.0598
+  Move:   B=0.7841 | W=-0.0809
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_190_detailed.txt
+STATUS: Saved Best Brains (Gen 190)
+
+==================================================
+GEN 0191 START (2026-03-08 16:20:55)
+==================================================
+STATUS: EVOLVING
+Gen: 0191 | Time: 148.43s
+Tagger: Best=2972.05, Avg=2094.80
+Runner: Best=915.54, Avg=556.61
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1078 | W=0.1419
+  Strafe: B=-0.2658 | W=0.0675
+  Move:   B=0.7793 | W=-0.0753
+STATUS: Saved Best Brains (Gen 191)
+
+==================================================
+GEN 0192 START (2026-03-08 16:23:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0192 | Time: 134.09s
+Tagger: Best=2882.10, Avg=2166.91
+Runner: Best=1015.29, Avg=522.95
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0979 | W=0.1370
+  Strafe: B=-0.2751 | W=0.0693
+  Move:   B=0.7836 | W=-0.0763
+STATUS: Saved Best Brains (Gen 192)
+
+==================================================
+GEN 0193 START (2026-03-08 16:25:38)
+==================================================
+STATUS: EVOLVING
+Gen: 0193 | Time: 143.59s
+Tagger: Best=2927.19, Avg=2087.68
+Runner: Best=1015.97, Avg=565.57
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1013 | W=0.1384
+  Strafe: B=-0.2788 | W=0.0601
+  Move:   B=0.7866 | W=-0.0883
+STATUS: Saved Best Brains (Gen 193)
+
+==================================================
+GEN 0194 START (2026-03-08 16:28:02)
+==================================================
+STATUS: EVOLVING
+Gen: 0194 | Time: 141.41s
+Tagger: Best=2957.40, Avg=2313.59
+Runner: Best=812.70, Avg=505.29
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1023 | W=0.1340
+  Strafe: B=-0.2659 | W=0.0315
+  Move:   B=0.7880 | W=-0.1011
+STATUS: Saved Best Brains (Gen 194)
+
+==================================================
+GEN 0195 START (2026-03-08 16:30:24)
+==================================================
+STATUS: EVOLVING
+Gen: 0195 | Time: 145.16s
+Tagger: Best=2967.20, Avg=2300.38
+Runner: Best=1014.52, Avg=493.28
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0873 | W=0.1359
+  Strafe: B=-0.2632 | W=0.0220
+  Move:   B=0.7896 | W=-0.0829
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_195_detailed.txt
+STATUS: Saved Best Brains (Gen 195)
+
+==================================================
+GEN 0196 START (2026-03-08 16:32:50)
+==================================================
+STATUS: EVOLVING
+Gen: 0196 | Time: 144.22s
+Tagger: Best=2883.03, Avg=2011.76
+Runner: Best=965.81, Avg=601.89
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0888 | W=0.1356
+  Strafe: B=-0.2626 | W=0.0235
+  Move:   B=0.7898 | W=-0.0826
+STATUS: Saved Best Brains (Gen 196)
+
+==================================================
+GEN 0197 START (2026-03-08 16:35:14)
+==================================================
+STATUS: EVOLVING
+Gen: 0197 | Time: 141.32s
+Tagger: Best=2886.56, Avg=2212.00
+Runner: Best=1051.82, Avg=472.40
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0927 | W=0.1365
+  Strafe: B=-0.2380 | W=-0.0012
+  Move:   B=0.7781 | W=-0.0921
+STATUS: Saved Best Brains (Gen 197)
+
+==================================================
+GEN 0198 START (2026-03-08 16:37:36)
+==================================================
+STATUS: EVOLVING
+Gen: 0198 | Time: 141.11s
+Tagger: Best=2834.93, Avg=2240.36
+Runner: Best=961.84, Avg=502.62
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0820 | W=0.1144
+  Strafe: B=-0.2528 | W=0.0141
+  Move:   B=0.7791 | W=-0.0920
+STATUS: Saved Best Brains (Gen 198)
+
+==================================================
+GEN 0199 START (2026-03-08 16:39:58)
+==================================================
+STATUS: EVOLVING
+Gen: 0199 | Time: 155.59s
+Tagger: Best=2861.37, Avg=1912.28
+Runner: Best=1036.82, Avg=620.70
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0814 | W=0.1145
+  Strafe: B=-0.2686 | W=0.0030
+  Move:   B=0.7758 | W=-0.0937
+STATUS: Saved Best Brains (Gen 199)
+
+==================================================
+GEN 0200 START (2026-03-08 16:42:34)
+==================================================
+STATUS: EVOLVING
+Gen: 0200 | Time: 162.02s
+Tagger: Best=2913.13, Avg=2132.51
+Runner: Best=991.92, Avg=598.01
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0863 | W=0.1239
+  Strafe: B=-0.2725 | W=0.0241
+  Move:   B=0.7817 | W=-0.0797
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_200_detailed.txt
+STATUS: Saved Best Brains (Gen 200)
+
+==================================================
+GEN 0201 START (2026-03-08 16:45:16)
+==================================================
+STATUS: EVOLVING
+Gen: 0201 | Time: 144.83s
+Tagger: Best=2880.97, Avg=2215.68
+Runner: Best=911.68, Avg=526.39
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0808 | W=0.1284
+  Strafe: B=-0.2746 | W=0.0346
+  Move:   B=0.7827 | W=-0.0692
+STATUS: Saved Best Brains (Gen 201)
+
+==================================================
+GEN 0202 START (2026-03-08 16:47:41)
+==================================================
+STATUS: EVOLVING
+Gen: 0202 | Time: 140.60s
+Tagger: Best=2940.88, Avg=2198.65
+Runner: Best=889.04, Avg=535.65
+Bad Gen Count: 1/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0820 | W=0.1344
+  Strafe: B=-0.2550 | W=0.0391
+  Move:   B=0.7784 | W=-0.0502
+STATUS: Saved Best Brains (Gen 202)
+
+==================================================
+GEN 0203 START (2026-03-08 16:50:02)
+==================================================
+STATUS: EVOLVING
+Gen: 0203 | Time: 141.10s
+Tagger: Best=2902.15, Avg=2270.91
+Runner: Best=891.75, Avg=499.45
+Bad Gen Count: 2/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0906 | W=0.1342
+  Strafe: B=-0.2236 | W=0.0418
+  Move:   B=0.7620 | W=-0.0605
+STATUS: Saved Best Brains (Gen 203)
+
+==================================================
+GEN 0204 START (2026-03-08 16:52:24)
+==================================================
+!!! ATTENTION: EMERGENCY: Resetting Spin Bias due to Bad Genes
+STATUS: EVOLVING
+Gen: 0204 | Time: 132.23s
+Tagger: Best=2874.70, Avg=2291.73
+Runner: Best=1057.45, Avg=485.65
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0927 | W=0.1292
+  Strafe: B=-0.2364 | W=0.0441
+  Move:   B=0.7645 | W=-0.0523
+STATUS: Saved Best Brains (Gen 204)
+
+==================================================
+GEN 0205 START (2026-03-08 16:54:37)
+==================================================
+STATUS: EVOLVING
+Gen: 0205 | Time: 139.62s
+Tagger: Best=2916.34, Avg=2245.57
+Runner: Best=1023.10, Avg=531.15
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0816 | W=0.1364
+  Strafe: B=-0.2406 | W=0.0569
+  Move:   B=0.7633 | W=-0.0265
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_205_detailed.txt
+STATUS: Saved Best Brains (Gen 205)
+
+==================================================
+GEN 0206 START (2026-03-08 16:56:57)
+==================================================
+STATUS: EVOLVING
+Gen: 0206 | Time: 145.10s
+Tagger: Best=2970.98, Avg=2028.54
+Runner: Best=910.51, Avg=583.26
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0593 | W=0.1378
+  Strafe: B=-0.2580 | W=0.0837
+  Move:   B=0.7613 | W=-0.0214
+STATUS: Saved Best Brains (Gen 206)
+
+==================================================
+GEN 0207 START (2026-03-08 16:59:22)
+==================================================
+STATUS: EVOLVING
+Gen: 0207 | Time: 154.68s
+Tagger: Best=2888.67, Avg=2056.39
+Runner: Best=1061.54, Avg=604.97
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0791 | W=0.1335
+  Strafe: B=-0.2596 | W=0.0888
+  Move:   B=0.7665 | W=-0.0208
+STATUS: Saved Best Brains (Gen 207)
+
+==================================================
+GEN 0208 START (2026-03-08 17:01:57)
+==================================================
+STATUS: EVOLVING
+Gen: 0208 | Time: 148.31s
+Tagger: Best=3072.08, Avg=2061.57
+Runner: Best=1076.76, Avg=606.57
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0754 | W=0.1447
+  Strafe: B=-0.2653 | W=0.0717
+  Move:   B=0.7839 | W=-0.0157
+STATUS: Saved Best Brains (Gen 208)
+
+==================================================
+GEN 0209 START (2026-03-08 17:04:26)
+==================================================
+STATUS: EVOLVING
+Gen: 0209 | Time: 141.69s
+Tagger: Best=2865.74, Avg=2263.98
+Runner: Best=967.64, Avg=519.96
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1065 | W=0.1403
+  Strafe: B=-0.2342 | W=0.0849
+  Move:   B=0.7592 | W=-0.0132
+STATUS: Saved Best Brains (Gen 209)
+
+==================================================
+GEN 0210 START (2026-03-08 17:06:48)
+==================================================
+STATUS: EVOLVING
+Gen: 0210 | Time: 140.57s
+Tagger: Best=2935.00, Avg=2268.26
+Runner: Best=891.16, Avg=511.22
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0935 | W=0.1351
+  Strafe: B=-0.2364 | W=0.0875
+  Move:   B=0.7529 | W=-0.0101
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_210_detailed.txt
+STATUS: Saved Best Brains (Gen 210)
+
+==================================================
+GEN 0211 START (2026-03-08 17:09:09)
+==================================================
+STATUS: EVOLVING
+Gen: 0211 | Time: 143.09s
+Tagger: Best=2952.42, Avg=2241.82
+Runner: Best=1002.06, Avg=559.13
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0855 | W=0.1332
+  Strafe: B=-0.2359 | W=0.0941
+  Move:   B=0.7536 | W=-0.0014
+STATUS: Saved Best Brains (Gen 211)
+
+==================================================
+GEN 0212 START (2026-03-08 17:11:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0212 | Time: 158.54s
+Tagger: Best=2950.44, Avg=2135.99
+Runner: Best=987.33, Avg=602.81
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1001 | W=0.1314
+  Strafe: B=-0.2499 | W=0.0887
+  Move:   B=0.7699 | W=-0.0036
+STATUS: Saved Best Brains (Gen 212)
+
+==================================================
+GEN 0213 START (2026-03-08 17:14:12)
+==================================================
+STATUS: EVOLVING
+Gen: 0213 | Time: 148.18s
+Tagger: Best=2903.22, Avg=2239.84
+Runner: Best=918.45, Avg=524.57
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0942 | W=0.1405
+  Strafe: B=-0.2458 | W=0.0947
+  Move:   B=0.7728 | W=-0.0012
+STATUS: Saved Best Brains (Gen 213)
+
+==================================================
+GEN 0214 START (2026-03-08 17:16:40)
+==================================================
+STATUS: EVOLVING
+Gen: 0214 | Time: 129.24s
+Tagger: Best=2904.33, Avg=2358.60
+Runner: Best=808.92, Avg=449.99
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.0878 | W=0.1437
+  Strafe: B=-0.2543 | W=0.0840
+  Move:   B=0.7810 | W=-0.0039
+STATUS: Saved Best Brains (Gen 214)
+
+==================================================
+GEN 0215 START (2026-03-08 17:18:50)
+==================================================
+STATUS: EVOLVING
+Gen: 0215 | Time: 148.82s
+Tagger: Best=2888.71, Avg=1964.72
+Runner: Best=1082.69, Avg=634.46
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1122 | W=0.1351
+  Strafe: B=-0.2373 | W=0.1021
+  Move:   B=0.7566 | W=-0.0005
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_215_detailed.txt
+STATUS: Saved Best Brains (Gen 215)
+
+==================================================
+GEN 0216 START (2026-03-08 17:21:19)
+==================================================
+STATUS: EVOLVING
+Gen: 0216 | Time: 137.29s
+Tagger: Best=2896.38, Avg=2351.53
+Runner: Best=1002.11, Avg=504.37
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1093 | W=0.1515
+  Strafe: B=-0.2333 | W=0.0913
+  Move:   B=0.7793 | W=0.0096
+STATUS: Saved Best Brains (Gen 216)
+
+==================================================
+GEN 0217 START (2026-03-08 17:23:37)
+==================================================
+STATUS: EVOLVING
+Gen: 0217 | Time: 140.83s
+Tagger: Best=2900.95, Avg=2248.68
+Runner: Best=992.71, Avg=509.39
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1267 | W=0.1327
+  Strafe: B=-0.2491 | W=0.0951
+  Move:   B=0.7633 | W=0.0025
+STATUS: Saved Best Brains (Gen 217)
+
+==================================================
+GEN 0218 START (2026-03-08 17:25:58)
+==================================================
+STATUS: EVOLVING
+Gen: 0218 | Time: 147.43s
+Tagger: Best=2939.14, Avg=2084.49
+Runner: Best=1032.39, Avg=558.21
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1301 | W=0.1414
+  Strafe: B=-0.2317 | W=0.0711
+  Move:   B=0.7581 | W=0.0012
+STATUS: Saved Best Brains (Gen 218)
+
+==================================================
+GEN 0219 START (2026-03-08 17:28:26)
+==================================================
+STATUS: EVOLVING
+Gen: 0219 | Time: 133.16s
+Tagger: Best=3005.46, Avg=2151.17
+Runner: Best=967.93, Avg=490.77
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1283 | W=0.1589
+  Strafe: B=-0.2274 | W=0.0649
+  Move:   B=0.7665 | W=0.0054
+STATUS: Saved Best Brains (Gen 219)
+
+==================================================
+GEN 0220 START (2026-03-08 17:30:40)
+==================================================
+STATUS: EVOLVING
+Gen: 0220 | Time: 147.08s
+Tagger: Best=2937.86, Avg=1927.09
+Runner: Best=1065.33, Avg=693.63
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1311 | W=0.1743
+  Strafe: B=-0.2297 | W=0.0644
+  Move:   B=0.7901 | W=0.0046
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_220_detailed.txt
+STATUS: Saved Best Brains (Gen 220)
+
+==================================================
+GEN 0221 START (2026-03-08 17:33:07)
+==================================================
+STATUS: EVOLVING
+Gen: 0221 | Time: 151.27s
+Tagger: Best=2884.15, Avg=1824.58
+Runner: Best=1053.00, Avg=691.31
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1335 | W=0.1734
+  Strafe: B=-0.2321 | W=0.0720
+  Move:   B=0.7923 | W=0.0099
+STATUS: Saved Best Brains (Gen 221)
+
+==================================================
+GEN 0222 START (2026-03-08 17:35:39)
+==================================================
+STATUS: EVOLVING
+Gen: 0222 | Time: 148.46s
+Tagger: Best=2940.66, Avg=2028.47
+Runner: Best=1065.66, Avg=624.50
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1294 | W=0.1889
+  Strafe: B=-0.2183 | W=0.0497
+  Move:   B=0.7937 | W=0.0086
+STATUS: Saved Best Brains (Gen 222)
+
+==================================================
+GEN 0223 START (2026-03-08 17:38:08)
+==================================================
+STATUS: EVOLVING
+Gen: 0223 | Time: 147.09s
+Tagger: Best=2997.93, Avg=2285.97
+Runner: Best=816.12, Avg=514.03
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1306 | W=0.1823
+  Strafe: B=-0.2216 | W=0.0480
+  Move:   B=0.7887 | W=-0.0048
+STATUS: Saved Best Brains (Gen 223)
+
+==================================================
+GEN 0224 START (2026-03-08 17:40:36)
+==================================================
+STATUS: EVOLVING
+Gen: 0224 | Time: 144.41s
+Tagger: Best=2869.44, Avg=2286.29
+Runner: Best=1052.77, Avg=534.44
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1294 | W=0.1929
+  Strafe: B=-0.2178 | W=0.0451
+  Move:   B=0.7900 | W=-0.0146
+STATUS: Saved Best Brains (Gen 224)
+
+==================================================
+GEN 0225 START (2026-03-08 17:43:00)
+==================================================
+STATUS: EVOLVING
+Gen: 0225 | Time: 151.03s
+Tagger: Best=2902.69, Avg=2185.33
+Runner: Best=1018.47, Avg=578.35
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1358 | W=0.2071
+  Strafe: B=-0.2065 | W=0.0246
+  Move:   B=0.7949 | W=-0.0173
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_225_detailed.txt
+STATUS: Saved Best Brains (Gen 225)
+
+==================================================
+GEN 0226 START (2026-03-08 17:45:32)
+==================================================
+STATUS: EVOLVING
+Gen: 0226 | Time: 147.68s
+Tagger: Best=2888.85, Avg=2138.47
+Runner: Best=926.43, Avg=538.00
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1320 | W=0.2091
+  Strafe: B=-0.1972 | W=0.0270
+  Move:   B=0.8023 | W=-0.0066
+STATUS: Saved Best Brains (Gen 226)
+
+==================================================
+GEN 0227 START (2026-03-08 17:48:00)
+==================================================
+STATUS: EVOLVING
+Gen: 0227 | Time: 152.13s
+Tagger: Best=2955.60, Avg=2166.63
+Runner: Best=892.28, Avg=599.83
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1333 | W=0.2043
+  Strafe: B=-0.1829 | W=0.0260
+  Move:   B=0.8002 | W=-0.0123
+STATUS: Saved Best Brains (Gen 227)
+
+==================================================
+GEN 0228 START (2026-03-08 17:50:33)
+==================================================
+STATUS: EVOLVING
+Gen: 0228 | Time: 147.77s
+Tagger: Best=2898.25, Avg=2079.61
+Runner: Best=883.47, Avg=572.04
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1396 | W=0.2038
+  Strafe: B=-0.1869 | W=0.0164
+  Move:   B=0.7891 | W=-0.0217
+STATUS: Saved Best Brains (Gen 228)
+
+==================================================
+GEN 0229 START (2026-03-08 17:53:01)
+==================================================
+STATUS: EVOLVING
+Gen: 0229 | Time: 154.21s
+Tagger: Best=2921.32, Avg=2073.85
+Runner: Best=1098.24, Avg=549.83
+Bad Gen Count: 1/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1563 | W=0.2059
+  Strafe: B=-0.1891 | W=0.0203
+  Move:   B=0.7671 | W=-0.0039
+STATUS: Saved Best Brains (Gen 229)
+
+==================================================
+GEN 0230 START (2026-03-08 17:55:36)
+==================================================
+STATUS: EVOLVING
+Gen: 0230 | Time: 155.52s
+Tagger: Best=2833.40, Avg=1905.16
+Runner: Best=1063.61, Avg=650.05
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1537 | W=0.2079
+  Strafe: B=-0.1796 | W=0.0232
+  Move:   B=0.7630 | W=-0.0052
+Detailed log saved to: C:\Users\david\Desktop\gen_train\logs\detailed_logs\gen_230_detailed.txt
+STATUS: Saved Best Brains (Gen 230)
+
+==================================================
+GEN 0231 START (2026-03-08 17:58:12)
+==================================================
+STATUS: EVOLVING
+Gen: 0231 | Time: 152.70s
+Tagger: Best=2842.06, Avg=1932.88
+Runner: Best=1058.52, Avg=667.10
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1464 | W=0.2094
+  Strafe: B=-0.1875 | W=0.0192
+  Move:   B=0.7700 | W=0.0100
+STATUS: Saved Best Brains (Gen 231)
+
+==================================================
+GEN 0232 START (2026-03-08 18:00:45)
+==================================================
+STATUS: EVOLVING
+Gen: 0232 | Time: 161.41s
+Tagger: Best=2915.85, Avg=2117.63
+Runner: Best=923.16, Avg=605.54
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1446 | W=0.2068
+  Strafe: B=-0.1880 | W=0.0276
+  Move:   B=0.7928 | W=-0.0080
+STATUS: Saved Best Brains (Gen 232)
+
+==================================================
+GEN 0233 START (2026-03-08 18:03:27)
+==================================================
+STATUS: EVOLVING
+Gen: 0233 | Time: 161.87s
+Tagger: Best=2893.66, Avg=1823.00
+Runner: Best=1029.05, Avg=727.09
+Bad Gen Count: 0/3
+--------------------
+AVG NEURAL NET STATS (Bias / Mean Weight):
+  Jump:   B=-0.1475 | W=0.2073
+  Strafe: B=-0.1853 | W=0.0569
+  Move:   B=0.7712 | W=0.0200
+STATUS: Saved Best Brains (Gen 233)
+
+==================================================
+GEN 0234 START (2026-03-08 18:06:09)
+==================================================

@@ -25,18 +25,17 @@ class SimpleBrain:
     def mutate(self, rate, strength_mult=1.0):
         eff_str = 0.3 * strength_mult
         
-        if random.random() < rate:
-            mask1 = np.random.choice([0, 1], size=self.w1.shape, p=[1-rate, rate])
-            self.w1 += np.random.randn(*self.w1.shape) * eff_str * mask1
-            
-            mask2 = np.random.choice([0, 1], size=self.w2.shape, p=[1-rate, rate])
-            self.w2 += np.random.randn(*self.w2.shape) * eff_str * mask2
-            
-            if random.random() < 0.2:
-                self.b2 += np.random.randn(self.output_size) * 0.1 * strength_mult
-            
-            if random.random() < 0.05:
-                self.b2[3] = 0.0
+        mask1 = np.random.choice([0, 1], size=self.w1.shape, p=[1-rate, rate])
+        self.w1 += np.random.randn(*self.w1.shape) * eff_str * mask1
+        
+        mask2 = np.random.choice([0, 1], size=self.w2.shape, p=[1-rate, rate])
+        self.w2 += np.random.randn(*self.w2.shape) * eff_str * mask2
+        
+        if random.random() < (0.2 * rate):
+            self.b2 += np.random.randn(self.output_size) * 0.1 * strength_mult
+        
+        if random.random() < (0.05 * rate):
+            self.b2[3] = 0.0
 
     def clone(self):
         clone = SimpleBrain(self.input_size, self.hidden_size, self.output_size)

@@ -3,6 +3,11 @@ import sys
 import os
 import config
 
+if config.HEADLESS:
+    from panda3d.core import loadPrcFileData
+    loadPrcFileData('', 'window-type none')
+    loadPrcFileData('', 'audio-library-name null')
+
 worker_id = 0
 win_x, win_y, win_w, win_h = 0, 0, 800, 600
 

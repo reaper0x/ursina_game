@@ -11,36 +11,27 @@ class Agent(Entity):
         self.pair_id = pair_id 
         self.origin_x = origin_x 
         self.manager = manager
-        
         self.active = True
-        
         self.speed = config.BASE_SPEED
         self.turn_speed = 150
-        
         self.model = 'cube'
         self.color = color.red if role == "tagger" else color.azure
         self.scale = (1, 1, 1) 
         self.collider = 'box' 
-        
         self.velocity_y = 0
         self.grounded = False
         self.jump_cooldown = 0 
         self.jump_ready = True
-        
         self.bhop_chain = 0
         self.ground_time = 0.0
-        
         self.last_actions = np.zeros(4) 
         self.stuck_timer = 0
         self.last_position = self.position
-        
         self.fitness_score = 0
         self.score_breakdown = {}
         self.min_dist_to_target = 100.0 
         self.time_in_sight = 0.0
-        
         input_nodes = 26
-        
         self.brain = brain if brain else SimpleBrain(input_nodes, config.HIDDEN_LAYER_SIZE, 4) 
         self.frame_skip = random.randint(0, 3) 
 
@@ -58,13 +49,10 @@ class Agent(Entity):
             dx = np.sin(r_rad)
             dz = np.cos(r_rad)
             dir_vec = Vec3(dx, 0, dz).normalized()
-
             ray_low = raycast(self.position + Vec3(0,0.5,-0.2), dir_vec, distance=8, ignore=(self,))
             sensors.append(ray_low.distance / 8.0 if ray_low.hit else 1.0)
-            
             ray_high = raycast(self.position + Vec3(0,1.5,-0.2), dir_vec, distance=8, ignore=(self,))
             sensors.append(ray_high.distance / 8.0 if ray_high.hit else 1.0)
-            
         return np.array(sensors)
 
     def get_compass(self, target):
@@ -87,8 +75,7 @@ class Agent(Entity):
             
             try:
                 self.decision = self.brain.forward(inputs)
-            except ValueError as e:
-                print(f"Brain mismatch! Expected {self.brain.w1.shape[0]}, got {len(inputs)}")
+            except ValueError:
                 self.brain = SimpleBrain(26, config.HIDDEN_LAYER_SIZE, 4)
                 self.decision = self.brain.forward(inputs)
 
@@ -129,7 +116,7 @@ class Agent(Entity):
         
         if move_vec.length() > 0.01:
             check_dist = move_dist + 0.5
-            perp_vec = move_vec.cross(Vec3(0, 1, -0.2)).normalized()
+            perp_vec = move_vec.cross(Vec3(0, 1, 0)).normalized()
             shoulder_width = 0.45
             heights = [0.1, 0.5, 1.5] 
             blocked = False
@@ -158,7 +145,7 @@ class Agent(Entity):
             if self.ground_time < config.BHOP_WINDOW and not moving_backwards:
                 self.bhop_chain = min(3, self.bhop_chain + 1)
                 self.speed = config.BASE_SPEED + (self.bhop_chain * config.BHOP_SPEED_BOOST)
-                self.change_score(self.bhop_chain * 5, "bhop_bonus")
+                self.change_score(self.bhop_chain * 1, "bhop_bonus")
             else:
                 self.bhop_chain = 0
                 self.speed = config.BASE_SPEED
@@ -166,21 +153,31 @@ class Agent(Entity):
             self.ground_time = 0
 
         dist = distance(self.position, target.position)
-        if dist < self.min_dist_to_target: self.min_dist_to_target = dist
         
-        if distance(self.position, self.last_position) < 1.0:
+        if self.role == "tagger":
+            if dist < self.min_dist_to_target:
+                self.change_score((self.min_dist_to_target - dist) * 20, "dist_improv")
+                self.min_dist_to_target = dist
+                
+            to_target = (target.position - self.position).normalized()
+            dot_prod = self.forward.dot(to_target)
+            
+            if dot_prod > 0.5: 
+                los = raycast(self.position+Vec3(0,0.5,0), to_target, distance=dist+1, ignore=(self,))
+                if los.hit and los.entity == target: 
+                    self.time_in_sight += dt
+                    self.change_score(dot_prod * 50 * dt, "sight_bonus")
+        else:
+            if dist < self.min_dist_to_target: 
+                self.min_dist_to_target = dist
+
+        if distance(self.position, self.last_position) < 0.1:
             self.stuck_timer += dt * 2
         else:
             self.stuck_timer = max(0, self.stuck_timer - dt)
         self.last_position = self.position
 
-        if self.role == "tagger":
-            to_target = (target.position - self.position).normalized()
-            if self.forward.dot(to_target) > 0.7: 
-                los = raycast(self.position+Vec3(0,0.5,0), to_target, distance=dist+1, ignore=(self,))
-                if los.hit and los.entity == target: self.time_in_sight += dt
-
         if self.y < -10: 
             self.y = 15; self.x = self.origin_x; self.z = 0
-            self.velocity_y = 0; 
+            self.velocity_y = 0 
             self.change_score(-500, "fall_penalty")

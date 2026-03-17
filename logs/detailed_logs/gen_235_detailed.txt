@@ -1,0 +1,238 @@
+DETAILED REPORT FOR GENERATION 235
+Timestamp: 2026-03-08 18:06:19
+============================================================
+
+--- PAIR 0 ---
+  [TAGGER] Total: 1642.66
+      dist_improv: 1583.66
+      bhop_bonus: 59.00
+  [RUNNER] Total: 714.45
+      bhop_bonus: 78.00
+      win_bonus: 500.00
+      escape_dist_bonus: 136.45
+
+--- PAIR 1 ---
+  [TAGGER] Total: 1469.47
+      dist_improv: 1397.75
+      bhop_bonus: 64.00
+      sight_bonus: 7.72
+  [RUNNER] Total: 701.47
+      bhop_bonus: 51.00
+      win_bonus: 500.00
+      escape_dist_bonus: 150.47
+
+--- PAIR 2 ---
+  [TAGGER] Total: 2129.05
+      dist_improv: 1965.36
+      bhop_bonus: 41.00
+      sight_bonus: 122.69
+  [RUNNER] Total: 915.30
+      bhop_bonus: 75.00
+      proximity_penalty: -12.80
+      win_bonus: 500.00
+      escape_dist_bonus: 353.10
+
+--- PAIR 3 ---
+  [TAGGER] Total: 1391.34
+      dist_improv: 1325.34
+      bhop_bonus: 66.00
+  [RUNNER] Total: 825.77
+      bhop_bonus: 75.00
+      win_bonus: 500.00
+      escape_dist_bonus: 250.77
+
+--- PAIR 4 ---
+  [TAGGER] Total: 930.02
+      dist_improv: 876.78
+      bhop_bonus: 50.00
+      sight_bonus: 3.25
+  [RUNNER] Total: 902.11
+      bhop_bonus: 41.00
+      win_bonus: 500.00
+      escape_dist_bonus: 361.11
+
+--- PAIR 5 ---
+  [TAGGER] Total: 1516.19
+      dist_improv: 1432.24
+      bhop_bonus: 38.00
+      sight_bonus: 45.94
+  [RUNNER] Total: 812.67
+      bhop_bonus: 75.00
+      win_bonus: 500.00
+      escape_dist_bonus: 237.67
+
+--- PAIR 6 ---
+  [TAGGER] Total: 2190.46
+      dist_improv: 1940.79
+      bhop_bonus: 26.00
+      sight_bonus: 223.68
+  [RUNNER] Total: 832.35
+      bhop_bonus: 56.00
+      proximity_penalty: -15.20
+      win_bonus: 500.00
+      escape_dist_bonus: 291.55
+
+--- PAIR 7 ---
+  [TAGGER] Total: 1882.15
+      dist_improv: 1762.17
+      bhop_bonus: 33.00
+      sight_bonus: 86.98
+  [RUNNER] Total: 782.38
+      bhop_bonus: 78.00
+      win_bonus: 500.00
+      escape_dist_bonus: 204.38
+
+--- PAIR 8 ---
+  [TAGGER] Total: 2084.67
+      dist_improv: 1949.55
+      bhop_bonus: 57.00
+      sight_bonus: 78.12
+  [RUNNER] Total: 664.18
+      bhop_bonus: 61.00
+      proximity_penalty: -9.60
+      win_bonus: 500.00
+      escape_dist_bonus: 112.78
+
+--- PAIR 9 ---
+  [TAGGER] Total: 1618.16
+      dist_improv: 1579.51
+      bhop_bonus: 14.00
+      sight_bonus: 24.65
+  [RUNNER] Total: 997.21
+      bhop_bonus: 52.00
+      win_bonus: 500.00
+      escape_dist_bonus: 445.21
+
+--- PAIR 10 ---
+  [TAGGER] Total: 994.75
+      dist_improv: 963.75
+      bhop_bonus: 31.00
+  [RUNNER] Total: 964.71
+      bhop_bonus: 57.00
+      win_bonus: 500.00
+      escape_dist_bonus: 407.71
+
+--- PAIR 11 ---
+  [TAGGER] Total: 1163.27
+      dist_improv: 1090.27
+      bhop_bonus: 73.00
+  [RUNNER] Total: 909.32
+      bhop_bonus: 81.00
+      win_bonus: 500.00
+      escape_dist_bonus: 328.32
+
+--- PAIR 12 ---
+  [TAGGER] Total: 1792.91
+      dist_improv: 1736.67
+      bhop_bonus: 32.00
+      sight_bonus: 24.25
+  [RUNNER] Total: 984.70
+      bhop_bonus: 55.00
+      win_bonus: 500.00
+      escape_dist_bonus: 429.70
+
+--- PAIR 13 ---
+  [TAGGER] Total: 1377.13
+      dist_improv: 1362.13
+      bhop_bonus: 15.00
+  [RUNNER] Total: 866.05
+      bhop_bonus: 51.00
+      win_bonus: 500.00
+      escape_dist_bonus: 315.05
+
+--- PAIR 14 ---
+  [TAGGER] Total: 1045.38
+      dist_improv: 985.38
+      bhop_bonus: 60.00
+  [RUNNER] Total: 834.87
+      bhop_bonus: 81.00
+      win_bonus: 500.00
+      escape_dist_bonus: 253.87
+
+--- PAIR 15 ---
+  [TAGGER] Total: 972.51
+      dist_improv: 960.51
+      bhop_bonus: 12.00
+  [RUNNER] Total: 885.70
+      bhop_bonus: 46.00
+      win_bonus: 500.00
+      escape_dist_bonus: 339.70
+
+--- PAIR 16 ---
+  [TAGGER] Total: 2041.50
+      dist_improv: 1929.56
+      sight_bonus: 60.94
+      bhop_bonus: 51.00
+  [RUNNER] Total: 595.87
+      bhop_bonus: 81.00
+      proximity_penalty: -5.20
+      win_bonus: 500.00
+      escape_dist_bonus: 20.07
+
+--- PAIR 17 ---
+  [TAGGER] Total: 1776.34
+      dist_improv: 1664.14
+      sight_bonus: 66.20
+      bhop_bonus: 46.00
+  [RUNNER] Total: 785.93
+      bhop_bonus: 55.00
+      win_bonus: 500.00
+      escape_dist_bonus: 230.93
+
+--- PAIR 18 ---
+  [TAGGER] Total: 1119.05
+      dist_improv: 1076.05
+      bhop_bonus: 43.00
+  [RUNNER] Total: 1050.26
+      bhop_bonus: 66.00
+      win_bonus: 500.00
+      escape_dist_bonus: 484.26
+
+--- PAIR 19 ---
+  [TAGGER] Total: 1364.12
+      dist_improv: 1339.12
+      bhop_bonus: 25.00
+  [RUNNER] Total: 703.22
+      bhop_bonus: 38.00
+      win_bonus: 500.00
+      escape_dist_bonus: 165.22
+
+--- PAIR 20 ---
+  [TAGGER] Total: 2235.97
+      dist_improv: 1973.37
+      bhop_bonus: 51.00
+      sight_bonus: 211.60
+  [RUNNER] Total: 546.88
+      proximity_penalty: -36.00
+      bhop_bonus: 63.00
+      win_bonus: 500.00
+      escape_dist_bonus: 19.88
+
+--- PAIR 21 ---
+  [TAGGER] Total: 1695.64
+      dist_improv: 1672.64
+      bhop_bonus: 23.00
+  [RUNNER] Total: 1049.15
+      bhop_bonus: 60.00
+      win_bonus: 500.00
+      escape_dist_bonus: 489.15
+
+--- PAIR 22 ---
+  [TAGGER] Total: 815.75
+      dist_improv: 740.75
+      bhop_bonus: 75.00
+  [RUNNER] Total: 853.85
+      bhop_bonus: 37.00
+      win_bonus: 500.00
+      escape_dist_bonus: 316.85
+
+--- PAIR 23 ---
+  [TAGGER] Total: 1712.06
+      dist_improv: 1582.25
+      bhop_bonus: 33.00
+      sight_bonus: 96.80
+  [RUNNER] Total: 751.62
+      bhop_bonus: 58.00
+      win_bonus: 500.00
+      escape_dist_bonus: 193.62
+
